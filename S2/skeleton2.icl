@@ -1,4 +1,4 @@
-module skeleton2
+module skeleton2_breaks_compiler
 
 /*
 	Skeleton for Exercise 2 of Advanced Programming.
@@ -168,10 +168,14 @@ pUNIT :: Parser UNIT
 pUNIT = pStr "UNIT" >> inject UNIT
 
 pEITHER :: Parser (EITHER a b) | parse a & parse b
-pEITHER = left_ <|> right_
+pEITHER = pEITHER_ pAny pAny
+
+//Parses an EITHER and lets you spcify which parser to use for the innards of the EITHER
+pEITHER_ :: (Parser a) (Parser b) -> Parser (EITHER a b) | parse a & parse b
+pEITHER_ pl pr = left_ <|> right_
 	where
-		left_ 	= pStr "ELEFT" >> pAny >>= \l -> inject (LEFT l)
-		right_	= pStr "ERIGHT" >> pAny >>= \r -> inject (RIGHT r)
+		left_ 	= pStr "ELEFT" >> pl >>= \l -> inject (LEFT l)
+		right_	= pStr "ERIGHT" >> pr >>= \r -> inject (RIGHT r)
 
 pCONS :: Parser (CONS a) | parse a
 pCONS = pStr "CONS" >> pItem >>= \str -> pAny >>= \a -> inject (CONS str a)
@@ -183,16 +187,25 @@ pCONSM match = pStr "CONS" >> pItem >>= \str -> if (str == match) (pAny >>= \a -
 pPAIR :: Parser (PAIR a b) | parse a & parse b
 pPAIR = pStr "PAIR" >> pAny >>= \p1 -> pAny >>= \p2 -> inject (PAIR p1 p2)
 
+//We want the parser to Fail when we are not actually reading a tree but something with
+//the same structure (See Start5) so we use pEITHER_ in conjunction with pCONSM to check 
+//if the CONS match. If we wouldn't do this then the failure would happen in the toTree
+//function which doesn't support failure, so would yield an actual error
 pTree :: Parser (Tree a) | parse a
-pTree = pEITHER >>= \t -> inject (toTree t)
+pTree = pEITHER_ (pCONSM "Tip") (pCONSM "Bin") >>= \t -> inject (toTree t)
 
 pTup :: Parser (a,b) | parse a & parse b
 pTup = pCONSM "tuple" >>= \t -> inject (toTuple t)
 
+//We want the parser to Fail when we are not actually reading a list but something with
+//the same structure (See Start5) so we use pEITHER_ in conjunction with pCONSM to check 
+//if the CONS match. If we wouldn't do this then the failure would happen in the toList
+//function which doesn't support failure, so would yield an actual error
 pList :: Parser [a] | parse a
-pList = pEITHER >>= \l -> inject (toList l)
+pList = pEITHER_ (pCONSM "Nil") (pCONSM "Cons") >>= \l -> inject (toList l)
 
 //NOTE: Why can't we use: 'parse = runParser pInt', why do we need to specify the r :(
+
 instance parse Int where parse r = runParser pInt r 
 instance parse Bool where parse r = runParser pBool r
 instance parse String where parse r = runParser pString r
@@ -258,11 +271,9 @@ class Monad m | Applicative m where
 (>>) m1 m2 = m1 >>= \_ -> m2
 
 
-
-
 /**************** Starts *******************************/
 
-Start = ("add your own Start rule!\n", Start6)
+Start = ("add your own Start rule!\n", Start5)
 
 // Possible tests:
 //Start1 :: ([String],Result T)
@@ -282,7 +293,6 @@ where
 	t :: Tree Int
 	t = Bin (Bin Tip 2 (Bin Tip 3 Tip)) 4 (Bin (Bin Tip 5 Tip) 6 Tip)
 
-//
 Start5 :: (Result [Int])
 Start5 = parse not_a_list
 	where
