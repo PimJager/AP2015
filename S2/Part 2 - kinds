@@ -1,0 +1,10 @@
+Part 2, kinds:
+
+Given the following type definitions:
+:: IntList = Empty | ConsInt Int IntList ::Lista=Nil |Consa(Lista)
+:: Treeab=Leafa|Node(Treeab)b(Treeab) :: T1ab =C11(ab)|C12b
+:: T2abc=C2(a(T1bc))
+:: T3abc=C3(abc)
+:: T4abc=C4(a(bc))
+What is the kind of the following types: IntList, List, List IntList, Tree, T1, T2, T3, and T4?
+

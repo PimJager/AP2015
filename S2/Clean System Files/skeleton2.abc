@@ -1,0 +1,2703 @@
+.comp 920 01011101001
+.start __skeleton2_Start
+.depend "StdMaybe"
+.depend "_SystemEnum"
+.depend "StdEnum"
+.depend "StdMisc"
+.depend "StdFunc"
+.depend "StdCharList"
+.depend "StdTuple"
+.depend "StdOrdList"
+.depend "StdList"
+.depend "StdClass"
+.depend "StdFile"
+.depend "StdString"
+.depend "_SystemArray"
+.depend "StdArray"
+.depend "StdChar"
+.depend "StdReal"
+.depend "StdInt"
+.depend "StdOverloaded"
+.depend "StdBool"
+.depend "StdEnv"
+.endinfo
+.module m_skeleton2 "skeleton2"
+.implab _cycle_in_spine
+.implab _type_error
+.implab _hnf
+.impdesc _ind
+.implab _indirection _eaind
+.impdesc e_system_dif
+.implab e_system_nif e_system_eaif
+.implab e_system_sif
+.impdesc e_system_dAP
+.implab e_system_nAP e_system_eaAP
+.implab e_system_sAP
+.impdesc _Nil
+.impdesc _Cons
+.impdesc _Conss
+.implab n_Conss ea_Conss
+.impdesc _Consts
+.implab n_Consts ea_Consts
+.impdesc _Conssts
+.implab n_Conssts ea_Conssts
+.impdesc _Tuple
+.impdesc d_S.1
+.implab n_S.1 ea_S.1
+.impdesc d_S.2
+.implab n_S.2 ea_S.2
+.impdesc d_S.3
+.implab n_S.3 ea_S.3
+.impdesc d_S.4
+.implab n_S.4 ea_S.4
+.impdesc d_S.5
+.implab n_S.5 ea_S.5
+.impdesc d_S.6
+.implab n_S.6 ea_S.6
+.implab _driver
+.impdesc e_StdFunc_dconst
+.impdesc e_StdList_dmap
+.impdesc e_StdList_dall
+.impdesc e_StdList_dfromString;78
+.implab e_StdList_nfromString;78 e_StdList_eafromString;78
+.impdesc e_StdString_d==;2
+.implab e_StdString_s==;2
+.implab e_StdString_n==;2
+.impdesc e_StdString_dtoString;5
+.implab e_StdString_ntoString;5
+.impdesc e_StdString_dtoString;8
+.implab e_StdString_ntoString;8
+.impdesc e_StdChar_disDigit
+.impdesc e_StdInt_d<;17
+.impdesc e_StdInt_dtoInt;23
+.implab e_StdInt_ntoInt;23
+.impdesc e_StdOverloaded_r<;
+.impdesc e_StdBool_d==;3
+.desc0 d353 0 "UNIT"
+.desc d354 _hnf _add_arg 2 0 "PAIR"
+.desc d355 _hnf _add_arg 1 0 "LEFT"
+.desc d356 _hnf _add_arg 1 0 "RIGHT"
+.desc d357 _hnf _add_arg 2 0 "CONS"
+.desc d358 _hnf _hnf 0 0 "Tip"
+.desc d359 _hnf _add_arg 3 0 "Bin"
+.desc d360 _hnf _hnf 0 0 "Fail"
+.desc d361 _hnf _add_arg 2 0 "Match"
+.desc d362 _hnf _add_arg 1 0 "Parser"
+.desc0 d363 0 "C"
+.record r335 a 1 0 "show_;"
+.record r337 a 1 0 "parse;"
+.record r339 a 1 0 "Functor;"
+.record r341 aa(a) 3 0 "Applicative;"
+.record r345 aaa 3 0 "Alternative;"
+.record r349 aaa 3 0 "Monad;"
+.export __skeleton2_Start
+.o 0 0
+__skeleton2_Start
+	build _ 0 n28
+.d 1 0
+	jmp _driver
+.n 0 _
+.o 1 0
+n28
+	push_node _cycle_in_spine 0
+.o 0 0
+ea28
+	build _ 0 n33
+	buildAC "add your own Start rule!\n"
+	buildh ARRAY 1
+	push_a 1
+	push_a 1
+	fillh _Tuple 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 0 _
+.o 1 0
+n33
+	push_node _cycle_in_spine 0
+.o 0 0
+ea33
+	build _ 0 n57
+	build _ 1 n188
+	build _ 1 n217
+	build _ 0 n56
+	build _ 1 n188
+	build _ 1 n217
+	build _ 0 n55
+	build _ 1 n183
+	build _ 1 n265
+	buildh _Nil 0
+	buildAC "lijstitem2"
+	buildh ARRAY 1
+	buildh _Cons 2
+	buildAC "Lijstitem1"
+	buildh ARRAY 1
+	buildh _Cons 2
+	build _ 1 n181
+	build _ 1 n199
+	build _ 0 n364
+	build _ 1 n256
+	buildAC "Test"
+	buildh ARRAY 1
+	build _ 1 n172
+	build _ 1 n86
+	buildB FALSE
+	build _ 1 n171
+	build _ 1 n85
+	buildI 5
+	build _ 1 n170
+	build _ 1 n84
+	push_a 7
+	push_a 7
+	push_a 7
+	push_a 7
+	push_a 7
+	push_a 7
+	push_a 7
+	push_a 7
+	fillh _Tuple 8 16
+	pop_a 8
+.d 1 0
+	rtn
+.n 0 _ ea364
+.o 1 0
+n364
+	push_node _cycle_in_spine 0
+.o 1 0
+ea364
+.o 1 0
+s364
+	buildI 9
+	buildB TRUE
+.d 3 0
+	jmp s176
+.n 1 _ ea256
+.o 1 0
+n256
+	push_node _cycle_in_spine 1
+.o 2 0
+ea256
+.o 2 0
+s256
+	create
+.d 1 0
+	jsr s257
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s257
+	buildh d145 0
+	buildAC "tuple"
+	buildh ARRAY 1
+	build _ 1 n258
+.d 3 0
+	jmp s100
+.n 1 _ ea258
+.o 1 0
+n258
+	push_node _cycle_in_spine 1
+.o 2 0
+ea258
+.o 2 0
+s258
+	push_a 0
+	buildh d259 1
+	build _ 0 n11
+	buildAC "CONS"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.desc d259 _hnf l259 2 0 "<lambda>[line:181];41;258"
+.a 2 ea259
+.o 2 0
+l259
+	push_args 0 1 1
+	update_a 2 1
+	create
+	update_a 0 3
+	pop_a 1
+.o 3 0
+ea259
+	jsr_eval 1
+	jsr_eval 0
+	push_array 1
+	push_array 1
+	update_a 1 3
+	update_a 0 2
+	pop_a 2
+.o 3 0
+s259
+	push_a 0
+	push_a 2
+	update_a 1 2
+	updatepop_a 0 1
+.d 2 0
+	jsr eqAC
+.o 0 1 b	
+	jmp_false else.1
+	push_a 0
+	buildh ARRAY 1
+	buildh d113 1
+	build _ 0 n260
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+else.1
+	pop_a 1
+.d 1 0
+	jmp s99
+.n 0 _ ea260
+.o 1 0
+n260
+	push_node _cycle_in_spine 0
+.o 1 0
+ea260
+.o 1 0
+s260
+	buildh d261 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d261 _hnf l261 1 0 "<lambda>[line:150];17;260"
+.o 2 0
+l261
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea261
+.o 2 0
+s261
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s262
+.o 2 0
+s262
+	create
+.d 1 0
+	jsr s263
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s263
+	buildh d264 0
+	build _ 0 n197
+	buildAC "PAIR"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d264 _hnf l264 1 0 "<lambda>[line:184];33;263"
+.o 2 0
+l264
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea264
+.o 2 0
+s264
+	push_a 0
+	buildh d114 1
+	build _ 0 n215
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.n 1 _ ea265
+.o 1 0
+n265
+	push_node _cycle_in_spine 1
+.o 2 0
+ea265
+.o 2 0
+s265
+	create
+.d 1 0
+	jsr s266
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s266
+	buildh d111 0
+	build _ 0 n215
+	buildAC "ERIGHT"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+	build _ 2 n100
+	buildh d110 0
+	build _ 0 n215
+	buildAC "ELEFT"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+	build _ 2 n100
+.d 3 0
+	jmp s98
+.n 0 _ ea197
+.o 1 0
+n197
+	push_node _cycle_in_spine 0
+.o 1 0
+ea197
+.o 1 0
+s197
+	buildh d198 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d198 _hnf l198 1 0 "<lambda>[line:150];17;197"
+.o 2 0
+l198
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea198
+.o 2 0
+s198
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s85
+.n 1 _ ea199
+.o 1 0
+n199
+	push_node _cycle_in_spine 1
+.o 2 0
+ea199
+.o 2 0
+s199
+	create
+.d 1 0
+	jsr s200
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s200
+	buildh d159 0
+	build _ 0 n201
+.d 3 0
+	jmp s100
+.n 0 _ ea201
+.o 1 0
+n201
+	push_node _cycle_in_spine 0
+.o 1 0
+ea201
+.o 1 0
+s201
+	buildh d111 0
+	build _ 0 n202
+	buildAC "ERIGHT"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+	build _ 2 n100
+	buildh d110 0
+	build _ 0 n135
+	buildAC "ELEFT"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+	build _ 2 n100
+.d 3 0
+	jmp s98
+.n 0 _ ea202
+.o 1 0
+n202
+	push_node _cycle_in_spine 0
+.o 1 0
+ea202
+.o 1 0
+s202
+	buildh d203 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d203 _hnf l203 1 0 "<lambda>[line:150];17;202"
+.o 2 0
+l203
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea203
+.o 2 0
+s203
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s204
+.o 2 0
+s204
+	create
+.d 1 0
+	jsr s205
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s205
+	buildh d206 0
+	build _ 0 n11
+	buildAC "CONS"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d206 _hnf l206 1 0 "<lambda>[line:177];34;205"
+.o 2 0
+l206
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea206
+.o 2 0
+s206
+	push_a 0
+	buildh d112 1
+	build _ 0 n207
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.n 0 _ ea207
+.o 1 0
+n207
+	push_node _cycle_in_spine 0
+.o 1 0
+ea207
+.o 1 0
+s207
+	buildh d208 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d208 _hnf l208 1 0 "<lambda>[line:150];17;207"
+.o 2 0
+l208
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea208
+.o 2 0
+s208
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s251
+.o 2 0
+s251
+	create
+.d 1 0
+	jsr s252
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s252
+	buildh d253 0
+	build _ 0 n211
+	buildAC "PAIR"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d253 _hnf l253 1 0 "<lambda>[line:184];33;252"
+.o 2 0
+l253
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea253
+.o 2 0
+s253
+	push_a 0
+	buildh d114 1
+	build _ 0 n254
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.n 0 _ ea254
+.o 1 0
+n254
+	push_node _cycle_in_spine 0
+.o 1 0
+ea254
+.o 1 0
+s254
+	buildh d255 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d255 _hnf l255 1 0 "<lambda>[line:150];17;254"
+.o 2 0
+l255
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea255
+.o 2 0
+s255
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s199
+.n 0 _ ea211
+.o 1 0
+n211
+	push_node _cycle_in_spine 0
+.o 1 0
+ea211
+.o 1 0
+s211
+	buildh d212 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d212 _hnf l212 1 0 "<lambda>[line:150];17;211"
+.o 2 0
+l212
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea212
+	jsr_eval 0
+.o 2 0
+s212
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s86
+.n 1 _ ea217
+.o 1 0
+n217
+	push_node _cycle_in_spine 1
+.o 2 0
+ea217
+.o 2 0
+s217
+	create
+.d 1 0
+	jsr s218
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s218
+	buildh d137 0
+	build _ 0 n219
+.d 3 0
+	jmp s100
+.n 0 _ ea219
+.o 1 0
+n219
+	push_node _cycle_in_spine 0
+.o 1 0
+ea219
+.o 1 0
+s219
+	buildh d111 0
+	build _ 0 n220
+	buildAC "ERIGHT"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+	build _ 2 n100
+	buildh d110 0
+	build _ 0 n135
+	buildAC "ELEFT"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+	build _ 2 n100
+.d 3 0
+	jmp s98
+.n 0 _ ea220
+.o 1 0
+n220
+	push_node _cycle_in_spine 0
+.o 1 0
+ea220
+.o 1 0
+s220
+	buildh d221 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d221 _hnf l221 1 0 "<lambda>[line:150];17;220"
+.o 2 0
+l221
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea221
+.o 2 0
+s221
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s222
+.o 2 0
+s222
+	create
+.d 1 0
+	jsr s223
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s223
+	buildh d224 0
+	build _ 0 n11
+	buildAC "CONS"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d224 _hnf l224 1 0 "<lambda>[line:177];34;223"
+.o 2 0
+l224
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea224
+.o 2 0
+s224
+	push_a 0
+	buildh d112 1
+	build _ 0 n225
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.n 0 _ ea225
+.o 1 0
+n225
+	push_node _cycle_in_spine 0
+.o 1 0
+ea225
+.o 1 0
+s225
+	buildh d226 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d226 _hnf l226 1 0 "<lambda>[line:150];17;225"
+.o 2 0
+l226
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea226
+.o 2 0
+s226
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s237
+.o 2 0
+s237
+	create
+.d 1 0
+	jsr s238
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s238
+	buildh d239 0
+	build _ 0 n215
+	buildAC "PAIR"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d239 _hnf l239 1 0 "<lambda>[line:184];33;238"
+.o 2 0
+l239
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea239
+.o 2 0
+s239
+	push_a 0
+	buildh d114 1
+	build _ 0 n240
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.n 0 _ ea240
+.o 1 0
+n240
+	push_node _cycle_in_spine 0
+.o 1 0
+ea240
+.o 1 0
+s240
+	buildh d241 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d241 _hnf l241 1 0 "<lambda>[line:150];17;240"
+.o 2 0
+l241
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea241
+.o 2 0
+s241
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s246
+.o 2 0
+s246
+	create
+.d 1 0
+	jsr s247
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s247
+	buildh d248 0
+	build _ 0 n244
+	buildAC "PAIR"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d248 _hnf l248 1 0 "<lambda>[line:184];33;247"
+.o 2 0
+l248
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea248
+.o 2 0
+s248
+	push_a 0
+	buildh d114 1
+	build _ 0 n249
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.n 0 _ ea249
+.o 1 0
+n249
+	push_node _cycle_in_spine 0
+.o 1 0
+ea249
+.o 1 0
+s249
+	buildh d250 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d250 _hnf l250 1 0 "<lambda>[line:150];17;249"
+.o 2 0
+l250
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea250
+.o 2 0
+s250
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s217
+.n 0 _ ea244
+.o 1 0
+n244
+	push_node _cycle_in_spine 0
+.o 1 0
+ea244
+.o 1 0
+s244
+	buildh d245 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d245 _hnf l245 1 0 "<lambda>[line:150];17;244"
+.o 2 0
+l245
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea245
+.o 2 0
+s245
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s217
+.n 0 _ ea215
+.o 1 0
+n215
+	push_node _cycle_in_spine 0
+.o 1 0
+ea215
+.o 1 0
+s215
+	buildh d216 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d216 _hnf l216 1 0 "<lambda>[line:150];17;215"
+.o 2 0
+l216
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea216
+.o 2 0
+s216
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s84
+.n 1 _ ea170
+.o 1 0
+n170
+	push_node _cycle_in_spine 1
+.o 2 0
+ea170
+.o 2 0
+s170
+	buildh _Nil 0
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s74
+.n 1 _ ea171
+.o 1 0
+n171
+	push_node _cycle_in_spine 1
+.o 2 0
+ea171
+.o 2 0
+s171
+	buildh _Nil 0
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s75
+.n 1 _ ea172
+.o 1 0
+n172
+	push_node _cycle_in_spine 1
+.o 2 0
+ea172
+.o 2 0
+s172
+	buildh _Nil 0
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s76
+.o 3 0
+s176
+	buildh _Nil 0
+	push_a 2
+	push_a 2
+	update_a 2 4
+	update_a 1 3
+	updatepop_a 0 2
+.d 4 0
+	jmp s234
+.o 4 0
+s234
+	create
+	push_a 2
+	push_a 2
+	update_a 2 4
+	update_a 1 3
+	updatepop_a 0 2
+.d 3 0
+	jsr s6
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s235
+.o 3 0
+s235
+	repl_args 2 2
+	push_a 2
+	push_a 2
+	build _ 2 n236
+	push_a 1
+	buildh _Cons 2
+	buildAC "CONS"
+	buildh ARRAY 1
+	fillh _Cons 2 5
+	pop_a 3
+.d 1 0
+	rtn
+.n 2 _ ea236
+.o 1 0
+n236
+	push_node _cycle_in_spine 2
+.o 3 0
+ea236
+	jsr_eval 0
+.o 3 0
+s236
+	repl_args 2 2
+	push_a 2
+	push_a 2
+	build _ 2 n74
+	push_a 1
+	build _ 2 n75
+	buildAC "PAIR"
+	buildh ARRAY 1
+	fillh _Cons 2 5
+	pop_a 3
+.d 1 0
+	rtn
+.n 1 _ ea181
+.o 1 0
+n181
+	push_node _cycle_in_spine 1
+.o 2 0
+ea181
+.o 2 0
+s181
+	buildh _Nil 0
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s177
+.n 2 _ ea177
+.o 1 0
+n177
+	push_node _cycle_in_spine 2
+.o 3 0
+ea177
+	jsr_eval 0
+.o 3 0
+s177
+	create
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 2 0
+	jsr s2
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s178
+.o 3 0
+s178
+	eq_desc d355 1 0
+	jmp_true case.2
+	jmp case.3
+case.2
+	repl_args 1 1
+	push_a 1
+	push_a 1
+	build _ 2 n160
+	buildAC "ELEFT"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+case.3
+	repl_args 1 1
+	push_a 1
+	push_a 1
+	build _ 2 n179
+	buildAC "ERIGHT"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 2 _ ea179
+.o 1 0
+n179
+	push_node _cycle_in_spine 2
+.o 3 0
+ea179
+	jsr_eval 0
+.o 3 0
+s179
+	repl_args 2 2
+	push_a 2
+	push_a 2
+	build _ 2 n233
+	push_a 1
+	buildh _Cons 2
+	buildAC "CONS"
+	buildh ARRAY 1
+	fillh _Cons 2 5
+	pop_a 3
+.d 1 0
+	rtn
+.n 2 _ ea233
+.o 1 0
+n233
+	push_node _cycle_in_spine 2
+.o 3 0
+ea233
+	jsr_eval 0
+.o 3 0
+s233
+	repl_args 2 2
+	push_a 2
+	push_a 2
+	build _ 2 n177
+	push_a 1
+	build _ 2 n76
+	buildAC "PAIR"
+	buildh ARRAY 1
+	fillh _Cons 2 5
+	pop_a 3
+.d 1 0
+	rtn
+.n 1 _ ea183
+.o 1 0
+n183
+	push_node _cycle_in_spine 1
+.o 2 0
+ea183
+	jsr_eval 0
+.o 2 0
+s183
+	buildh _Nil 0
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s232
+.o 3 0
+s232
+	eq_desc d355 1 0
+	jmp_true case.4
+	jmp case.5
+case.4
+	repl_args 1 1
+	push_a 1
+	push_a 1
+	build _ 2 n74
+	buildAC "ELEFT"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+case.5
+	repl_args 1 1
+	push_a 1
+	push_a 1
+	build _ 2 n74
+	buildAC "ERIGHT"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 1 _ ea188
+.o 1 0
+n188
+	push_node _cycle_in_spine 1
+.o 2 0
+ea188
+	jsr_eval 0
+.o 2 0
+s188
+	buildh _Nil 0
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s184
+.n 2 _ ea184
+.o 1 0
+n184
+	push_node _cycle_in_spine 2
+.o 3 0
+ea184
+	jsr_eval 0
+.o 3 0
+s184
+	create
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 2 0
+	jsr s4
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s185
+.o 3 0
+s185
+	eq_desc d355 1 0
+	jmp_true case.6
+	jmp case.7
+case.6
+	repl_args 1 1
+	push_a 1
+	push_a 1
+	build _ 2 n160
+	buildAC "ELEFT"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+case.7
+	repl_args 1 1
+	push_a 1
+	push_a 1
+	build _ 2 n186
+	buildAC "ERIGHT"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 2 _ ea186
+.o 1 0
+n186
+	push_node _cycle_in_spine 2
+.o 3 0
+ea186
+	jsr_eval 0
+.o 3 0
+s186
+	repl_args 2 2
+	push_a 2
+	push_a 2
+	build _ 2 n229
+	push_a 1
+	buildh _Cons 2
+	buildAC "CONS"
+	buildh ARRAY 1
+	fillh _Cons 2 5
+	pop_a 3
+.d 1 0
+	rtn
+.n 2 _ ea229
+.o 1 0
+n229
+	push_node _cycle_in_spine 2
+.o 3 0
+ea229
+	jsr_eval 0
+.o 3 0
+s229
+	repl_args 2 2
+	push_a 2
+	push_a 2
+	build _ 2 n231
+	push_a 1
+	build _ 2 n74
+	buildAC "PAIR"
+	buildh ARRAY 1
+	fillh _Cons 2 5
+	pop_a 3
+.d 1 0
+	rtn
+.n 2 _ ea231
+.o 1 0
+n231
+	push_node _cycle_in_spine 2
+.o 3 0
+ea231
+	jsr_eval 0
+.o 3 0
+s231
+	repl_args 2 2
+	push_a 2
+	push_a 2
+	build _ 2 n184
+	push_a 1
+	build _ 2 n184
+	buildAC "PAIR"
+	buildh ARRAY 1
+	fillh _Cons 2 5
+	pop_a 3
+.d 1 0
+	rtn
+.n 1 _ ea86
+.o 1 0
+n86
+	push_node _cycle_in_spine 1
+.o 2 0
+ea86
+	jsr_eval 0
+.o 2 0
+s86
+	create
+.d 1 0
+	jsr s17
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.n 1 _ ea85
+.o 1 0
+n85
+	push_node _cycle_in_spine 1
+.o 2 0
+ea85
+.o 2 0
+s85
+	create
+.d 1 0
+	jsr s16
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.n 1 _ ea84
+.o 1 0
+n84
+	push_node _cycle_in_spine 1
+.o 2 0
+ea84
+.o 2 0
+s84
+	create
+.d 1 0
+	jsr s15
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.n 2 _ ea160
+.o 1 0
+n160
+	push_node _cycle_in_spine 2
+.o 3 0
+ea160
+	jsr_eval 0
+.o 3 0
+s160
+	repl_args 2 2
+	push_a 2
+	push_a 2
+	build _ 2 n77
+	push_a 1
+	buildh _Cons 2
+	buildAC "CONS"
+	buildh ARRAY 1
+	fillh _Cons 2 5
+	pop_a 3
+.d 1 0
+	rtn
+.n 2 _ ea77
+.o 1 0
+n77
+	push_node _cycle_in_spine 2
+.o 3 0
+ea77
+.o 3 0
+s77
+	push_a 1
+	buildAC "UNIT"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 2 _ ea76
+.o 1 0
+n76
+	push_node _cycle_in_spine 2
+.o 3 0
+ea76
+.o 3 0
+s76
+	push_a 1
+	push_a 1
+	buildh _Cons 2
+	buildAC "String"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 2 _ ea75
+.o 1 0
+n75
+	push_node _cycle_in_spine 2
+.o 3 0
+ea75
+.o 3 0
+s75
+	push_a 1
+	push_a 1
+	build _ 1 e_StdString_ntoString;8
+	buildh _Cons 2
+	buildAC "Bool"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 2 _ ea74
+.o 1 0
+n74
+	push_node _cycle_in_spine 2
+.o 3 0
+ea74
+.o 3 0
+s74
+	push_a 1
+	push_a 1
+	build _ 1 e_StdString_ntoString;5
+	buildh _Cons 2
+	buildAC "Int"
+	buildh ARRAY 1
+	fillh _Cons 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 0 _ ea57
+.o 1 0
+n57
+	push_node _cycle_in_spine 0
+.o 1 0
+ea57
+.o 1 0
+s57
+	buildh d358 0
+	buildh e_StdInt_d<;17 0
+	build_r e_StdOverloaded_r<; 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	buildI 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	buildh d71 2
+	build _ 2 n1
+	buildh e_StdInt_d<;17 0
+	build_r e_StdOverloaded_r<; 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	buildI 5
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	buildh d71 2
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d71 n71 l71 3 0 "Cinsert;70"
+.a 3 ea71
+.o 2 0
+l71
+	push_args 0 2 2
+	update_a 3 2
+	create
+	update_a 0 4
+	pop_a 1
+.d 4 0
+	jmp ea71
+.n 3 d71 ea71
+.o 1 0
+n71
+	push_node _cycle_in_spine 3
+.o 4 0
+ea71
+	jsr_eval 2
+	jsr_eval 0
+	repl_r_args 1 0
+.o 4 0
+s71
+	eq_desc d358 0 2
+	jmp_true case.8
+	jmp case.9
+case.8
+	buildh d358 0
+	buildh d358 0
+	push_a 3
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	fillh d359 3 6
+	pop_a 3
+.d 1 0
+	rtn
+case.9
+	push_args 2 3 3
+	buildh _Nil 0
+	update_a 0 6
+	pop_a 1
+	build_r e_StdOverloaded_r<; 1 0 3 0
+	push_a 1
+	push_a 6
+	push_a 2
+	update_a 2 3
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	build d71 3 n71
+	push_a 3
+	push_a 3
+	push_a 2
+	update_a 2 3
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	fillh d359 3 9
+	pop_a 6
+.d 1 0
+	rtn
+.n 0 _ ea56
+.o 1 0
+n56
+	push_node _cycle_in_spine 0
+.o 1 0
+ea56
+.o 1 0
+s56
+	fillh d358 0 0
+.d 1 0
+	rtn
+.n 0 _ ea55
+.o 1 0
+n55
+	push_node _cycle_in_spine 0
+.o 1 0
+ea55
+.o 1 0
+s55
+	buildI 5
+	fillh d356 1 1
+.d 1 0
+	rtn
+.desc d159 _hnf l159 1 0 "<lambda>[line:193];21;158"
+.o 2 0
+l159
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea159
+.o 2 0
+s159
+	push_a 0
+	build _ 1 n3
+	updatepop_a 0 1
+.d 2 0
+	jmp s101
+.desc d145 _hnf l145 1 0 "<lambda>[line:190];27;144"
+.o 2 0
+l145
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea145
+.o 2 0
+s145
+	push_a 0
+	build _ 1 n7
+	updatepop_a 0 1
+.d 2 0
+	jmp s101
+.n 0 _ ea135
+.o 1 0
+n135
+	push_node _cycle_in_spine 0
+.o 1 0
+ea135
+.o 1 0
+s135
+	buildh d136 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d136 _hnf l136 1 0 "<lambda>[line:150];17;135"
+.o 2 0
+l136
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea136
+.o 2 0
+s136
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s115
+.o 2 0
+s115
+	create
+.d 1 0
+	jsr s116
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s116
+	buildh d117 0
+	build _ 0 n11
+	buildAC "CONS"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d117 _hnf l117 1 0 "<lambda>[line:177];34;116"
+.o 2 0
+l117
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea117
+.o 2 0
+s117
+	push_a 0
+	buildh d112 1
+	build _ 0 n118
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.n 0 _ ea118
+.o 1 0
+n118
+	push_node _cycle_in_spine 0
+.o 1 0
+ea118
+.o 1 0
+s118
+	buildh d119 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d119 _hnf l119 1 0 "<lambda>[line:150];17;118"
+.o 2 0
+l119
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea119
+	jsr_eval 0
+.o 2 0
+s119
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s87
+.desc d137 _hnf l137 1 0 "<lambda>[line:187];21;136"
+.o 2 0
+l137
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea137
+.o 2 0
+s137
+	push_a 0
+	build _ 1 n5
+	updatepop_a 0 1
+.d 2 0
+	jmp s101
+.o 2 0
+s87
+	create
+.d 1 0
+	jsr s18
+.o 1 0
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.desc d114 _hnf l114 2 0 "<lambda>[line:184];49;113"
+.a 2 ea114
+.o 2 0
+l114
+	push_args 0 1 1
+	update_a 2 1
+	create
+	update_a 0 3
+	pop_a 1
+.o 3 0
+ea114
+.o 3 0
+s114
+	push_a 1
+	push_a 1
+	buildh d354 2
+	updatepop_a 0 2
+.d 2 0
+	jmp s101
+.desc d113 _hnf l113 2 0 "<lambda>[line:181];77;112"
+.a 2 ea113
+.o 2 0
+l113
+	push_args 0 1 1
+	update_a 2 1
+	create
+	update_a 0 3
+	pop_a 1
+.o 3 0
+ea113
+.o 3 0
+s113
+	push_a 1
+	push_a 1
+	buildh d357 2
+	updatepop_a 0 2
+.d 2 0
+	jmp s101
+.desc d112 _hnf l112 2 0 "<lambda>[line:177];51;111"
+.a 2 ea112
+.o 2 0
+l112
+	push_args 0 1 1
+	update_a 2 1
+	create
+	update_a 0 3
+	pop_a 1
+.o 3 0
+ea112
+.o 3 0
+s112
+	push_a 1
+	push_a 1
+	buildh d357 2
+	updatepop_a 0 2
+.d 2 0
+	jmp s101
+.desc d110 _hnf l110 1 0 "<lambda>[line:173];44;109"
+.o 2 0
+l110
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea110
+.o 2 0
+s110
+	push_a 0
+	buildh d355 1
+	updatepop_a 0 1
+.d 2 0
+	jmp s101
+.desc d111 _hnf l111 1 0 "<lambda>[line:174];45;110"
+.o 2 0
+l111
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea111
+.o 2 0
+s111
+	push_a 0
+	buildh d356 1
+	updatepop_a 0 1
+.d 2 0
+	jmp s101
+.o 1 0
+s18
+	buildh d353 0
+	build _ 1 n101
+	buildAC "UNIT"
+	buildh ARRAY 1
+	build _ 1 n14
+.d 3 0
+	jmp s106
+.o 1 0
+s17
+	build _ 0 n11
+	buildAC "String"
+	buildh ARRAY 1
+	build _ 1 n14
+.d 3 0
+	jmp s106
+.o 1 0
+s16
+	buildh d109 0
+	build _ 0 n11
+	buildAC "Bool"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d109 _hnf l109 1 0 "<lambda>[line:162];34;108"
+.o 2 0
+l109
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea109
+.o 2 0
+s109
+	buildAC "True"
+	buildh ARRAY 1
+	push_a 1
+	build e_StdString_d==;2 2 e_StdString_n==;2
+	updatepop_a 0 1
+.d 2 0
+	jmp s101
+.o 1 0
+s15
+	buildh d108 0
+	buildh d37 0
+	build _ 1 n13
+	buildAC "Int"
+	buildh ARRAY 1
+	build _ 1 n14
+	build _ 2 n106
+.d 3 0
+	jmp s100
+.desc d108 _hnf l108 1 0 "<lambda>[line:159];92;107"
+.o 2 0
+l108
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea108
+.o 2 0
+s108
+	push_a 0
+	build _ 1 e_StdInt_ntoInt;23
+	updatepop_a 0 1
+.d 2 0
+	jmp s101
+.n 2 _ ea106
+.o 1 0
+n106
+	push_node _cycle_in_spine 2
+.o 3 0
+ea106
+.o 3 0
+s106
+	push_a 1
+	buildh d51 1
+	push_a 1
+	update_a 1 3
+	updatepop_a 0 2
+.d 3 0
+	jmp s100
+.desc d51 _hnf l51 2 0 "<lambda>[line:258];21;50"
+.a 0 ea51
+.o 2 0
+l51
+	repl_args 1 1
+.o 2 0
+ea51
+	jsr_eval 0
+.o 2 0
+s51
+	updatepop_a 0 1
+.d 1 0
+	rtn
+.desc d37 _hnf l37 1 0 "<lambda>[line:159];32;36"
+.o 2 0
+l37
+	pop_a 1
+.d 1 0
+	jsr ea37
+.o 0 1 b
+	buildB_b 0
+	pop_b 1
+.d 1 0
+	rtn
+.o 1 0
+ea37
+.o 1 0
+s37
+	push_a 0
+	build e_StdList_dfromString;78 1 e_StdList_nfromString;78
+	buildh e_StdChar_disDigit 0
+	buildh e_StdList_dmap 1
+	build _ 2 n1
+	buildB TRUE
+	buildh e_StdBool_d==;3 1
+	buildh e_StdList_dall 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 2 0
+	jsr s1
+.o 1 0
+	pushB_a 0
+	pop_a 1
+.d 0 1 b
+	rtn
+.n 1 _ ea14
+.o 1 0
+n14
+	push_node _cycle_in_spine 1
+.o 2 0
+ea14
+.o 2 0
+s14
+	push_a 0
+	buildh e_StdString_d==;2 1
+	updatepop_a 0 1
+.d 2 0
+	jmp s13
+.n 1 _ ea13
+.o 1 0
+n13
+	push_node _cycle_in_spine 1
+.o 2 0
+ea13
+.o 2 0
+s13
+	push_a 0
+	buildh d105 1
+	build _ 0 n11
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s100
+.desc d105 _hnf l105 2 0 "<lambda>[line:153];24;104"
+.a 2 ea105
+.o 2 0
+l105
+	push_args 0 1 1
+	update_a 2 1
+	create
+	update_a 0 3
+	pop_a 1
+.o 3 0
+ea105
+	jsr_eval 0
+.o 3 0
+s105
+	push_a 1
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+	jsr_ap 1
+	pushB_a 0
+	pop_a 1
+	jmp_false else.10
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s101
+else.10
+	pop_a 1
+.d 1 0
+	jmp s99
+.n 1 _ ea101
+.o 1 0
+n101
+	push_node _cycle_in_spine 1
+.o 2 0
+ea101
+.o 2 0
+s101
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s97
+.n 2 _ ea100
+.o 1 0
+n100
+	push_node _cycle_in_spine 2
+.o 3 0
+ea100
+.o 3 0
+s100
+	push_a 0
+	push_a 2
+	buildh d65 2
+	fillh d362 1 3
+	pop_a 2
+.d 1 0
+	rtn
+.desc d65 _hnf l65 3 0 "<lambda>[line:234];26;64"
+.a 3 ea65
+.o 2 0
+l65
+	push_args 0 2 2
+	update_a 3 2
+	create
+	update_a 0 4
+	pop_a 1
+.o 4 0
+ea65
+	jsr_eval 1
+.o 4 0
+s65
+	push_a 2
+	push_a 2
+	build _ 2 n10
+	push_a 1
+	buildh d64 1
+	buildh d360 0
+	buildh d9 2
+	update_a 1 4
+	updatepop_a 0 3
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d64 _hnf l64 3 0 "<lambda>[line:234];47;63"
+.a 3 ea64
+.o 2 0
+l64
+	push_args 0 2 2
+	update_a 3 2
+	create
+	update_a 0 4
+	pop_a 1
+.o 4 0
+ea64
+	jsr_eval 0
+.o 4 0
+s64
+	push_a 1
+	push_a 1
+	update_a 1 3
+	updatepop_a 0 2
+	jsr_ap 1
+	push_a 1
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 3 0
+	jmp s10
+.o 1 0
+s99
+	buildh d360 0
+	buildh e_StdFunc_dconst 1
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.o 3 0
+s98
+	push_a 0
+	push_a 2
+	buildh d63 2
+	buildh d362 0
+	update_a 1 3
+	updatepop_a 0 2
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d63 _hnf l63 3 0 "<lambda>[line:230];28;62"
+.a 3 ea63
+.o 2 0
+l63
+	push_args 0 2 2
+	update_a 3 2
+	create
+	update_a 0 4
+	pop_a 1
+.o 4 0
+ea63
+	jsr_eval 1
+.o 4 0
+s63
+	push_a 2
+	push_a 2
+	build _ 2 n10
+	buildh d62 0
+	push_a 4
+	push_a 3
+	build _ 2 n10
+	buildh d9 2
+	update_a 1 4
+	updatepop_a 0 3
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d62 _hnf l62 2 0 "<lambda>[line:230];63;61"
+.a 2 ea62
+.o 2 0
+l62
+	push_args 0 1 1
+	update_a 2 1
+	create
+	update_a 0 3
+	pop_a 1
+.o 3 0
+ea62
+.o 3 0
+s62
+	push_a 1
+	push_a 1
+	fillh d361 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.o 2 0
+s97
+	push_a 0
+	buildh d59 1
+	buildh d362 0
+	update_a 1 2
+	updatepop_a 0 1
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d59 _hnf l59 2 0 "<lambda>[line:225];28;58"
+.a 2 ea59
+.o 2 0
+l59
+	push_args 0 1 1
+	update_a 2 1
+	create
+	update_a 0 3
+	pop_a 1
+.o 3 0
+ea59
+.o 3 0
+s59
+	push_a 1
+	push_a 1
+	fillh d361 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 0 _ ea11
+.o 1 0
+n11
+	push_node _cycle_in_spine 0
+.o 1 0
+ea11
+.o 1 0
+s11
+	buildh d34 0
+	buildh d362 0
+.d 2 0
+	jsr s1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d34 _hnf l34 1 0 "<lambda>[line:145];18;33"
+.o 2 0
+l34
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+ea34
+	jsr_eval 0
+.o 2 0
+s34
+	push_a 0
+	updatepop_a 0 1
+.d 2 0
+	jmp s319
+.o 2 0
+s319
+	eq_desc _Cons 2 0
+	jmp_true case.11
+	jmp case.12
+case.11
+	repl_args 2 2
+	push_a 1
+	push_a 1
+	fillh d361 2 4
+	pop_a 2
+.d 1 0
+	rtn
+case.12
+	fillh d360 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.n 2 _ ea10
+.o 1 0
+n10
+	push_node _cycle_in_spine 2
+.o 3 0
+ea10
+	jsr_eval 0
+.o 3 0
+s10
+	repl_args 1 1
+	push_a 0
+	jsr_eval 0
+	push_a 2
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 1 3
+	updatepop_a 0 2
+	jsr_ap 1
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.desc d9 _hnf l9 3 0 "result"
+.a 0 ea9
+.o 2 0
+l9
+	repl_args 2 2
+.o 3 0
+ea9
+	jsr_eval 2
+.o 3 0
+s9
+	eq_desc d360 0 2
+	jmp_true case.13
+	jmp case.14
+case.13
+	updatepop_a 0 2
+	jmp_eval
+case.14
+	push_args 2 2 2
+	buildh _Nil 0
+	update_a 0 5
+	pop_a 1
+	push_a 1
+	push_a 4
+	jsr_eval 0
+	push_a 2
+	push_a 1
+	update_a 1 2
+	update_a 0 1
+	pop_a 1
+	update_a 2 7
+	update_a 1 6
+	updatepop_a 0 5
+	jmp_ap 2
+.n 1 _
+.o 1 0
+n7
+	push_node _cycle_in_spine 1
+.o 1 0
+ea7
+	jsr_eval 0
+	repl_args 2 2
+	jsr_eval 0
+	push_array 0
+	eqAC_a "tuple"
+	jmp_true case.15
+	pop_a 1
+	jmp s7.1
+case.15
+	jsr_eval 1
+	push_args 1 2 2
+	buildh _Nil 0
+	update_a 0 4
+	pop_a 1
+	push_a 1
+	push_a 1
+	update_a 1 5
+	updatepop_a 0 4
+	push_a 1
+	push_a 1
+	fillh _Tuple 2 4
+	pop_a 2
+.d 1 0
+	rtn
+s7.1
+	pop_a 1
+	pushD m_skeleton2
+	pushD x_7
+.d 0 2 ii
+	jmp _match_error
+.string x_7 "toTuple"
+.o 3 0
+s6
+	push_a 1
+	push_a 1
+	buildh d354 2
+	buildAC "tuple"
+	buildh ARRAY 1
+	fillh d357 2 4
+	pop_a 2
+.d 1 0
+	rtn
+.n 1 _ ea5
+.o 1 0
+n5
+	push_node _cycle_in_spine 1
+.o 2 0
+ea5
+	jsr_eval 0
+.o 2 0
+s5
+	eq_desc d355 1 0
+	jmp_true case.16
+	jmp case.17
+case.16
+	repl_args 1 1
+	jsr_eval 0
+	repl_args 2 2
+	jsr_eval 0
+	push_array 0
+	eqAC_a "Tip"
+	jmp_true case.18
+	pop_a 1
+	jmp s5.1
+case.18
+	jsr_eval 1
+	fillh d358 0 2
+	pop_a 2
+.d 1 0
+	rtn
+case.17
+	repl_args 1 1
+	jsr_eval 0
+	repl_args 2 2
+	jsr_eval 0
+	push_array 0
+	eqAC_a "Bin"
+	jmp_true case.19
+	pop_a 1
+	jmp s5.1
+case.19
+	jsr_eval 1
+	push_args 1 2 2
+	buildh _Nil 0
+	update_a 0 4
+	pop_a 1
+	jsr_eval 1
+	push_args 1 2 2
+	buildh _Nil 0
+	update_a 0 4
+	pop_a 1
+	push_a 1
+	push_a 3
+	push_a 2
+	fillh d359 3 9
+	pop_a 6
+.d 1 0
+	rtn
+s5.1
+	pop_a 2
+	pushD m_skeleton2
+	pushD x_5
+.d 0 2 ii
+	jmp _match_error
+.string x_5 "toTree"
+.o 2 0
+s4
+	eq_desc d358 0 0
+	jmp_true case.20
+	jmp case.21
+case.20
+	buildh d353 0
+	buildAC "Tip"
+	buildh ARRAY 1
+	buildh d357 2
+	fillh d355 1 2
+	pop_a 1
+.d 1 0
+	rtn
+case.21
+	repl_args 3 3
+	push_a 2
+	push_a 1
+	buildh d354 2
+	push_a 2
+	buildh d354 2
+	buildAC "Bin"
+	buildh ARRAY 1
+	buildh d357 2
+	fillh d356 1 4
+	pop_a 3
+.d 1 0
+	rtn
+.n 1 _ ea3
+.o 1 0
+n3
+	push_node _cycle_in_spine 1
+.o 2 0
+ea3
+	jsr_eval 0
+.o 2 0
+s3
+	eq_desc d355 1 0
+	jmp_true case.22
+	jmp case.23
+case.22
+	repl_args 1 1
+	jsr_eval 0
+	repl_args 2 2
+	jsr_eval 0
+	push_array 0
+	eqAC_a "Nil"
+	jmp_true case.24
+	pop_a 1
+	jmp s3.1
+case.24
+	jsr_eval 1
+	fillh _Nil 0 2
+	pop_a 2
+.d 1 0
+	rtn
+case.23
+	repl_args 1 1
+	jsr_eval 0
+	repl_args 2 2
+	jsr_eval 0
+	push_array 0
+	eqAC_a "Cons"
+	jmp_true case.25
+	pop_a 1
+	jmp s3.1
+case.25
+	jsr_eval 1
+	push_args 1 2 2
+	buildh _Nil 0
+	update_a 0 4
+	pop_a 1
+	push_a 1
+	push_a 1
+	fillh _Cons 2 6
+	pop_a 4
+.d 1 0
+	rtn
+s3.1
+	pop_a 2
+	pushD m_skeleton2
+	pushD x_3
+.d 0 2 ii
+	jmp _match_error
+.string x_3 "toList"
+.o 2 0
+s2
+	eq_desc _Nil 0 0
+	jmp_true case.26
+	jmp case.27
+case.26
+	buildh d353 0
+	buildAC "Nil"
+	buildh ARRAY 1
+	buildh d357 2
+	fillh d355 1 2
+	pop_a 1
+.d 1 0
+	rtn
+case.27
+	repl_args 2 2
+	push_a 1
+	push_a 1
+	buildh d354 2
+	buildAC "Cons"
+	buildh ARRAY 1
+	buildh d357 2
+	fillh d356 1 3
+	pop_a 2
+.d 1 0
+	rtn
+.n 2 _ _
+.o 1 0
+n1
+	push_node _cycle_in_spine 2
+.d 2 0
+	jsr ea1
+.o 1 0
+	fill_a 0 1
+	pop_a 1
+.d 1 0
+	rtn
+.o 2 0
+ea1
+	jsr_eval 0
+.o 2 0
+s1
+	push_a 1
+	push_a 1
+	update_a 1 3
+	updatepop_a 0 2
+	jmp_ap 1
