@@ -165,7 +165,10 @@ instance show_0 Color	where
 instance parse0 Color	where 
 	parse0 r 	= toColor <$> (parse2 (parse2 (parse1_cons ((==)"Red") parse0) (parse1_cons ((==)"Yellow") parse0)) (parse1_cons ((==)"Blue") parse0) r) 
 
-instance map1 []	where map1 f l = map f l			// TO BE IMPROVED, use generic version
+instance eq2 (,) where
+	eq2 fa fb t1 t2 = eq1 (eq2 fa fb) (fromTup t1) (fromTup t2)
+instance eq0 (a,b) | eq0 a & eq0 b where
+	eq0 t1 t2 = eq2 eq0 eq0 t1 t2
 
 /**************** 1.2 Show/parse without tags *************************/
 /************ SHOW *************/
@@ -282,9 +285,20 @@ instance Functor Result where
 	fmap f (Just (a,r)) 	= Just ((f a), r)
 */
 
+/**************** 2 Generic map *************************/
+
+instance map0 Bool where map0 b = b
+instance map0 T    where map0 t = t
+
+instance map1 []	where map1 f l = toList $ map2 (map1 map0) (map1 (map2 f (map1 f))) (fromList l)
+instance map1 Tree where 
+	map1 f t 		= toTree $ map2 (map1 map0) (map1 (map2 f (map2 (map1 f) (map1 f)))) (fromTree t)
+instance map2 (,) where
+	map2 fa fb t 	= toTup $ map1 (map2 fa fb) (fromTup t)
+
 /********* TESTs **********/
 
-Start = Start9 //(Start1, Start4, Start2, Start3, Start5, Start6, Start8, Start7)
+Start = Start13 //(Start1, Start4, Start2, Start3, Start5, Start6, Start8, Start7, Start9)
 
 Start1 = (show $ PAIR 1 False)
 l :: EITHER Bool Int
@@ -304,8 +318,6 @@ Start10 = show [1..3]
 Start11 :: Result [Int]
 Start11 = parse0 Start10
 
-// some initial tests, please extend
-//Start = show $ fromTree aTree
 Start8 = map (\c -> show $ fromColor c) [Red, Yellow, Blue]
 Start7 :: Result Color
 Start7 = parse0 $ show $ fromColor Blue
@@ -314,10 +326,21 @@ Start9
 	, and [ c == toColor (fromColor c) \\ c <- [Red, Yellow, Blue]]
 	, and [ test c \\ c <- [Red,Yellow,Blue]]
 	, test [1 .. 3]
-//	, test [(a,b) \\ a <- [1 .. 2], b <- [5 .. 7]]
-//	etc.
+	, test [(a,b) \\ a <- [1 .. 2], b <- [5 .. 7]]
 	// maps
 	, map1 ((+) 1) [0 .. 5] == [1 .. 6]
 	]
 
-aTree = Bin 2 Tip (Bin 4 Tip Tip)
+Start13 = (	map1 fac aList
+		  , map1 fac aTree
+		  , map2 (map1 fac) (map1 fac) (aTree, aTree)
+		  , map1 (\x -> (x, fac x)) aList
+		  )
+	where
+		fac :: Int -> Int
+		fac 0 = 1
+		fac n = prod [1..n]
+		aTree :: Tree Int
+		aTree = Bin 2 Tip (Bin 4 Tip Tip)
+		aList :: [Int]
+		aList = [1..10]
