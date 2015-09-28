@@ -163,10 +163,7 @@ instance ==  Color		where (==) c1 c2 = eq0 c1 c2	// just to use the well-known n
 instance show_0 Color	where 
 	show_0 cl c = show_2 (show_2 (show_1 show_0) (show_1 show_0)) (show_1 show_0) (fromColor cl) c
 instance parse0 Color	where 
-	parse0 r 	= toColor <$> (parse2 (parse2 (parse1 (h_ "Red")) (parse1 (h_ "Yellow"))) (parse1 (h_ "Blue")) r) 
-		where 
-			h_ color [c:r]	= if (c == color) (parse0 [c:r]) Nothing
-			h_ _		_ 	= Nothing 
+	parse0 r 	= toColor <$> (parse2 (parse2 (parse1_cons ((==)"Red") parse0) (parse1_cons ((==)"Yellow") parse0)) (parse1_cons ((==)"Blue") parse0) r) 
 
 instance map1 []	where map1 f l = map f l			// TO BE IMPROVED, use generic version
 
@@ -196,8 +193,6 @@ instance show_2 EITHER where
 instance show_0 (EITHER a b) | show_0 a & show_0 b where
 	show_0 e c 	= show_2 show_0 show_0 e c
 
-//instance show_0 String where
-	//show_0 s c 		= [s:c]
 instance show_1 [] where
 	show_1 f as c 	= show_2 (show_1 show_0) (show_1 (show_2 f (show_1 f))) (fromList as) c
 instance show_0 [a] | show_0 a where
@@ -210,6 +205,8 @@ instance show_1 Tree where
 	show_1 f t c = show_2 (show_1 show_0) (show_1 (show_2 f (show_2 (show_1 f) (show_1 f)))) (fromTree t) c
 instance show_0 (Tree a) | show_0 a where
 	show_0 t c 	= show_1 show_0 t c
+instance show_0 T where
+	show_0 t c	= show_1 show_0 (fromT t) c
 
 /************* PARSE ************/
 //pase0 defined on line 34
@@ -220,19 +217,21 @@ class parse1 t where
 class parse2 t where
 	parse2 :: ([String] -> Result a) ([String] -> Result b) [String] -> Result (t a b)
 
-//to define Int, Bool, UNIT, CONS, PAIR, EITHER, Color, String, [], (,), Tree
-//instance parse0 String where
-//	parse0 [s:r] = Just (s,r)
 instance parse0 Int where
 	parse0 [i:r] = Just (toInt i, r)
 instance parse0 Bool where
 	parse0 ["True":r] 	= Just (True, r)
 	parse0 ["False":r] 	= Just (False, r)
-	parse0 _ 			= Nothing
+	parse0 _ 			= Nothing // any other string is not a valid Bool
 instance parse0 UNIT where
 	parse0 r 	= Just (UNIT, r)
 instance parse1 CONS where
-	parse1 f [s:r] = (CONS s) <$> f r
+	parse1 f r = parse1_cons (const True) f r
+//Since we don't save any structural information, and some datastructures (ike color) 
+//rely on nothing but structure and constructor information in their generic
+//representation it needs to be possible to check the constructors
+parse1_cons :: (String -> Bool) ([String] -> Result a) [String] -> Result (CONS a)
+parse1_cons match f [s:r] = if (match s) ((CONS s) <$> f r) Nothing
 instance parse0 (CONS a) | parse0 a where
 	parse0 r 	= parse1 parse0 r
 instance parse2 PAIR where
@@ -249,7 +248,7 @@ instance parse0 (EITHER a b) | parse0 a & parse0 b where
 	parse0 r = parse2 parse0 parse0 r
 
 instance parse1 [] where
-	parse1 f r 		= toList <$> parse2 (parse1 parse0) (parse1 (parse2 f (parse1 f))) r
+	parse1 f r 		= toList <$> parse2 (parse1_cons ((==)"Nil") parse0) (parse1_cons ((==)"Cons") (parse2 f (parse1 f))) r
 instance parse0 [a] | parse0 a where
 	parse0 r 		= parse1 parse0 r
 instance parse2 (,) where
@@ -260,6 +259,8 @@ instance parse1 Tree where
 	parse1 f r 		= toTree <$> parse2 (parse1 parse0) (parse1 (parse2 f (parse2 (parse1 f) (parse1 f)))) r
 instance parse0 (Tree a) | parse0 a where
 	parse0 r 		= parse1 parse0 r
+instance parse0 T where
+	parse0 t 		= toT <$> parse1 parse0 t
 
 
 /********** fmap for Result  *****/
@@ -283,7 +284,7 @@ instance Functor Result where
 
 /********* TESTs **********/
 
-Start = (Start1, Start4, Start2, Start3, Start5, Start6)
+Start = Start9 //(Start1, Start4, Start2, Start3, Start5, Start6, Start8, Start7)
 
 Start1 = (show $ PAIR 1 False)
 l :: EITHER Bool Int
@@ -299,21 +300,24 @@ Start5 = parse0 Start2
 Start6 :: Result (EITHER Bool Int)
 Start6 = parse0 Start3
 
+Start10 = show [1..3]
+Start11 :: Result [Int]
+Start11 = parse0 Start10
+
 // some initial tests, please extend
 //Start = show $ fromTree aTree
-//Start = map (\c -> show $ fromColor c) [Red, Yellow, Blue]
-//Start :: Result Color
-//Start = id x
-//Start
-// =	[ and [ test i \\ i <- [-25 .. 25]]
-//	, and [ c == toColor (fromColor c) \\ c <- [Red, Yellow, Blue]]
-//	, and [ test c \\ c <- [Red,Yellow,Blue]]
-//	, test [1 .. 3]
-////	, test [(a,b) \\ a <- [1 .. 2], b <- [5 .. 7]]
-////	etc.
-//	// maps
-//	, map1 ((+) 1) [0 .. 5] == [1 .. 6]
-//	]
+Start8 = map (\c -> show $ fromColor c) [Red, Yellow, Blue]
+Start7 :: Result Color
+Start7 = parse0 $ show $ fromColor Blue
+Start9
+ =	[ and [ test i \\ i <- [-25 .. 25]]
+	, and [ c == toColor (fromColor c) \\ c <- [Red, Yellow, Blue]]
+	, and [ test c \\ c <- [Red,Yellow,Blue]]
+	, test [1 .. 3]
+//	, test [(a,b) \\ a <- [1 .. 2], b <- [5 .. 7]]
+//	etc.
+	// maps
+	, map1 ((+) 1) [0 .. 5] == [1 .. 6]
+	]
 
-x = parse0 $ show $ fromColor Blue
 aTree = Bin 2 Tip (Bin 4 Tip Tip)
