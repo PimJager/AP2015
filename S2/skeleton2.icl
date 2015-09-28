@@ -1,4 +1,4 @@
-module skeleton2_breaks_compiler
+module skeleton2
 
 /*
 	Skeleton for Exercise 2 of Advanced Programming.
@@ -71,8 +71,7 @@ instance Container [] where
 	Ccontains 	n [a:as]
 		| n == a 		= True
 		| True			= Ccontains n as
-	Cshow		[]		= ["[]"]
-	Cshow 		[a:as] 	= [toString a] ++ Cshow as
+	Cshow as 			= map toString as //intersperse "," $ 
 	Cnew 				= []
 
 instance Container (Tree) where

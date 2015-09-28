@@ -1,0 +1,505 @@
+.comp 920 00011001001
+.start __iTasksTest_Start
+.depend "_SystemEnum" "20150923111211"
+.depend "StdEnum" "20150923111211"
+.depend "StdTuple" "20150923111211"
+.depend "StdOrdList" "20150923111211"
+.depend "iTasks.API.Extensions.Admin.WorkflowAdmin" "20150925171417"
+.depend "iTasks.API.Extensions.User" "20150925171417"
+.depend "iTasks.API.Extensions.Admin.UserAdmin" "20150925171417"
+.depend "iTasks.API.Common.SDSCombinators" "20150925171417"
+.depend "iTasks.API.Core.SDSCombinators" "20150925171417"
+.depend "iTasks.API.Core.SDSs" "20150925171417"
+.depend "iTasks.API.Common.TaskCombinators" "20150925171417"
+.depend "iTasks.API.Common.ExportTasks" "20150925171417"
+.depend "iTasks.API.Common.ImportTasks" "20150925171417"
+.depend "iTasks.API.Common.DBTasks" "20150925171417"
+.depend "iTasks.API.Common.InteractionTasks" "20150925171417"
+.depend "Text.URI" "20150925171417"
+.depend "iTasks.API.Core.IntegrationTasks" "20150925171417"
+.depend "iTasks.API.Core.OptimizedCoreTasks" "20150925171417"
+.depend "iTasks.API.Core.Tasks" "20150925171417"
+.depend "iTasks.API" "20150925171417"
+.depend "Internet.HTTP" "20150925171417"
+.depend "Data.IntMap.Base" "20150925171417"
+.depend "Data.IntMap.Strict" "20150925171417"
+.depend "Data.CircularStack" "20150925171417"
+.depend "iTasks._Framework.Tonic.AbsSyn" "20150925171417"
+.depend "iTasks._Framework.Serialization" "20150925171417"
+.depend "iTasks.UI.JS.Interface" "20150925171417"
+.depend "GenLexOrd" "20150925171417"
+.depend "iTasks._Framework.Generic.Defaults" "20150925171417"
+.depend "iTasks._Framework.Generic.Visualization" "20150925171417"
+.depend "iTasks.API.Core.TaskCombinators" "20150925171417"
+.depend "iTasks.UI.Layout" "20150925171417"
+.depend "iTasks._Framework.Generic.Interaction" "20150925171417"
+.depend "iTasks._Framework.Generic" "20150925171417"
+.depend "TCPStringChannelsInternal" "20150925171416"
+.depend "TCPStringChannels" "20150925171416"
+.depend "TCPEvent" "20150925171416"
+.depend "tcp_bytestreams" "20150925171416"
+.depend "TCPDef" "20150925171416"
+.depend "TCPChannels" "20150925171417"
+.depend "tcp" "20150925171416"
+.depend "StdMaybe" "20150925171417"
+.depend "TCPChannelClass" "20150925171416"
+.depend "TCPIP" "20150925171416"
+.depend "Sapl.SaplStruct" "20150925171417"
+.depend "Sapl.SaplParser" "20150925171417"
+.depend "Sapl.Target.Flavour" "20150925171417"
+.depend "System.OSError" "20150925171417"
+.depend "System.File" "20150925171417"
+.depend "Text.StringAppender" "20150925171417"
+.depend "Text.Unicode.UChar" "20150925171417"
+.depend "Text.Unicode" "20150925171417"
+.depend "Sapl.SaplTokenizer" "20150925171417"
+.depend "Sapl.Linker.SaplLinkerShared" "20150925171417"
+.depend "Sapl.Linker.LazyLinker" "20150925171417"
+.depend "Data.Queue" "20150925171417"
+.depend "iTasks._Framework.TaskState" "20150925171417"
+.depend "iTasks.UI.Diff" "20150925171417"
+.depend "Text.HTML" "20150925171417"
+.depend "iTasks.UI.Definition" "20150925171417"
+.depend "StdFile" "20150923111211"
+.depend "Data.Set" "20150925171417"
+.depend "Data.List" "20150925171417"
+.depend "StdFunc" "20150923111211"
+.depend "Data.Map" "20150925171417"
+.depend "iTasks._Framework.IWorld" "20150925171417"
+.depend "Data.Either" "20150925171417"
+.depend "iTasks._Framework.SDS" "20150925171417"
+.depend "System.Time" "20150925171417"
+.depend "Data.Error" "20150925171417"
+.depend "StdString" "20150923111211"
+.depend "GenEq" "20150925171417"
+.depend "Data.Monoid" "20150925171417"
+.depend "Data.Void" "20150925171417"
+.depend "Control.Monad" "20150925171417"
+.depend "Control.Applicative" "20150925171417"
+.depend "System.IO" "20150925171417"
+.depend "Data.Functor" "20150925171417"
+.depend "Data.Maybe" "20150925171417"
+.depend "StdGeneric" "20150925171417"
+.depend "Text.JSON" "20150925171417"
+.depend "iTasks._Framework.Store" "20150925171417"
+.depend "iTasks.API.Core.Types" "20150925171417"
+.depend "iTasks._Framework.Task" "20150925171417"
+.depend "System.OS" "20150925171417"
+.depend "System.FilePath" "20150925171417"
+.depend "StdReal" "20150923111211"
+.depend "StdChar" "20150923111211"
+.depend "StdInt" "20150923111211"
+.depend "StdBool" "20150923111211"
+.depend "StdClass" "20150923111211"
+.depend "StdList" "20150923111211"
+.depend "iTasks._Framework.Engine" "20150925171417"
+.depend "iTasks" "20150925171417"
+.depend "StdOverloaded" "20150923111211"
+.depend "_SystemDynamic" "20150925171417"
+.module m_iTasksTest "iTasksTest" "20150921124543"
+.endinfo
+.implab _cycle_in_spine
+.implab _type_error
+.implab _hnf
+.impdesc _ind
+.implab _indirection _eaind
+.impdesc e_system_dif
+.implab e_system_nif e_system_eaif
+.implab e_system_sif
+.impdesc e_system_dAP
+.implab e_system_nAP e_system_eaAP
+.implab e_system_sAP
+.impdesc _Nil
+.impdesc _Cons
+.impdesc _Conss
+.implab n_Conss ea_Conss
+.impdesc _Consts
+.implab n_Consts ea_Consts
+.impdesc _Conssts
+.implab n_Conssts ea_Conssts
+.impdesc _Tuple
+.impdesc d_S.1
+.implab n_S.1 ea_S.1
+.impdesc d_S.2
+.implab n_S.2 ea_S.2
+.impdesc d_S.3
+.implab n_S.3 ea_S.3
+.impdesc d_S.4
+.implab n_S.4 ea_S.4
+.impdesc d_S.5
+.implab n_S.5 ea_S.5
+.impdesc d_S.6
+.implab n_S.6 ea_S.6
+.implab _driver
+.implab e_iTasks.API.Common.InteractionTasks_senterInformation
+.implab e_iTasks.API.Common.InteractionTasks_sviewInformation
+.impdesc e_iTasks._Framework.Generic.Defaults_dgDefault__String;12
+.implab e_iTasks._Framework.Generic.Defaults_sgDefault__String;12
+.implab e_iTasks._Framework.Generic.Defaults_ngDefault__String;12
+.impdesc e_iTasks._Framework.Generic.Visualization_dgText__String;15
+.impdesc e_iTasks._Framework.Generic.Interaction_dgEditor__String;24
+.impdesc e_iTasks._Framework.Generic.Interaction_dgEditMeta__String;54
+.impdesc e_iTasks._Framework.Generic.Interaction_dgVerify__String;84
+.impdesc e_iTasks._Framework.Generic.Interaction_dgUpdate__String;114
+.impdesc e_iTasks._Framework.Generic_riTask;
+.implab e_StdString_s+++;11
+.impdesc e_GenEq_dgEq__String;6
+.impdesc e_Text.JSON_dJSONEncode__String;14
+.impdesc e_Text.JSON_dJSONDecode__String;35
+.implab e_iTasks.API.Core.Types_s>>=;28
+.impdesc e_iTasks.API.Core.Types_dtoPrompt;133
+.impdesc e_iTasks.API.Core.Types_rdescr;
+.implab e_iTasks._Framework.Engine_sstartEngine
+.implab e_iTasks._Framework.Engine_spublish
+.impdesc e_iTasks._Framework.Engine_dpublishAll;6
+.impdesc e_iTasks._Framework.Engine_rPublishable;
+.impdesc e__SystemDynamic_rTypeCodeConstructor
+.impdesc e__SystemDynamic_kTypeCons
+.impdesc e__SystemDynamic_kTypeApp
+.record r7 a 1 0 "JSONEncode_s;"
+.record r13 a 1 0 "JSONDecode_s;"
+.record r19 a 1 0 "gDefault_s;"
+.record r25 a 1 0 "gUpdate_s;"
+.record r31 a 1 0 "gVerify_s;"
+.record r37 a 1 0 "gText_s;"
+.record r43 a 1 0 "gEditor_s;"
+.record r49 a 1 0 "gEditMeta_s;"
+.record r55 a 1 0 "gEq_s;"
+.export __iTasksTest_Start
+.o 0 0
+__iTasksTest_Start
+	buildI 65536
+	build _ 1 n1
+.d 1 0
+	jmp _driver
+.pb "Start"
+.n 1 _ ea1
+.o 1 0
+n1
+	push_node _cycle_in_spine 1
+.o 2 0
+.pn
+ea1
+	jsr_eval 0
+.o 2 0
+s1
+	buildh _Nil 0
+	buildh _Nil 0
+	buildh e_iTasks._Framework.Engine_dWebApp 1
+	buildh e__SystemDynamic_dTC_Char 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	buildh e__SystemDynamic_dTC__UnboxedArray 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	build_r e__SystemDynamic_kTypeApp 2 0 0 0
+	update_a 0 2
+	pop_a 2
+	build e_iTasks._Framework.Generic.Defaults_dgDefault__String;12 0 e_iTasks._Framework.Generic.Defaults_ngDefault__String;12
+	build _ 3 n145
+	buildh _Cons 2
+	buildh e_iTasks._Framework.Engine_dpublishAll;6 0
+	push_a 2
+	push_a 2
+	update_a 1 3
+	update_a 2 1
+	update_a 0 2
+	pop_a 1
+	update_a 2 3
+	update_a 1 2
+	updatepop_a 0 1
+.d 4 0
+	jmp e_iTasks._Framework.Engine_sstartEngine
+.pe
+.pb "_f0.Start.publish.iTask;.gEditor_s;.gEditMeta_s;.gUpdate_s;"
+.n 3 _ ea145
+.o 1 0
+n145
+	push_node _cycle_in_spine 3
+.o 4 0
+.pn
+ea145
+.o 4 0
+s145
+	buildh d3 0
+	push_a 2
+	jsr_eval 0
+	buildh e_GenEq_dgEq__String;6 0
+	push_a 3
+	jsr_eval 0
+	buildh e_Text.JSON_dJSONDecode__String;35 0
+	buildh e_Text.JSON_dJSONEncode__String;14 0
+	buildh e_iTasks._Framework.Generic.Visualization_dgText__String;15 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgVerify__String;84 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgUpdate__String;114 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditMeta__String;54 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditor__String;24 0
+	push_a 13
+	buildAC "/"
+	buildh ARRAY 1
+	push_a 11
+	update_a 2 12
+	update_a 4 2
+	update_a 6 4
+	update_a 8 6
+	update_a 10 8
+	update_a 0 10
+	update_a 11 0
+	update_a 1 11
+	update_a 3 1
+	update_a 5 3
+	update_a 7 5
+	update_a 9 7
+	update_a 0 9
+	pop_a 1
+	update_a 12 15
+	update_a 11 14
+	update_a 10 13
+	update_a 9 12
+	update_a 8 11
+	update_a 7 10
+	update_a 6 9
+	update_a 5 8
+	update_a 4 7
+	update_a 3 6
+	update_a 2 5
+	update_a 1 4
+	updatepop_a 0 3
+.d 13 0
+	jsr e_iTasks._Framework.Engine_spublish
+.o 3 0
+	fill_r e_iTasks._Framework.Engine_rPublishedTask 3 0 3 0 0
+	pop_a 3
+.d 1 0
+	rtn
+.pe
+.desc d3 _hnf l3 1 0 "<lambda>[line:6];54;2"
+.pb "<lambda>[line:6];54;2"
+.pl
+.o 2 0
+l3
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+.pn
+ea3
+.o 2 0
+s3
+	pop_a 1
+.d 1 0
+	jmp s2
+.pe
+.pb "test"
+.o 1 0
+s2
+	buildh d4 0
+	buildh _Nil 0
+	buildh e__SystemDynamic_dTC_Char 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	buildh e__SystemDynamic_dTC__UnboxedArray 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	build_r e__SystemDynamic_kTypeApp 2 0 0 0
+	update_a 0 2
+	pop_a 2
+	build e_iTasks._Framework.Generic.Defaults_dgDefault__String;12 0 e_iTasks._Framework.Generic.Defaults_ngDefault__String;12
+	build _ 3 n146
+	buildh e__SystemDynamic_dTC_Char 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	buildh e__SystemDynamic_dTC__UnboxedArray 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	build_r e__SystemDynamic_kTypeApp 2 0 0 0
+	update_a 0 2
+	pop_a 2
+	buildh e_GenEq_dgEq__String;6 0
+.d 0 0
+	jsr e_iTasks._Framework.Generic.Defaults_sgDefault__String;12
+.o 1 0
+	push_a 0
+	buildh ARRAY 1
+	updatepop_a 0 1
+	buildh e_Text.JSON_dJSONDecode__String;35 0
+	buildh e_Text.JSON_dJSONEncode__String;14 0
+	buildh e_iTasks._Framework.Generic.Visualization_dgText__String;15 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgVerify__String;84 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgUpdate__String;114 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditMeta__String;54 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditor__String;24 0
+	buildh e__SystemDynamic_dTC_Char 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	buildh e__SystemDynamic_dTC__UnboxedArray 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	build_r e__SystemDynamic_kTypeApp 2 0 0 0
+	update_a 0 2
+	pop_a 2
+	buildh e_GenEq_dgEq__String;6 0
+.d 0 0
+	jsr e_iTasks._Framework.Generic.Defaults_sgDefault__String;12
+.o 1 0
+	push_a 0
+	buildh ARRAY 1
+	updatepop_a 0 1
+	buildh e_Text.JSON_dJSONDecode__String;35 0
+	buildh e_Text.JSON_dJSONEncode__String;14 0
+	buildh e_iTasks._Framework.Generic.Visualization_dgText__String;15 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgVerify__String;84 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgUpdate__String;114 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditMeta__String;54 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditor__String;24 0
+.d 23 0
+	jmp e_iTasks.API.Core.Types_s>>=;28
+.pe
+.pb "_f1.test.enterInformation.descr;.iTask;.gEditor_s;.gUpdate_s;"
+.n 3 _ ea146
+.o 1 0
+n146
+	push_node _cycle_in_spine 3
+.o 4 0
+.pn
+ea146
+.o 4 0
+s146
+	push_a 1
+	jsr_eval 0
+	buildh e_GenEq_dgEq__String;6 0
+	push_a 2
+	jsr_eval 0
+	buildh e_Text.JSON_dJSONDecode__String;35 0
+	buildh e_Text.JSON_dJSONEncode__String;14 0
+	buildh e_iTasks._Framework.Generic.Visualization_dgText__String;15 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgVerify__String;84 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgUpdate__String;114 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditMeta__String;54 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditor__String;24 0
+	buildh e_iTasks.API.Core.Types_dtoPrompt;133 0
+	push_a 13
+	buildAC "What is your name?"
+	push_a 0
+	buildh ARRAY 1
+	updatepop_a 0 1
+	push_a 12
+	update_a 2 13
+	update_a 4 2
+	update_a 6 4
+	update_a 8 6
+	update_a 10 8
+	update_a 12 10
+	update_a 1 12
+	update_a 3 1
+	update_a 5 3
+	update_a 7 5
+	update_a 9 7
+	update_a 11 9
+	update_a 0 11
+	pop_a 1
+	update_a 12 15
+	update_a 11 14
+	update_a 10 13
+	update_a 9 12
+	update_a 8 11
+	update_a 7 10
+	update_a 6 9
+	update_a 5 8
+	update_a 4 7
+	update_a 3 6
+	update_a 2 5
+	update_a 1 4
+	updatepop_a 0 3
+.d 14 0
+	jmp e_iTasks.API.Common.InteractionTasks_senterInformation
+.pe
+.desc d4 _hnf l4 1 0 "<lambda>[line:10];12;3"
+.pb "<lambda>[line:10];12;3"
+.pl
+.o 2 0
+l4
+	update_a 1 0
+	create
+	update_a 0 2
+	pop_a 1
+.o 2 0
+.pn
+ea4
+	jsr_eval 0
+	push_array 0
+	update_a 0 1
+	pop_a 1
+.o 2 0
+s4
+	buildAC "! You got iTasks running."
+	push_a 1
+	update_a 1 2
+	updatepop_a 0 1
+.d 2 0
+	jsr catAC
+.o 1 0
+	buildAC "Congratulations "
+.d 2 0
+	jsr catAC
+.o 1 0
+	push_a 0
+	buildh ARRAY 1
+	updatepop_a 0 1
+	buildh _Nil 0
+	buildh e__SystemDynamic_dTC_Char 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	buildh e__SystemDynamic_dTC__UnboxedArray 0
+	build_r e__SystemDynamic_kTypeCons 1 0 0 0
+	update_a 0 1
+	pop_a 1
+	build_r e__SystemDynamic_kTypeApp 2 0 0 0
+	update_a 0 2
+	pop_a 2
+	buildh e_GenEq_dgEq__String;6 0
+.d 0 0
+	jsr e_iTasks._Framework.Generic.Defaults_sgDefault__String;12
+.o 1 0
+	push_a 0
+	buildh ARRAY 1
+	updatepop_a 0 1
+	buildh e_Text.JSON_dJSONDecode__String;35 0
+	buildh e_Text.JSON_dJSONEncode__String;14 0
+	buildh e_iTasks._Framework.Generic.Visualization_dgText__String;15 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgVerify__String;84 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgUpdate__String;114 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditMeta__String;54 0
+	buildh e_iTasks._Framework.Generic.Interaction_dgEditor__String;24 0
+	buildh e_iTasks.API.Core.Types_dtoPrompt;133 0
+	buildAC "Success!"
+	push_a 0
+	buildh ARRAY 1
+	updatepop_a 0 1
+	push_a 11
+	update_a 1 12
+	update_a 2 1
+	update_a 3 2
+	update_a 4 3
+	update_a 5 4
+	update_a 6 5
+	update_a 7 6
+	update_a 8 7
+	update_a 9 8
+	update_a 10 9
+	update_a 11 10
+	update_a 0 11
+	pop_a 1
+.d 15 0
+	jmp e_iTasks.API.Common.InteractionTasks_sviewInformation
+.pe
