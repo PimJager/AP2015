@@ -1,0 +1,353 @@
+|| ?module? skeleton4
+
+
+skeleton4.doIdentified !_viTask_0 task_1 = <{iTasks.API.Core.Types.>>=_28}> (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> iTasks._Framework.Generic.Interaction.gEditor__String_24) (<{skeleton4.gEditMeta_s;}> iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (<{skeleton4.gUpdate_s;}> iTasks._Framework.Generic.Interaction.gUpdate__String_114) (<{skeleton4.gVerify_s;}> iTasks._Framework.Generic.Interaction.gVerify__String_84) (<{skeleton4.gText_s;}> iTasks._Framework.Generic.Visualization.gText__String_15) (<{skeleton4.JSONEncode_s;}> Text.JSON.JSONEncode__String_14) (<{skeleton4.JSONDecode_s;}> Text.JSON.JSONDecode__String_35) (<{skeleton4.gDefault_s;}> iTasks._Framework.Generic.Defaults.gDefault__String_12) (<{skeleton4.gEq_s;}> GenEq.gEq__String_6) (_SystemDynamic.TypeApp (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC__UnboxedArray)) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC_Char)))) _viTask_0 (iTasks.API.Common.InteractionTasks.enterInformation (<{iTasks.API.Core.Types.descr;}> iTasks.API.Core.Types.toPrompt_133) (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> iTasks._Framework.Generic.Interaction.gEditor__String_24) (<{skeleton4.gEditMeta_s;}> iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (<{skeleton4.gUpdate_s;}> iTasks._Framework.Generic.Interaction.gUpdate__String_114) (<{skeleton4.gVerify_s;}> iTasks._Framework.Generic.Interaction.gVerify__String_84) (<{skeleton4.gText_s;}> iTasks._Framework.Generic.Visualization.gText__String_15) (<{skeleton4.JSONEncode_s;}> Text.JSON.JSONEncode__String_14) (<{skeleton4.JSONDecode_s;}> Text.JSON.JSONDecode__String_35) (<{skeleton4.gDefault_s;}> iTasks._Framework.Generic.Defaults.gDefault__String_12) (<{skeleton4.gEq_s;}> GenEq.gEq__String_6) (_SystemDynamic.TypeApp (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC__UnboxedArray)) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC_Char)))) "Enter your name" _predefined._Nil) task_1
+skeleton4.toGenericNamedIdea_23 !x_0 = select x_0 (skeleton4._NamedIdea x11_1_0 x12_1_1 -> StdGeneric.RECORD (StdGeneric.PAIR (StdGeneric.FIELD x11_1_0) (StdGeneric.FIELD x12_1_1))) 
+skeleton4.bimapToGeneric_25 !x_0 = skeleton4._f609_609 x_0
+skeleton4._f609_609 !x_0 = select x_0 (_Tuple3 x1_1_0 x2_1_1 x3_1_2 -> _Tuple3 (skeleton4.toGenericNamedIdea_23 x1_1_0) x2_1_1 x3_1_2) 
+skeleton4.gEditor_NamedIdea_5 !x1_0 !x2_1 !x3_2 !x4_3 = iTasks._Framework.Generic.Interaction.gEditor_RECORD_18 2 (iTasks._Framework.Generic.Interaction.gEditor_PAIR_15 (iTasks._Framework.Generic.Interaction.gEditor_FIELD_19 "name" iTasks._Framework.Generic.Interaction.gEditor__String_24 iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (iTasks._Framework.Generic.Interaction.gEditMeta_FIELD_49 "name" iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (iTasks._Framework.Generic.Interaction.gEditor_FIELD_19 "idea" iTasks._Framework.Generic.Interaction.gEditor__String_24 iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (iTasks._Framework.Generic.Interaction.gEditMeta_FIELD_49 "idea" iTasks._Framework.Generic.Interaction.gEditMeta__String_54)) (iTasks._Framework.Generic.Interaction.gEditMeta_PAIR_45 (iTasks._Framework.Generic.Interaction.gEditMeta_FIELD_49 "name" iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (iTasks._Framework.Generic.Interaction.gEditMeta_FIELD_49 "idea" iTasks._Framework.Generic.Interaction.gEditMeta__String_54)) x1_0 (skeleton4.bimapToGeneric_25 x2_1) x3_2 x4_3
+skeleton4.gEditMeta_NamedIdea_6 x1_0 = iTasks._Framework.Generic.Interaction.gEditMeta_RECORD_48 (iTasks._Framework.Generic.Interaction.gEditMeta_PAIR_45 (iTasks._Framework.Generic.Interaction.gEditMeta_FIELD_49 "name" iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (iTasks._Framework.Generic.Interaction.gEditMeta_FIELD_49 "idea" iTasks._Framework.Generic.Interaction.gEditMeta__String_54)) (skeleton4.toGenericNamedIdea_23 x1_0)
+skeleton4.bimapToGeneric_34 !x_0 = skeleton4._f610_610 x_0
+skeleton4._f610_610 !x_0 = select x_0 (_Tuple2 x1_1_0 x2_1_1 -> _Tuple2 (skeleton4.toGenericNamedIdea_23 x1_1_0) x2_1_1) 
+skeleton4.findField_28 !<{_v==_0}> match_1 !_x_2 = select _x_2 (_predefined._Cons _x_1_0 xs_1_1 -> select _x_1_0 (_Tuple2 l_2_0 x_2_1 -> if (<{StdOverloaded.get_==_6}> <{_v==_0}> l_2_0 match_1) (_predefined._Cons x_2_1 _predefined._Nil) (skeleton4.findField_28 <{_v==_0}> match_1 xs_1_1)) ) (_predefined._Nil -> _predefined._Nil) 
+skeleton4.findField_597 match_0 !_x_1 = select _x_1 (_predefined._Cons _x_1_0 xs_1_1 -> select _x_1_0 (_Tuple2 l_2_0 x_2_1 -> if (<{StdString.==_2}> l_2_0 match_0) (_predefined._Cons x_2_1 _predefined._Nil) (skeleton4.findField_597 match_0 xs_1_1)) ) (_predefined._Nil -> _predefined._Nil) 
+skeleton4.JSONDecode_FIELD_27 gfd_name_0 fx_1 !_x_2 !l_3 = select l_3 (_predefined._Cons _x_1_0 _x_1_1 -> select _x_1_0 (Text.JSON.JSONObject fields_2_0 -> select _x_1_1 (_predefined._Nil -> <{skeleton4._c;123;7_611}> (fx_1 True (skeleton4.findField_597 gfd_name_0 fields_2_0)) l_3) ) ) (_ -> <{_Tuple2!3}> Data.Maybe.Nothing l_3)
+<{skeleton4._c;123;7_611}> !_x_0 !l_1 = select _x_0 (_Tuple2 _x_1_0 _x_1_1 -> select _x_1_0 (Data.Maybe.Just x_2_0 -> <{_Tuple2!3}> (Data.Maybe.Just (StdGeneric.FIELD x_2_0)) l_1) (_ -> <{_Tuple2!3}> Data.Maybe.Nothing l_1)) 
+skeleton4.d2_33 x_0 !_x_1 l_2 = select _x_1 (_Tuple2 _x_1_0 ys_1_1 -> select _x_1_0 (Data.Maybe.Just y_2_0 -> _Tuple2 (Data.Maybe.Just (StdGeneric.PAIR x_0 y_2_0)) ys_1_1) (Data.Maybe.Nothing -> _Tuple2 Data.Maybe.Nothing l_2) ) 
+skeleton4.d1_32 fy_0 !_x_1 l_2 = select _x_1 (_Tuple2 _x_1_0 xs_1_1 -> select _x_1_0 (Data.Maybe.Just x_2_0 -> skeleton4.d2_33 x_2_0 (fy_0 False xs_1_1) l_2) (Data.Maybe.Nothing -> _Tuple2 Data.Maybe.Nothing l_2) ) 
+skeleton4.JSONDecode_PAIR_31 !fx_0 fy_1 !_x_2 !l_3 = skeleton4.d1_32 fy_1 (fx_0 False l_3) l_3
+skeleton4.JSONEncode_FIELD_26 !fx_0 !_x_1 !_x_2 = select _x_2 (StdGeneric.FIELD x_1_0 -> fx_0 True x_1_0) 
+<{skeleton4.++_30}> !_x_0 list_1 = select _x_0 (_predefined._Cons hd_1_0 tl_1_1 -> _predefined._Cons hd_1_0 (<{skeleton4.++_30}> tl_1_1 list_1)) (_ -> list_1)
+skeleton4.JSONEncode_PAIR_29 !fx_0 fy_1 !_x_2 !_x_3 = select _x_3 (StdGeneric.PAIR x_1_0 y_1_1 -> <{skeleton4.++_30}> (fx_0 False x_1_0) (fy_1 False y_1_1)) 
+skeleton4.fromGenericNamedIdea_22 !c_0 = select c_0 (StdGeneric.RECORD c_1_0 -> select c_1_0 (StdGeneric.PAIR c_2_0 c_2_1 -> select c_2_0 (StdGeneric.FIELD x1_3_0 -> select c_2_1 (StdGeneric.FIELD x2_4_0 -> skeleton4._NamedIdea x1_3_0 x2_4_0) ) ) ) 
+skeleton4.bimapFromGeneric_35 !x_0 = skeleton4._f612_612 x_0
+skeleton4._f612_612 !x_0 = select x_0 (_Tuple2 x1_1_0 x2_1_1 -> _Tuple2 (skeleton4.fromGenericNamedIdea_22 x1_1_0) x2_1_1) 
+skeleton4.bimapFromGeneric_36 !x_0 = skeleton4._f613_613 x_0
+skeleton4._f613_613 !x_0 = select x_0 (_Tuple2 x1_1_0 x2_1_1 -> _Tuple2 (skeleton4.bimapFromGeneric_35 x1_1_0) x2_1_1) 
+skeleton4.JSONDecode_FIELD_599 gfd_name_0 !_x_1 !l_2 = select l_2 (_predefined._Cons _x_1_0 _x_1_1 -> select _x_1_0 (Text.JSON.JSONObject fields_2_0 -> select _x_1_1 (_predefined._Nil -> <{skeleton4._c;123;7_614}> (Text.JSON.JSONDecode__String_35 True (skeleton4.findField_597 gfd_name_0 fields_2_0)) l_2) ) ) (_ -> <{_Tuple2!3}> Data.Maybe.Nothing l_2)
+<{skeleton4._c;123;7_614}> !_x_0 !l_1 = select _x_0 (_Tuple2 _x_1_0 _x_1_1 -> select _x_1_0 (Data.Maybe.Just x_2_0 -> <{_Tuple2!3}> (Data.Maybe.Just (StdGeneric.FIELD x_2_0)) l_1) (_ -> <{_Tuple2!3}> Data.Maybe.Nothing l_1)) 
+skeleton4.JSONDecode_PAIR_601 gfd_name_0 fy_1 !_x_2 !l_3 = skeleton4.d1_32 fy_1 (skeleton4.JSONDecode_FIELD_599 gfd_name_0 False l_3) l_3
+skeleton4.JSONEncode_FIELD_598 !_x_0 !_x_1 = select _x_1 (StdGeneric.FIELD x_1_0 -> Text.JSON.JSONEncode__String_14 True x_1_0) 
+skeleton4.JSONEncode_PAIR_600 fy_0 !_x_1 !_x_2 = select _x_2 (StdGeneric.PAIR x_1_0 y_1_1 -> <{skeleton4.++_30}> (skeleton4.JSONEncode_FIELD_598 False x_1_0) (fy_0 False y_1_1)) 
+skeleton4.d1_604 gfd_name_0 !_x_1 l_2 = select _x_1 (_Tuple2 _x_1_0 xs_1_1 -> select _x_1_0 (Data.Maybe.Just x_2_0 -> skeleton4.d2_33 x_2_0 (skeleton4.JSONDecode_FIELD_599 gfd_name_0 False xs_1_1) l_2) (Data.Maybe.Nothing -> _Tuple2 Data.Maybe.Nothing l_2) ) 
+skeleton4.JSONDecode_PAIR_603 gfd_name_0 gfd_name_1 !_x_2 !l_3 = skeleton4.d1_604 gfd_name_1 (skeleton4.JSONDecode_FIELD_599 gfd_name_0 False l_3) l_3
+skeleton4.JSONEncode_PAIR_602 !_x_0 !_x_1 = select _x_1 (StdGeneric.PAIR x_1_0 y_1_1 -> <{skeleton4.++_30}> (skeleton4.JSONEncode_FIELD_598 False x_1_0) (skeleton4.JSONEncode_FIELD_598 False y_1_1)) 
+skeleton4.gUpdate_NamedIdea_7 !x1_0 !x2_1 !x3_2 !x4_3 = skeleton4.bimapFromGeneric_36 (iTasks._Framework.Generic.Interaction.gUpdate_RECORD_108 2 (iTasks._Framework.Generic.Interaction.gUpdate_PAIR_104 (iTasks._Framework.Generic.Interaction.gUpdate_FIELD_109 iTasks._Framework.Generic.Interaction.gUpdate__String_114 iTasks._Framework.Generic.Defaults.gDefault__String_12 Text.JSON.JSONEncode__String_14 Text.JSON.JSONDecode__String_35) (iTasks._Framework.Generic.Defaults.gDefault_FIELD_7 iTasks._Framework.Generic.Defaults.gDefault__String_12) skeleton4.JSONEncode_FIELD_598 (skeleton4.JSONDecode_FIELD_599 "name") (iTasks._Framework.Generic.Interaction.gUpdate_FIELD_109 iTasks._Framework.Generic.Interaction.gUpdate__String_114 iTasks._Framework.Generic.Defaults.gDefault__String_12 Text.JSON.JSONEncode__String_14 Text.JSON.JSONDecode__String_35) (iTasks._Framework.Generic.Defaults.gDefault_FIELD_7 iTasks._Framework.Generic.Defaults.gDefault__String_12) skeleton4.JSONEncode_FIELD_598 (skeleton4.JSONDecode_FIELD_599 "idea")) (iTasks._Framework.Generic.Defaults.gDefault_PAIR_2 (iTasks._Framework.Generic.Defaults.gDefault_FIELD_7 iTasks._Framework.Generic.Defaults.gDefault__String_12) (iTasks._Framework.Generic.Defaults.gDefault_FIELD_7 iTasks._Framework.Generic.Defaults.gDefault__String_12)) skeleton4.JSONEncode_PAIR_602 (skeleton4.JSONDecode_PAIR_603 "name" "idea") x1_0 x2_1 (skeleton4.bimapToGeneric_34 x3_2) x4_3)
+skeleton4.bimapToGeneric_37 !x_0 = skeleton4._f615_615 x_0
+skeleton4._f615_615 !x_0 = select x_0 (_Tuple2 x1_1_0 x2_1_1 -> _Tuple2 (skeleton4.toGenericNamedIdea_23 x1_1_0) x2_1_1) 
+skeleton4.gVerify_NamedIdea_8 !x1_0 x2_1 = iTasks._Framework.Generic.Interaction.gVerify_RECORD_78 2 (iTasks._Framework.Generic.Interaction.gVerify_PAIR_74 (iTasks._Framework.Generic.Interaction.gVerify_FIELD_79 iTasks._Framework.Generic.Interaction.gVerify__String_84) (iTasks._Framework.Generic.Interaction.gVerify_FIELD_79 iTasks._Framework.Generic.Interaction.gVerify__String_84)) x1_0 (skeleton4.bimapToGeneric_37 x2_1)
+skeleton4.bimapToGeneric_38 !x_0 = skeleton4._f616_616 x_0
+skeleton4._f616_616 !x_0 = select x_0 (Data.Maybe.Nothing -> Data.Maybe.Nothing) (Data.Maybe.Just x1_1_0 -> Data.Maybe.Just (skeleton4.toGenericNamedIdea_23 x1_1_0)) 
+skeleton4.gText_NamedIdea_9 !x1_0 x2_1 = iTasks._Framework.Generic.Visualization.gText_RECORD_9 (iTasks._Framework.Generic.Visualization.gText_PAIR_5 (iTasks._Framework.Generic.Visualization.gText_FIELD_10 "name" iTasks._Framework.Generic.Visualization.gText__String_15) (iTasks._Framework.Generic.Visualization.gText_FIELD_10 "idea" iTasks._Framework.Generic.Visualization.gText__String_15)) x1_0 (skeleton4.bimapToGeneric_38 x2_1)
+skeleton4.fli__NamedIdea_18 = _predefined._Cons "name" (_predefined._Cons "idea" _predefined._Nil)
+skeleton4.isNotNull_41 !_x_0 = select _x_0 (Text.JSON.JSONNull -> False) (_ -> True)
+<{skeleton4.c;86;49_40}> !g_l_0 g_l_1 = <{skeleton4.g_c1;86;35_618}> g_l_0 g_l_1
+<{skeleton4.g_c1;86;35_618}> !g_l_0 g_l_1 = select g_l_0 (_predefined._Cons g_h_1_0 g_t_1_1 -> <{skeleton4.g_c1;86;56_617}> g_l_1 g_h_1_0 g_t_1_1) (_ -> _predefined._Nil)
+<{skeleton4.g_c1;86;56_617}> !g_l_0 g_h_1 g_t_2 = select g_l_0 (_predefined._Cons g_h_1_0 g_t_1_1 -> if (skeleton4.isNotNull_41 g_h_1) (_predefined._Cons (_Tuple2 g_h_1_0 g_h_1) (<{skeleton4.c;86;49_40}> g_t_2 g_t_1_1)) (<{skeleton4.c;86;49_40}> g_t_2 g_t_1_1)) (_ -> _predefined._Nil)
+skeleton4.JSONEncode_RECORD_39 grd_fields_0 fx_1 !_x_2 !_x_3 = select _x_3 (StdGeneric.RECORD x_1_0 -> _predefined._Cons (Text.JSON.JSONObject (<{skeleton4.c;86;49_40}> (fx_1 False x_1_0) grd_fields_0)) _predefined._Nil) 
+skeleton4.JSONEncode_RECORD_605 grd_fields_0 !_x_1 !_x_2 = select _x_2 (StdGeneric.RECORD x_1_0 -> _predefined._Cons (Text.JSON.JSONObject (<{skeleton4.c;86;49_40}> (skeleton4.JSONEncode_PAIR_602 False x_1_0) grd_fields_0)) _predefined._Nil) 
+skeleton4.JSONEncode_NamedIdea_10 !x1_0 !x2_1 = skeleton4.JSONEncode_RECORD_605 skeleton4.fli__NamedIdea_18 x1_0 (skeleton4.toGenericNamedIdea_23 x2_1)
+skeleton4.d_43 !_x_0 xs_1 l_2 = select _x_0 (_Tuple2 _x_1_0 _x_1_1 -> select _x_1_0 (Data.Maybe.Just x_2_0 -> _Tuple2 (Data.Maybe.Just (StdGeneric.RECORD x_2_0)) xs_1) (Data.Maybe.Nothing -> _Tuple2 Data.Maybe.Nothing l_2) ) 
+skeleton4.JSONDecode_RECORD_42 fx_0 !_x_1 !l_2 = select l_2 (_predefined._Cons obj_1_0 xs_1_1 -> select obj_1_0 (Text.JSON.JSONObject fields_2_0 -> skeleton4.d_43 (fx_0 False (_predefined._Cons obj_1_0 _predefined._Nil)) xs_1_1 l_2) ) (_ -> <{_Tuple2!3}> Data.Maybe.Nothing l_2)
+skeleton4.bimapFromGeneric_44 !x_0 = skeleton4._f619_619 x_0
+skeleton4._f619_619 !x_0 = select x_0 (Data.Maybe.Nothing -> Data.Maybe.Nothing) (Data.Maybe.Just x1_1_0 -> Data.Maybe.Just (skeleton4.fromGenericNamedIdea_22 x1_1_0)) 
+skeleton4.bimapFromGeneric_45 !x_0 = skeleton4._f620_620 x_0
+skeleton4._f620_620 !x_0 = select x_0 (_Tuple2 x1_1_0 x2_1_1 -> _Tuple2 (skeleton4.bimapFromGeneric_44 x1_1_0) x2_1_1) 
+skeleton4.JSONDecode_RECORD_606 gfd_name_0 gfd_name_1 !_x_2 !l_3 = select l_3 (_predefined._Cons obj_1_0 xs_1_1 -> select obj_1_0 (Text.JSON.JSONObject fields_2_0 -> skeleton4.d_43 (skeleton4.JSONDecode_PAIR_603 gfd_name_0 gfd_name_1 False (_predefined._Cons obj_1_0 _predefined._Nil)) xs_1_1 l_3) ) (_ -> <{_Tuple2!3}> Data.Maybe.Nothing l_3)
+skeleton4.JSONDecode_NamedIdea_11 !x1_0 !x2_1 = skeleton4.bimapFromGeneric_45 (skeleton4.JSONDecode_RECORD_606 "name" "idea" x1_0 x2_1)
+skeleton4.gDefault_NamedIdea_12 = skeleton4.fromGenericNamedIdea_22 (iTasks._Framework.Generic.Defaults.gDefault_RECORD_6 (iTasks._Framework.Generic.Defaults.gDefault_PAIR_2 (iTasks._Framework.Generic.Defaults.gDefault_FIELD_7 iTasks._Framework.Generic.Defaults.gDefault__String_12) (iTasks._Framework.Generic.Defaults.gDefault_FIELD_7 iTasks._Framework.Generic.Defaults.gDefault__String_12)))
+skeleton4.gEq_NamedIdea_13 x1_0 x2_1 = GenEq.gEq_RECORD_11 (GenEq.gEq_PAIR_8 (GenEq.gEq_FIELD_12 GenEq.gEq__String_6) (GenEq.gEq_FIELD_12 GenEq.gEq__String_6)) (skeleton4.toGenericNamedIdea_23 x1_0) (skeleton4.toGenericNamedIdea_23 x2_1)
+skeleton4.anon_4 !_vTApplicative_0 name_1 idea_2 = iTasks.API.Core.Types.get_return_72 _vTApplicative_0 (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> skeleton4.gEditor_NamedIdea_5) (<{skeleton4.gEditMeta_s;}> skeleton4.gEditMeta_NamedIdea_6) (<{skeleton4.gUpdate_s;}> skeleton4.gUpdate_NamedIdea_7) (<{skeleton4.gVerify_s;}> skeleton4.gVerify_NamedIdea_8) (<{skeleton4.gText_s;}> skeleton4.gText_NamedIdea_9) (<{skeleton4.JSONEncode_s;}> skeleton4.JSONEncode_NamedIdea_10) (<{skeleton4.JSONDecode_s;}> skeleton4.JSONDecode_NamedIdea_11) (<{skeleton4.gDefault_s;}> skeleton4.gDefault_NamedIdea_12) (<{skeleton4.gEq_s;}> skeleton4.gEq_NamedIdea_13) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor <{skeleton4.TD;NamedIdea}>))) (skeleton4._NamedIdea name_1 idea_2)
+skeleton4.anon_607 name_0 idea_1 = iTasks.API.Core.Types.return_27 (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> skeleton4.gEditor_NamedIdea_5) (<{skeleton4.gEditMeta_s;}> skeleton4.gEditMeta_NamedIdea_6) (<{skeleton4.gUpdate_s;}> skeleton4.gUpdate_NamedIdea_7) (<{skeleton4.gVerify_s;}> skeleton4.gVerify_NamedIdea_8) (<{skeleton4.gText_s;}> skeleton4.gText_NamedIdea_9) (<{skeleton4.JSONEncode_s;}> skeleton4.JSONEncode_NamedIdea_10) (<{skeleton4.JSONDecode_s;}> skeleton4.JSONDecode_NamedIdea_11) (<{skeleton4.gDefault_s;}> skeleton4.gDefault_NamedIdea_12) (<{skeleton4.gEq_s;}> skeleton4.gEq_NamedIdea_13) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor <{skeleton4.TD;NamedIdea}>))) (skeleton4._NamedIdea name_0 idea_1)
+skeleton4.editIdea name_0 = <{iTasks.API.Core.Types.>>=_28}> (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> iTasks._Framework.Generic.Interaction.gEditor__String_24) (<{skeleton4.gEditMeta_s;}> iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (<{skeleton4.gUpdate_s;}> iTasks._Framework.Generic.Interaction.gUpdate__String_114) (<{skeleton4.gVerify_s;}> iTasks._Framework.Generic.Interaction.gVerify__String_84) (<{skeleton4.gText_s;}> iTasks._Framework.Generic.Visualization.gText__String_15) (<{skeleton4.JSONEncode_s;}> Text.JSON.JSONEncode__String_14) (<{skeleton4.JSONDecode_s;}> Text.JSON.JSONDecode__String_35) (<{skeleton4.gDefault_s;}> iTasks._Framework.Generic.Defaults.gDefault__String_12) (<{skeleton4.gEq_s;}> GenEq.gEq__String_6) (_SystemDynamic.TypeApp (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC__UnboxedArray)) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC_Char)))) (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> skeleton4.gEditor_NamedIdea_5) (<{skeleton4.gEditMeta_s;}> skeleton4.gEditMeta_NamedIdea_6) (<{skeleton4.gUpdate_s;}> skeleton4.gUpdate_NamedIdea_7) (<{skeleton4.gVerify_s;}> skeleton4.gVerify_NamedIdea_8) (<{skeleton4.gText_s;}> skeleton4.gText_NamedIdea_9) (<{skeleton4.JSONEncode_s;}> skeleton4.JSONEncode_NamedIdea_10) (<{skeleton4.JSONDecode_s;}> skeleton4.JSONDecode_NamedIdea_11) (<{skeleton4.gDefault_s;}> skeleton4.gDefault_NamedIdea_12) (<{skeleton4.gEq_s;}> skeleton4.gEq_NamedIdea_13) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor <{skeleton4.TD;NamedIdea}>))) (iTasks.API.Common.InteractionTasks.enterInformation (<{iTasks.API.Core.Types.descr;}> iTasks.API.Core.Types.toPrompt_133) (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> iTasks._Framework.Generic.Interaction.gEditor__String_24) (<{skeleton4.gEditMeta_s;}> iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (<{skeleton4.gUpdate_s;}> iTasks._Framework.Generic.Interaction.gUpdate__String_114) (<{skeleton4.gVerify_s;}> iTasks._Framework.Generic.Interaction.gVerify__String_84) (<{skeleton4.gText_s;}> iTasks._Framework.Generic.Visualization.gText__String_15) (<{skeleton4.JSONEncode_s;}> Text.JSON.JSONEncode__String_14) (<{skeleton4.JSONDecode_s;}> Text.JSON.JSONDecode__String_35) (<{skeleton4.gDefault_s;}> iTasks._Framework.Generic.Defaults.gDefault__String_12) (<{skeleton4.gEq_s;}> GenEq.gEq__String_6) (_SystemDynamic.TypeApp (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC__UnboxedArray)) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC_Char)))) (<{StdString.+++_11}> name_0 " add your idea") _predefined._Nil) (skeleton4.anon_607 name_0)
+skeleton4.doIdentified_608 task_0 = <{iTasks.API.Core.Types.>>=_28}> (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> iTasks._Framework.Generic.Interaction.gEditor__String_24) (<{skeleton4.gEditMeta_s;}> iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (<{skeleton4.gUpdate_s;}> iTasks._Framework.Generic.Interaction.gUpdate__String_114) (<{skeleton4.gVerify_s;}> iTasks._Framework.Generic.Interaction.gVerify__String_84) (<{skeleton4.gText_s;}> iTasks._Framework.Generic.Visualization.gText__String_15) (<{skeleton4.JSONEncode_s;}> Text.JSON.JSONEncode__String_14) (<{skeleton4.JSONDecode_s;}> Text.JSON.JSONDecode__String_35) (<{skeleton4.gDefault_s;}> iTasks._Framework.Generic.Defaults.gDefault__String_12) (<{skeleton4.gEq_s;}> GenEq.gEq__String_6) (_SystemDynamic.TypeApp (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC__UnboxedArray)) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC_Char)))) (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> skeleton4.gEditor_NamedIdea_5) (<{skeleton4.gEditMeta_s;}> skeleton4.gEditMeta_NamedIdea_6) (<{skeleton4.gUpdate_s;}> skeleton4.gUpdate_NamedIdea_7) (<{skeleton4.gVerify_s;}> skeleton4.gVerify_NamedIdea_8) (<{skeleton4.gText_s;}> skeleton4.gText_NamedIdea_9) (<{skeleton4.JSONEncode_s;}> skeleton4.JSONEncode_NamedIdea_10) (<{skeleton4.JSONDecode_s;}> skeleton4.JSONDecode_NamedIdea_11) (<{skeleton4.gDefault_s;}> skeleton4.gDefault_NamedIdea_12) (<{skeleton4.gEq_s;}> skeleton4.gEq_NamedIdea_13) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor <{skeleton4.TD;NamedIdea}>))) (iTasks.API.Common.InteractionTasks.enterInformation (<{iTasks.API.Core.Types.descr;}> iTasks.API.Core.Types.toPrompt_133) (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> iTasks._Framework.Generic.Interaction.gEditor__String_24) (<{skeleton4.gEditMeta_s;}> iTasks._Framework.Generic.Interaction.gEditMeta__String_54) (<{skeleton4.gUpdate_s;}> iTasks._Framework.Generic.Interaction.gUpdate__String_114) (<{skeleton4.gVerify_s;}> iTasks._Framework.Generic.Interaction.gVerify__String_84) (<{skeleton4.gText_s;}> iTasks._Framework.Generic.Visualization.gText__String_15) (<{skeleton4.JSONEncode_s;}> Text.JSON.JSONEncode__String_14) (<{skeleton4.JSONDecode_s;}> Text.JSON.JSONDecode__String_35) (<{skeleton4.gDefault_s;}> iTasks._Framework.Generic.Defaults.gDefault__String_12) (<{skeleton4.gEq_s;}> GenEq.gEq__String_6) (_SystemDynamic.TypeApp (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC__UnboxedArray)) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor _SystemDynamic.TC_Char)))) "Enter your name" _predefined._Nil) task_0
+skeleton4.mainTask = <{iTasks.API.Core.Types.>>=_28}> (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> skeleton4.gEditor_NamedIdea_5) (<{skeleton4.gEditMeta_s;}> skeleton4.gEditMeta_NamedIdea_6) (<{skeleton4.gUpdate_s;}> skeleton4.gUpdate_NamedIdea_7) (<{skeleton4.gVerify_s;}> skeleton4.gVerify_NamedIdea_8) (<{skeleton4.gText_s;}> skeleton4.gText_NamedIdea_9) (<{skeleton4.JSONEncode_s;}> skeleton4.JSONEncode_NamedIdea_10) (<{skeleton4.JSONDecode_s;}> skeleton4.JSONDecode_NamedIdea_11) (<{skeleton4.gDefault_s;}> skeleton4.gDefault_NamedIdea_12) (<{skeleton4.gEq_s;}> skeleton4.gEq_NamedIdea_13) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor <{skeleton4.TD;NamedIdea}>))) (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> skeleton4.gEditor_NamedIdea_5) (<{skeleton4.gEditMeta_s;}> skeleton4.gEditMeta_NamedIdea_6) (<{skeleton4.gUpdate_s;}> skeleton4.gUpdate_NamedIdea_7) (<{skeleton4.gVerify_s;}> skeleton4.gVerify_NamedIdea_8) (<{skeleton4.gText_s;}> skeleton4.gText_NamedIdea_9) (<{skeleton4.JSONEncode_s;}> skeleton4.JSONEncode_NamedIdea_10) (<{skeleton4.JSONDecode_s;}> skeleton4.JSONDecode_NamedIdea_11) (<{skeleton4.gDefault_s;}> skeleton4.gDefault_NamedIdea_12) (<{skeleton4.gEq_s;}> skeleton4.gEq_NamedIdea_13) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor <{skeleton4.TD;NamedIdea}>))) (skeleton4.doIdentified_608 skeleton4.editIdea) (iTasks.API.Common.InteractionTasks.viewInformation (<{iTasks.API.Core.Types.descr;}> iTasks.API.Core.Types.toPrompt_133) (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> skeleton4.gEditor_NamedIdea_5) (<{skeleton4.gEditMeta_s;}> skeleton4.gEditMeta_NamedIdea_6) (<{skeleton4.gUpdate_s;}> skeleton4.gUpdate_NamedIdea_7) (<{skeleton4.gVerify_s;}> skeleton4.gVerify_NamedIdea_8) (<{skeleton4.gText_s;}> skeleton4.gText_NamedIdea_9) (<{skeleton4.JSONEncode_s;}> skeleton4.JSONEncode_NamedIdea_10) (<{skeleton4.JSONDecode_s;}> skeleton4.JSONDecode_NamedIdea_11) (<{skeleton4.gDefault_s;}> skeleton4.gDefault_NamedIdea_12) (<{skeleton4.gEq_s;}> skeleton4.gEq_NamedIdea_13) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor <{skeleton4.TD;NamedIdea}>))) "The result" _predefined._Nil)
+skeleton4.Start !world_0 = iTasks._Framework.Engine.startEngine (<{iTasks._Framework.Engine.Publishable;}> (iTasks._Framework.Engine.publishAll_4 (<{iTasks._Framework.Generic.iTask;}> (<{skeleton4.gEditor_s;}> skeleton4.gEditor_NamedIdea_5) (<{skeleton4.gEditMeta_s;}> skeleton4.gEditMeta_NamedIdea_6) (<{skeleton4.gUpdate_s;}> skeleton4.gUpdate_NamedIdea_7) (<{skeleton4.gVerify_s;}> skeleton4.gVerify_NamedIdea_8) (<{skeleton4.gText_s;}> skeleton4.gText_NamedIdea_9) (<{skeleton4.JSONEncode_s;}> skeleton4.JSONEncode_NamedIdea_10) (<{skeleton4.JSONDecode_s;}> skeleton4.JSONDecode_NamedIdea_11) (<{skeleton4.gDefault_s;}> skeleton4.gDefault_NamedIdea_12) (<{skeleton4.gEq_s;}> skeleton4.gEq_NamedIdea_13) (_SystemDynamic.TypeCons (_SystemDynamic._TypeCodeConstructor <{skeleton4.TD;NamedIdea}>))))) skeleton4.mainTask world_0
+<{skeleton4.TD;Idea}> _x_0 = _predefined._Nil
+<{skeleton4.TD;Name}> _x_0 = _predefined._Nil
+<{skeleton4.TD;NamedIdea}> _x_0 = _predefined._Nil
+
+
+|| Converted Records
+:: skeleton4._NamedIdea = {skeleton4.name, skeleton4.idea}
+skeleton4.get_name_0 rec = select rec (skeleton4._NamedIdea a1 a2 -> a1)
+skeleton4.get_idea_1 rec = select rec (skeleton4._NamedIdea a1 a2 -> a2)
+skeleton4.set_name_0 rec val = select rec (skeleton4._NamedIdea  a1 a2 -> skeleton4._NamedIdea val a2)
+skeleton4.set_idea_1 rec val = select rec (skeleton4._NamedIdea  a1 a2 -> skeleton4._NamedIdea a1 val)
+
+:: <{skeleton4.gEditor_s;}> = {skeleton4.gEditor_s}
+skeleton4.get_gEditor_s_2 rec = select rec (<{skeleton4.gEditor_s;}> a1 -> a1)
+skeleton4.set_gEditor_s_2 rec val = select rec (<{skeleton4.gEditor_s;}>  a1 -> <{skeleton4.gEditor_s;}> val)
+
+:: <{skeleton4.gEditor_ss;}> = {skeleton4.gEditor_ss}
+skeleton4.get_gEditor_ss_3 rec = select rec (<{skeleton4.gEditor_ss;}> a1 -> a1)
+skeleton4.set_gEditor_ss_3 rec val = select rec (<{skeleton4.gEditor_ss;}>  a1 -> <{skeleton4.gEditor_ss;}> val)
+
+:: <{skeleton4.gEditor_sss;}> = {skeleton4.gEditor_sss}
+skeleton4.get_gEditor_sss_4 rec = select rec (<{skeleton4.gEditor_sss;}> a1 -> a1)
+skeleton4.set_gEditor_sss_4 rec val = select rec (<{skeleton4.gEditor_sss;}>  a1 -> <{skeleton4.gEditor_sss;}> val)
+
+:: <{skeleton4.gEditMeta_s;}> = {skeleton4.gEditMeta_s}
+skeleton4.get_gEditMeta_s_5 rec = select rec (<{skeleton4.gEditMeta_s;}> a1 -> a1)
+skeleton4.set_gEditMeta_s_5 rec val = select rec (<{skeleton4.gEditMeta_s;}>  a1 -> <{skeleton4.gEditMeta_s;}> val)
+
+:: <{skeleton4.gEditMeta_ss;}> = {skeleton4.gEditMeta_ss}
+skeleton4.get_gEditMeta_ss_6 rec = select rec (<{skeleton4.gEditMeta_ss;}> a1 -> a1)
+skeleton4.set_gEditMeta_ss_6 rec val = select rec (<{skeleton4.gEditMeta_ss;}>  a1 -> <{skeleton4.gEditMeta_ss;}> val)
+
+:: <{skeleton4.gEditMeta_sss;}> = {skeleton4.gEditMeta_sss}
+skeleton4.get_gEditMeta_sss_7 rec = select rec (<{skeleton4.gEditMeta_sss;}> a1 -> a1)
+skeleton4.set_gEditMeta_sss_7 rec val = select rec (<{skeleton4.gEditMeta_sss;}>  a1 -> <{skeleton4.gEditMeta_sss;}> val)
+
+:: <{skeleton4.gUpdate_s;}> = {skeleton4.gUpdate_s}
+skeleton4.get_gUpdate_s_8 rec = select rec (<{skeleton4.gUpdate_s;}> a1 -> a1)
+skeleton4.set_gUpdate_s_8 rec val = select rec (<{skeleton4.gUpdate_s;}>  a1 -> <{skeleton4.gUpdate_s;}> val)
+
+:: <{skeleton4.gUpdate_ss;}> = {skeleton4.gUpdate_ss}
+skeleton4.get_gUpdate_ss_9 rec = select rec (<{skeleton4.gUpdate_ss;}> a1 -> a1)
+skeleton4.set_gUpdate_ss_9 rec val = select rec (<{skeleton4.gUpdate_ss;}>  a1 -> <{skeleton4.gUpdate_ss;}> val)
+
+:: <{skeleton4.gUpdate_sss;}> = {skeleton4.gUpdate_sss}
+skeleton4.get_gUpdate_sss_10 rec = select rec (<{skeleton4.gUpdate_sss;}> a1 -> a1)
+skeleton4.set_gUpdate_sss_10 rec val = select rec (<{skeleton4.gUpdate_sss;}>  a1 -> <{skeleton4.gUpdate_sss;}> val)
+
+:: <{skeleton4.gVerify_s;}> = {skeleton4.gVerify_s}
+skeleton4.get_gVerify_s_11 rec = select rec (<{skeleton4.gVerify_s;}> a1 -> a1)
+skeleton4.set_gVerify_s_11 rec val = select rec (<{skeleton4.gVerify_s;}>  a1 -> <{skeleton4.gVerify_s;}> val)
+
+:: <{skeleton4.gVerify_ss;}> = {skeleton4.gVerify_ss}
+skeleton4.get_gVerify_ss_12 rec = select rec (<{skeleton4.gVerify_ss;}> a1 -> a1)
+skeleton4.set_gVerify_ss_12 rec val = select rec (<{skeleton4.gVerify_ss;}>  a1 -> <{skeleton4.gVerify_ss;}> val)
+
+:: <{skeleton4.gVerify_sss;}> = {skeleton4.gVerify_sss}
+skeleton4.get_gVerify_sss_13 rec = select rec (<{skeleton4.gVerify_sss;}> a1 -> a1)
+skeleton4.set_gVerify_sss_13 rec val = select rec (<{skeleton4.gVerify_sss;}>  a1 -> <{skeleton4.gVerify_sss;}> val)
+
+:: <{skeleton4.gText_s;}> = {skeleton4.gText_s}
+skeleton4.get_gText_s_14 rec = select rec (<{skeleton4.gText_s;}> a1 -> a1)
+skeleton4.set_gText_s_14 rec val = select rec (<{skeleton4.gText_s;}>  a1 -> <{skeleton4.gText_s;}> val)
+
+:: <{skeleton4.gText_ss;}> = {skeleton4.gText_ss}
+skeleton4.get_gText_ss_15 rec = select rec (<{skeleton4.gText_ss;}> a1 -> a1)
+skeleton4.set_gText_ss_15 rec val = select rec (<{skeleton4.gText_ss;}>  a1 -> <{skeleton4.gText_ss;}> val)
+
+:: <{skeleton4.gText_sss;}> = {skeleton4.gText_sss}
+skeleton4.get_gText_sss_16 rec = select rec (<{skeleton4.gText_sss;}> a1 -> a1)
+skeleton4.set_gText_sss_16 rec val = select rec (<{skeleton4.gText_sss;}>  a1 -> <{skeleton4.gText_sss;}> val)
+
+:: <{skeleton4.JSONEncode_s;}> = {skeleton4.JSONEncode_s}
+skeleton4.get_JSONEncode_s_17 rec = select rec (<{skeleton4.JSONEncode_s;}> a1 -> a1)
+skeleton4.set_JSONEncode_s_17 rec val = select rec (<{skeleton4.JSONEncode_s;}>  a1 -> <{skeleton4.JSONEncode_s;}> val)
+
+:: <{skeleton4.JSONEncode_ss;}> = {skeleton4.JSONEncode_ss}
+skeleton4.get_JSONEncode_ss_18 rec = select rec (<{skeleton4.JSONEncode_ss;}> a1 -> a1)
+skeleton4.set_JSONEncode_ss_18 rec val = select rec (<{skeleton4.JSONEncode_ss;}>  a1 -> <{skeleton4.JSONEncode_ss;}> val)
+
+:: <{skeleton4.JSONEncode_sss;}> = {skeleton4.JSONEncode_sss}
+skeleton4.get_JSONEncode_sss_19 rec = select rec (<{skeleton4.JSONEncode_sss;}> a1 -> a1)
+skeleton4.set_JSONEncode_sss_19 rec val = select rec (<{skeleton4.JSONEncode_sss;}>  a1 -> <{skeleton4.JSONEncode_sss;}> val)
+
+:: <{skeleton4.JSONDecode_s;}> = {skeleton4.JSONDecode_s}
+skeleton4.get_JSONDecode_s_20 rec = select rec (<{skeleton4.JSONDecode_s;}> a1 -> a1)
+skeleton4.set_JSONDecode_s_20 rec val = select rec (<{skeleton4.JSONDecode_s;}>  a1 -> <{skeleton4.JSONDecode_s;}> val)
+
+:: <{skeleton4.JSONDecode_ss;}> = {skeleton4.JSONDecode_ss}
+skeleton4.get_JSONDecode_ss_21 rec = select rec (<{skeleton4.JSONDecode_ss;}> a1 -> a1)
+skeleton4.set_JSONDecode_ss_21 rec val = select rec (<{skeleton4.JSONDecode_ss;}>  a1 -> <{skeleton4.JSONDecode_ss;}> val)
+
+:: <{skeleton4.JSONDecode_sss;}> = {skeleton4.JSONDecode_sss}
+skeleton4.get_JSONDecode_sss_22 rec = select rec (<{skeleton4.JSONDecode_sss;}> a1 -> a1)
+skeleton4.set_JSONDecode_sss_22 rec val = select rec (<{skeleton4.JSONDecode_sss;}>  a1 -> <{skeleton4.JSONDecode_sss;}> val)
+
+:: <{skeleton4.gDefault_s;}> = {skeleton4.gDefault_s}
+skeleton4.get_gDefault_s_23 rec = select rec (<{skeleton4.gDefault_s;}> a1 -> a1)
+skeleton4.set_gDefault_s_23 rec val = select rec (<{skeleton4.gDefault_s;}>  a1 -> <{skeleton4.gDefault_s;}> val)
+
+:: <{skeleton4.gDefault_ss;}> = {skeleton4.gDefault_ss}
+skeleton4.get_gDefault_ss_24 rec = select rec (<{skeleton4.gDefault_ss;}> a1 -> a1)
+skeleton4.set_gDefault_ss_24 rec val = select rec (<{skeleton4.gDefault_ss;}>  a1 -> <{skeleton4.gDefault_ss;}> val)
+
+:: <{skeleton4.gDefault_sss;}> = {skeleton4.gDefault_sss}
+skeleton4.get_gDefault_sss_25 rec = select rec (<{skeleton4.gDefault_sss;}> a1 -> a1)
+skeleton4.set_gDefault_sss_25 rec val = select rec (<{skeleton4.gDefault_sss;}>  a1 -> <{skeleton4.gDefault_sss;}> val)
+
+:: <{skeleton4.gEq_s;}> = {skeleton4.gEq_s}
+skeleton4.get_gEq_s_26 rec = select rec (<{skeleton4.gEq_s;}> a1 -> a1)
+skeleton4.set_gEq_s_26 rec val = select rec (<{skeleton4.gEq_s;}>  a1 -> <{skeleton4.gEq_s;}> val)
+
+:: <{skeleton4.gEq_ss;}> = {skeleton4.gEq_ss}
+skeleton4.get_gEq_ss_27 rec = select rec (<{skeleton4.gEq_ss;}> a1 -> a1)
+skeleton4.set_gEq_ss_27 rec val = select rec (<{skeleton4.gEq_ss;}>  a1 -> <{skeleton4.gEq_ss;}> val)
+
+:: <{skeleton4.gEq_sss;}> = {skeleton4.gEq_sss}
+skeleton4.get_gEq_sss_28 rec = select rec (<{skeleton4.gEq_sss;}> a1 -> a1)
+skeleton4.set_gEq_sss_28 rec val = select rec (<{skeleton4.gEq_sss;}>  a1 -> <{skeleton4.gEq_sss;}> val)
+
+:: <{skeleton4.JSONEncode_ssss;}> = {skeleton4.JSONEncode_ssss}
+skeleton4.get_JSONEncode_ssss_29 rec = select rec (<{skeleton4.JSONEncode_ssss;}> a1 -> a1)
+skeleton4.set_JSONEncode_ssss_29 rec val = select rec (<{skeleton4.JSONEncode_ssss;}>  a1 -> <{skeleton4.JSONEncode_ssss;}> val)
+
+:: <{skeleton4.JSONDecode_ssss;}> = {skeleton4.JSONDecode_ssss}
+skeleton4.get_JSONDecode_ssss_30 rec = select rec (<{skeleton4.JSONDecode_ssss;}> a1 -> a1)
+skeleton4.set_JSONDecode_ssss_30 rec val = select rec (<{skeleton4.JSONDecode_ssss;}>  a1 -> <{skeleton4.JSONDecode_ssss;}> val)
+
+:: <{skeleton4.gEq_ssss;}> = {skeleton4.gEq_ssss}
+skeleton4.get_gEq_ssss_31 rec = select rec (<{skeleton4.gEq_ssss;}> a1 -> a1)
+skeleton4.set_gEq_ssss_31 rec val = select rec (<{skeleton4.gEq_ssss;}>  a1 -> <{skeleton4.gEq_ssss;}> val)
+
+:: <{skeleton4.gDefault_ssss;}> = {skeleton4.gDefault_ssss}
+skeleton4.get_gDefault_ssss_32 rec = select rec (<{skeleton4.gDefault_ssss;}> a1 -> a1)
+skeleton4.set_gDefault_ssss_32 rec val = select rec (<{skeleton4.gDefault_ssss;}>  a1 -> <{skeleton4.gDefault_ssss;}> val)
+
+:: <{skeleton4.JSONEncode_sssss;}> = {skeleton4.JSONEncode_sssss}
+skeleton4.get_JSONEncode_sssss_33 rec = select rec (<{skeleton4.JSONEncode_sssss;}> a1 -> a1)
+skeleton4.set_JSONEncode_sssss_33 rec val = select rec (<{skeleton4.JSONEncode_sssss;}>  a1 -> <{skeleton4.JSONEncode_sssss;}> val)
+
+:: <{skeleton4.JSONEncode_ssssss;}> = {skeleton4.JSONEncode_ssssss}
+skeleton4.get_JSONEncode_ssssss_34 rec = select rec (<{skeleton4.JSONEncode_ssssss;}> a1 -> a1)
+skeleton4.set_JSONEncode_ssssss_34 rec val = select rec (<{skeleton4.JSONEncode_ssssss;}>  a1 -> <{skeleton4.JSONEncode_ssssss;}> val)
+
+:: <{skeleton4.JSONDecode_sssss;}> = {skeleton4.JSONDecode_sssss}
+skeleton4.get_JSONDecode_sssss_35 rec = select rec (<{skeleton4.JSONDecode_sssss;}> a1 -> a1)
+skeleton4.set_JSONDecode_sssss_35 rec val = select rec (<{skeleton4.JSONDecode_sssss;}>  a1 -> <{skeleton4.JSONDecode_sssss;}> val)
+
+:: <{skeleton4.JSONDecode_ssssss;}> = {skeleton4.JSONDecode_ssssss}
+skeleton4.get_JSONDecode_ssssss_36 rec = select rec (<{skeleton4.JSONDecode_ssssss;}> a1 -> a1)
+skeleton4.set_JSONDecode_ssssss_36 rec val = select rec (<{skeleton4.JSONDecode_ssssss;}>  a1 -> <{skeleton4.JSONDecode_ssssss;}> val)
+
+:: <{skeleton4.bimap_s;}> = {skeleton4.bimap_s}
+skeleton4.get_bimap_s_37 rec = select rec (<{skeleton4.bimap_s;}> a1 -> a1)
+skeleton4.set_bimap_s_37 rec val = select rec (<{skeleton4.bimap_s;}>  a1 -> <{skeleton4.bimap_s;}> val)
+
+:: <{skeleton4.bimap_ss;}> = {skeleton4.bimap_ss}
+skeleton4.get_bimap_ss_38 rec = select rec (<{skeleton4.bimap_ss;}> a1 -> a1)
+skeleton4.set_bimap_ss_38 rec val = select rec (<{skeleton4.bimap_ss;}>  a1 -> <{skeleton4.bimap_ss;}> val)
+
+:: <{skeleton4.bimap_sss;}> = {skeleton4.bimap_sss}
+skeleton4.get_bimap_sss_39 rec = select rec (<{skeleton4.bimap_sss;}> a1 -> a1)
+skeleton4.set_bimap_sss_39 rec val = select rec (<{skeleton4.bimap_sss;}>  a1 -> <{skeleton4.bimap_sss;}> val)
+
+:: <{skeleton4.gEq_sssss;}> = {skeleton4.gEq_sssss}
+skeleton4.get_gEq_sssss_40 rec = select rec (<{skeleton4.gEq_sssss;}> a1 -> a1)
+skeleton4.set_gEq_sssss_40 rec val = select rec (<{skeleton4.gEq_sssss;}>  a1 -> <{skeleton4.gEq_sssss;}> val)
+
+:: <{skeleton4.gEq_ssssss;}> = {skeleton4.gEq_ssssss}
+skeleton4.get_gEq_ssssss_41 rec = select rec (<{skeleton4.gEq_ssssss;}> a1 -> a1)
+skeleton4.set_gEq_ssssss_41 rec val = select rec (<{skeleton4.gEq_ssssss;}>  a1 -> <{skeleton4.gEq_ssssss;}> val)
+
+:: <{skeleton4.gEq_sssssss;}> = {skeleton4.gEq_sssssss}
+skeleton4.get_gEq_sssssss_42 rec = select rec (<{skeleton4.gEq_sssssss;}> a1 -> a1)
+skeleton4.set_gEq_sssssss_42 rec val = select rec (<{skeleton4.gEq_sssssss;}>  a1 -> <{skeleton4.gEq_sssssss;}> val)
+
+:: <{skeleton4.gEq_ssssssss;}> = {skeleton4.gEq_ssssssss}
+skeleton4.get_gEq_ssssssss_43 rec = select rec (<{skeleton4.gEq_ssssssss;}> a1 -> a1)
+skeleton4.set_gEq_ssssssss_43 rec val = select rec (<{skeleton4.gEq_ssssssss;}>  a1 -> <{skeleton4.gEq_ssssssss;}> val)
+
+:: <{skeleton4.gEq_sssssssss;}> = {skeleton4.gEq_sssssssss}
+skeleton4.get_gEq_sssssssss_44 rec = select rec (<{skeleton4.gEq_sssssssss;}> a1 -> a1)
+skeleton4.set_gEq_sssssssss_44 rec val = select rec (<{skeleton4.gEq_sssssssss;}>  a1 -> <{skeleton4.gEq_sssssssss;}> val)
+
+:: <{skeleton4.gEditor_ssss;}> = {skeleton4.gEditor_ssss}
+skeleton4.get_gEditor_ssss_45 rec = select rec (<{skeleton4.gEditor_ssss;}> a1 -> a1)
+skeleton4.set_gEditor_ssss_45 rec val = select rec (<{skeleton4.gEditor_ssss;}>  a1 -> <{skeleton4.gEditor_ssss;}> val)
+
+:: <{skeleton4.gText_ssss;}> = {skeleton4.gText_ssss}
+skeleton4.get_gText_ssss_46 rec = select rec (<{skeleton4.gText_ssss;}> a1 -> a1)
+skeleton4.set_gText_ssss_46 rec val = select rec (<{skeleton4.gText_ssss;}>  a1 -> <{skeleton4.gText_ssss;}> val)
+
+:: <{skeleton4.gEditMeta_ssss;}> = {skeleton4.gEditMeta_ssss}
+skeleton4.get_gEditMeta_ssss_47 rec = select rec (<{skeleton4.gEditMeta_ssss;}> a1 -> a1)
+skeleton4.set_gEditMeta_ssss_47 rec val = select rec (<{skeleton4.gEditMeta_ssss;}>  a1 -> <{skeleton4.gEditMeta_ssss;}> val)
+
+:: <{skeleton4.gEditor_sssss;}> = {skeleton4.gEditor_sssss}
+skeleton4.get_gEditor_sssss_48 rec = select rec (<{skeleton4.gEditor_sssss;}> a1 -> a1)
+skeleton4.set_gEditor_sssss_48 rec val = select rec (<{skeleton4.gEditor_sssss;}>  a1 -> <{skeleton4.gEditor_sssss;}> val)
+
+:: <{skeleton4.gText_sssss;}> = {skeleton4.gText_sssss}
+skeleton4.get_gText_sssss_49 rec = select rec (<{skeleton4.gText_sssss;}> a1 -> a1)
+skeleton4.set_gText_sssss_49 rec val = select rec (<{skeleton4.gText_sssss;}>  a1 -> <{skeleton4.gText_sssss;}> val)
+
+:: <{skeleton4.gDefault_sssss;}> = {skeleton4.gDefault_sssss}
+skeleton4.get_gDefault_sssss_50 rec = select rec (<{skeleton4.gDefault_sssss;}> a1 -> a1)
+skeleton4.set_gDefault_sssss_50 rec val = select rec (<{skeleton4.gDefault_sssss;}>  a1 -> <{skeleton4.gDefault_sssss;}> val)
+
+:: <{skeleton4.gEditMeta_sssss;}> = {skeleton4.gEditMeta_sssss}
+skeleton4.get_gEditMeta_sssss_51 rec = select rec (<{skeleton4.gEditMeta_sssss;}> a1 -> a1)
+skeleton4.set_gEditMeta_sssss_51 rec val = select rec (<{skeleton4.gEditMeta_sssss;}>  a1 -> <{skeleton4.gEditMeta_sssss;}> val)
+
+:: <{skeleton4.gEditor_ssssss;}> = {skeleton4.gEditor_ssssss}
+skeleton4.get_gEditor_ssssss_52 rec = select rec (<{skeleton4.gEditor_ssssss;}> a1 -> a1)
+skeleton4.set_gEditor_ssssss_52 rec val = select rec (<{skeleton4.gEditor_ssssss;}>  a1 -> <{skeleton4.gEditor_ssssss;}> val)
+
+:: <{skeleton4.gText_ssssss;}> = {skeleton4.gText_ssssss}
+skeleton4.get_gText_ssssss_53 rec = select rec (<{skeleton4.gText_ssssss;}> a1 -> a1)
+skeleton4.set_gText_ssssss_53 rec val = select rec (<{skeleton4.gText_ssssss;}>  a1 -> <{skeleton4.gText_ssssss;}> val)
+
+:: <{skeleton4.gDefault_ssssss;}> = {skeleton4.gDefault_ssssss}
+skeleton4.get_gDefault_ssssss_54 rec = select rec (<{skeleton4.gDefault_ssssss;}> a1 -> a1)
+skeleton4.set_gDefault_ssssss_54 rec val = select rec (<{skeleton4.gDefault_ssssss;}>  a1 -> <{skeleton4.gDefault_ssssss;}> val)
+
+:: <{skeleton4.gEditMeta_ssssss;}> = {skeleton4.gEditMeta_ssssss}
+skeleton4.get_gEditMeta_ssssss_55 rec = select rec (<{skeleton4.gEditMeta_ssssss;}> a1 -> a1)
+skeleton4.set_gEditMeta_ssssss_55 rec val = select rec (<{skeleton4.gEditMeta_ssssss;}>  a1 -> <{skeleton4.gEditMeta_ssssss;}> val)
+
+:: <{skeleton4.gVerify_ssss;}> = {skeleton4.gVerify_ssss}
+skeleton4.get_gVerify_ssss_56 rec = select rec (<{skeleton4.gVerify_ssss;}> a1 -> a1)
+skeleton4.set_gVerify_ssss_56 rec val = select rec (<{skeleton4.gVerify_ssss;}>  a1 -> <{skeleton4.gVerify_ssss;}> val)
+
+:: <{skeleton4.gVerify_sssss;}> = {skeleton4.gVerify_sssss}
+skeleton4.get_gVerify_sssss_57 rec = select rec (<{skeleton4.gVerify_sssss;}> a1 -> a1)
+skeleton4.set_gVerify_sssss_57 rec val = select rec (<{skeleton4.gVerify_sssss;}>  a1 -> <{skeleton4.gVerify_sssss;}> val)
+
+:: <{skeleton4.gVerify_ssssss;}> = {skeleton4.gVerify_ssssss}
+skeleton4.get_gVerify_ssssss_58 rec = select rec (<{skeleton4.gVerify_ssssss;}> a1 -> a1)
+skeleton4.set_gVerify_ssssss_58 rec val = select rec (<{skeleton4.gVerify_ssssss;}>  a1 -> <{skeleton4.gVerify_ssssss;}> val)
+
+:: <{skeleton4.gUpdate_ssss;}> = {skeleton4.gUpdate_ssss}
+skeleton4.get_gUpdate_ssss_59 rec = select rec (<{skeleton4.gUpdate_ssss;}> a1 -> a1)
+skeleton4.set_gUpdate_ssss_59 rec val = select rec (<{skeleton4.gUpdate_ssss;}>  a1 -> <{skeleton4.gUpdate_ssss;}> val)
+
+:: <{skeleton4.gUpdate_sssss;}> = {skeleton4.gUpdate_sssss}
+skeleton4.get_gUpdate_sssss_60 rec = select rec (<{skeleton4.gUpdate_sssss;}> a1 -> a1)
+skeleton4.set_gUpdate_sssss_60 rec val = select rec (<{skeleton4.gUpdate_sssss;}>  a1 -> <{skeleton4.gUpdate_sssss;}> val)
+
+:: <{skeleton4.gUpdate_ssssss;}> = {skeleton4.gUpdate_ssssss}
+skeleton4.get_gUpdate_ssssss_61 rec = select rec (<{skeleton4.gUpdate_ssssss;}> a1 -> a1)
+skeleton4.set_gUpdate_ssssss_61 rec val = select rec (<{skeleton4.gUpdate_ssssss;}>  a1 -> <{skeleton4.gUpdate_ssssss;}> val)
+
+:: <{skeleton4.gLexOrd_s;}> = {skeleton4.gLexOrd_s}
+skeleton4.get_gLexOrd_s_62 rec = select rec (<{skeleton4.gLexOrd_s;}> a1 -> a1)
+skeleton4.set_gLexOrd_s_62 rec val = select rec (<{skeleton4.gLexOrd_s;}>  a1 -> <{skeleton4.gLexOrd_s;}> val)
+
+:: <{skeleton4.gLexOrd_ss;}> = {skeleton4.gLexOrd_ss}
+skeleton4.get_gLexOrd_ss_63 rec = select rec (<{skeleton4.gLexOrd_ss;}> a1 -> a1)
+skeleton4.set_gLexOrd_ss_63 rec val = select rec (<{skeleton4.gLexOrd_ss;}>  a1 -> <{skeleton4.gLexOrd_ss;}> val)
+
+:: <{skeleton4.gLexOrd_sss;}> = {skeleton4.gLexOrd_sss}
+skeleton4.get_gLexOrd_sss_64 rec = select rec (<{skeleton4.gLexOrd_sss;}> a1 -> a1)
+skeleton4.set_gLexOrd_sss_64 rec val = select rec (<{skeleton4.gLexOrd_sss;}>  a1 -> <{skeleton4.gLexOrd_sss;}> val)
+
+:: <{skeleton4.gLexOrd_ssss;}> = {skeleton4.gLexOrd_ssss}
+skeleton4.get_gLexOrd_ssss_65 rec = select rec (<{skeleton4.gLexOrd_ssss;}> a1 -> a1)
+skeleton4.set_gLexOrd_ssss_65 rec val = select rec (<{skeleton4.gLexOrd_ssss;}>  a1 -> <{skeleton4.gLexOrd_ssss;}> val)
+
+:: <{skeleton4.gLexOrd_sssss;}> = {skeleton4.gLexOrd_sssss}
+skeleton4.get_gLexOrd_sssss_66 rec = select rec (<{skeleton4.gLexOrd_sssss;}> a1 -> a1)
+skeleton4.set_gLexOrd_sssss_66 rec val = select rec (<{skeleton4.gLexOrd_sssss;}>  a1 -> <{skeleton4.gLexOrd_sssss;}> val)
+
+:: <{skeleton4.gLexOrd_ssssss;}> = {skeleton4.gLexOrd_ssssss}
+skeleton4.get_gLexOrd_ssssss_67 rec = select rec (<{skeleton4.gLexOrd_ssssss;}> a1 -> a1)
+skeleton4.set_gLexOrd_ssssss_67 rec val = select rec (<{skeleton4.gLexOrd_ssssss;}>  a1 -> <{skeleton4.gLexOrd_ssssss;}> val)
+
+:: <{skeleton4.gLexOrd_sssssss;}> = {skeleton4.gLexOrd_sssssss}
+skeleton4.get_gLexOrd_sssssss_68 rec = select rec (<{skeleton4.gLexOrd_sssssss;}> a1 -> a1)
+skeleton4.set_gLexOrd_sssssss_68 rec val = select rec (<{skeleton4.gLexOrd_sssssss;}>  a1 -> <{skeleton4.gLexOrd_sssssss;}> val)
+
+:: <{skeleton4.gLexOrd_ssssssss;}> = {skeleton4.gLexOrd_ssssssss}
+skeleton4.get_gLexOrd_ssssssss_69 rec = select rec (<{skeleton4.gLexOrd_ssssssss;}> a1 -> a1)
+skeleton4.set_gLexOrd_ssssssss_69 rec val = select rec (<{skeleton4.gLexOrd_ssssssss;}>  a1 -> <{skeleton4.gLexOrd_ssssssss;}> val)
+
+:: <{skeleton4.gLexOrd_sssssssss;}> = {skeleton4.gLexOrd_sssssssss}
+skeleton4.get_gLexOrd_sssssssss_70 rec = select rec (<{skeleton4.gLexOrd_sssssssss;}> a1 -> a1)
+skeleton4.set_gLexOrd_sssssssss_70 rec val = select rec (<{skeleton4.gLexOrd_sssssssss;}>  a1 -> <{skeleton4.gLexOrd_sssssssss;}> val)
+
