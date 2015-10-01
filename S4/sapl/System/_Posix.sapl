@@ -1,0 +1,58 @@
+|| ?module? System._Posix
+
+
+System._Posix.errnoAddr_23 = error "no AnyCodeExpr"
+System._Posix.getErrno_22 = System._Pointer.readInt4S System._Posix.errnoAddr_23 0
+System._Posix.errno !world_0 = <{_Tuple2!3}> System._Posix.getErrno_22 world_0
+System._Posix.strerr !world_0 = error "no AnyCodeExpr"
+System._Posix.stat !path_0 !buf_1 !world_2 = error "no AnyCodeExpr"
+System._Posix.unlink !path_0 !world_1 = error "no AnyCodeExpr"
+System._Posix.fork !world_0 = error "no AnyCodeExpr"
+System._Posix.execvp !name_0 !argv_1 !world_2 = error "no AnyCodeExpr"
+System._Posix.waitpid !pid_0 !status_p_1 !options_2 !world_3 = error "no AnyCodeExpr"
+System._Posix.exit !num_0 !world_1 = error "no AnyCodeExpr"
+System._Posix.getcwd !buf_0 !size_t_1 !world_2 = error "no AnyCodeExpr"
+System._Posix.chdir !name_0 !world_1 = error "no AnyCodeExpr"
+System._Posix.mkdir !name_0 !mode_1 !world_2 = error "no AnyCodeExpr"
+System._Posix.rmdir !name_0 !world_1 = error "no AnyCodeExpr"
+System._Posix.rename !old_0 !new_1 !world_2 = error "no AnyCodeExpr"
+System._Posix.opendir !path_0 !world_1 = error "no AnyCodeExpr"
+System._Posix.closedir !dir_0 !world_1 = error "no AnyCodeExpr"
+System._Posix.readdir !dir_0 !world_1 = error "no AnyCodeExpr"
+System._Posix.malloc !num_0 = error "no AnyCodeExpr"
+System._Posix.free !ptr_0 = error "no AnyCodeExpr"
+System._Posix.memcpy_string_to_pointer !p_0 !s_1 !n_2 = error "no AnyCodeExpr"
+System._Posix.unpackStat !s_0 = System._Posix._Stat (System._Pointer.unpackInt8 s_0 0) (System._Pointer.unpackInt8 s_0 8) (System._Pointer.unpackInt4S s_0 24) (System._Pointer.unpackInt8 s_0 16) (System._Pointer.unpackInt4S s_0 28) (System._Pointer.unpackInt4S s_0 32) (System._Pointer.unpackInt8 s_0 40) (System._Pointer.unpackInt8 s_0 48) (System._Pointer.unpackInt8 s_0 64) (System._Pointer.unpackInt8 s_0 56) (System._Pointer.unpackInt8 s_0 104) (System._Pointer.unpackInt8 s_0 88) (System._Pointer.unpackInt8 s_0 72)
+System._Posix.sizeOfStat = 144
+<{System._Posix.TD;Stat}> _x_0 = _predefined._Nil
+
+
+|| Converted Records
+:: System._Posix._Stat = {!System._Posix.st_dev, !System._Posix.st_ino, !System._Posix.st_mode, !System._Posix.st_nlink, !System._Posix.st_uid, !System._Posix.st_gid, !System._Posix.st_rdev, !System._Posix.st_size, !System._Posix.st_blocks, !System._Posix.st_blksize, !System._Posix.st_ctimespec, !System._Posix.st_mtimespec, !System._Posix.st_atimespec}
+System._Posix.get_st_dev_0 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a1)
+System._Posix.get_st_ino_1 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a2)
+System._Posix.get_st_mode_2 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a3)
+System._Posix.get_st_nlink_3 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a4)
+System._Posix.get_st_uid_4 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a5)
+System._Posix.get_st_gid_5 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a6)
+System._Posix.get_st_rdev_6 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a7)
+System._Posix.get_st_size_7 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a8)
+System._Posix.get_st_blocks_8 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a9)
+System._Posix.get_st_blksize_9 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a10)
+System._Posix.get_st_ctimespec_10 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a11)
+System._Posix.get_st_mtimespec_11 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a12)
+System._Posix.get_st_atimespec_12 rec = select rec (System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> a13)
+System._Posix.set_st_dev_0 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat val a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13)
+System._Posix.set_st_ino_1 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 val a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13)
+System._Posix.set_st_mode_2 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 val a4 a5 a6 a7 a8 a9 a10 a11 a12 a13)
+System._Posix.set_st_nlink_3 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 val a5 a6 a7 a8 a9 a10 a11 a12 a13)
+System._Posix.set_st_uid_4 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 val a6 a7 a8 a9 a10 a11 a12 a13)
+System._Posix.set_st_gid_5 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 a5 val a7 a8 a9 a10 a11 a12 a13)
+System._Posix.set_st_rdev_6 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 a5 a6 val a8 a9 a10 a11 a12 a13)
+System._Posix.set_st_size_7 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 val a9 a10 a11 a12 a13)
+System._Posix.set_st_blocks_8 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 val a10 a11 a12 a13)
+System._Posix.set_st_blksize_9 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 val a11 a12 a13)
+System._Posix.set_st_ctimespec_10 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 val a12 a13)
+System._Posix.set_st_mtimespec_11 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 val a13)
+System._Posix.set_st_atimespec_12 rec !val = select rec (System._Posix._Stat  a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 -> System._Posix._Stat a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 val)
+

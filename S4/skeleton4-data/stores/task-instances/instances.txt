@@ -1,0 +1,1 @@
+20151001-173832[{"instanceNo":12,"instanceKey":"ptnrbkmjglemklnbjeoayxtfhxtafkka","listId":["TaskId",0,0],"session":true,"build":"20151001-173832","issuedAt":"2015-10-01 17:38:46","progress":{"value":["Unstable"],"attachedTo":[],"firstEvent":"2015-10-01 17:38:46","connectedTo":"127.0.0.1","lastIO":"2015-10-01 17:39:04"},"attributes":["Tip"]}]

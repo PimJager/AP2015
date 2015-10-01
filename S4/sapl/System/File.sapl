@@ -1,0 +1,89 @@
+|| ?module? System.File
+
+
+System.File.foldr_17 op_0 r_1 !_x_2 = select _x_2 (_predefined._Nil -> r_1) (_predefined._Cons a_1_0 x_1_1 -> op_0 a_1_0 (System.File.foldr_17 op_0 r_1 x_1_1)) 
+System.File.readAcc_14 !file_0 acc_1 = let _x_1_0 = StdFile.freads file_0 1024, file_1_1 = _predefined.tupsels2v1 _x_1_0, _x_1_2 = StdFile.ferror file_1_1 in if (_predefined.tupsels2v0 _x_1_2) (_Tuple2 (Data.Error.Error System.File.IOError) (_predefined.tupsels2v1 _x_1_2)) (let file_2_0 = _predefined.tupsels2v1 _x_1_2, _x_2_1 = StdFile.fend file_2_0 in if (_predefined.tupsels2v0 _x_2_1) (_Tuple2 (Data.Error.Ok (_predefined._Cons (_predefined.tupsels2v0 _x_1_0) acc_1)) (_predefined.tupsels2v1 _x_2_1)) (System.File.readAcc_14 (_predefined.tupsels2v1 _x_2_1) (_predefined._Cons (_predefined.tupsels2v0 _x_1_0) acc_1)))
+System.File.foldr_61 !r_0 !_x_1 = select _x_1 (_predefined._Nil -> r_0) (_predefined._Cons a_1_0 x_1_1 -> <{StdString.+++_11}> a_1_0 (System.File.foldr_61 r_0 x_1_1)) 
+System.File.readAll !file_0 = let _x_1_0 = System.File.readAcc_14 file_0 _predefined._Nil, file_1_1 = _predefined.tupsels2v1 _x_1_0 in <{System.File._c;48;3_62}> (_predefined.tupsels2v0 _x_1_0) file_1_1
+<{System.File._c;48;3_62}> !_x_0 !file_1 = select _x_0 (Data.Error.Error e_1_0 -> <{_Tuple2!3}> (Data.Error.Error e_1_0) file_1) (Data.Error.Ok contents_1_0 -> <{_Tuple2!3}> (Data.Error.Ok (System.File.foldr_61 "" (StdList.reverse contents_1_0))) file_1) 
+System.File.withFile !_vFileSystem_0 !filename_1 filemode_2 operation_3 !env_4 = let _x_1_0 = StdFile.get_fopen_1 _vFileSystem_0 filename_1 filemode_2 env_4 in if (StdBool.not (_predefined.tupsels3v0 _x_1_0)) (<{_Tuple2!3}> (Data.Error.Error System.File.CannotOpen) (_predefined.tupsels3v2 _x_1_0)) (let file_2_0 = _predefined.tupsels3v1 _x_1_0, _x_2_1 = operation_3 file_2_0, result_2_2 = _predefined.tupsels2v0 _x_2_1 in if (Data.Error.isError result_2_2) (<{_Tuple2!3}> result_2_2 (_predefined.tupsels3v2 _x_1_0)) (let file_3_0 = _predefined.tupsels2v1 _x_2_1, env_3_1 = _predefined.tupsels3v2 _x_1_0, _x_3_2 = StdFile.get_fclose_0 _vFileSystem_0 file_3_0 env_3_1 in if (StdBool.not (_predefined.tupsels2v0 _x_3_2)) (<{_Tuple2!3}> (Data.Error.Error System.File.CannotClose) (_predefined.tupsels2v1 _x_3_2)) (<{_Tuple2!3}> (Data.Error.Ok (Data.Error.fromOk result_2_2)) (_predefined.tupsels2v1 _x_3_2))))
+System.File.readFile !_vFileSystem_0 !filename_1 !env_2 = System.File.withFile _vFileSystem_0 filename_1 3 System.File.readAll env_2
+System.File.rec_13 !file_0 acc_1 = let _x_1_0 = StdFile.freadline file_0, file_1_1 = _predefined.tupsels2v1 _x_1_0, _x_1_2 = StdFile.ferror file_1_1 in if (_predefined.tupsels2v0 _x_1_2) (<{_Tuple2!1}> (Data.Error.Error System.File.IOError) (_predefined.tupsels2v1 _x_1_2)) (let string_2_0 = _predefined.tupsels2v0 _x_1_0 in if (<{StdString.==_2}> string_2_0 "") (<{_Tuple2!1}> (Data.Error.Ok acc_1) (_predefined.tupsels2v1 _x_1_2)) (System.File.rec_13 (_predefined.tupsels2v1 _x_1_2) (_predefined._Cons string_2_0 acc_1)))
+System.File.readAllLines !file_0 = let _x_1_0 = System.File.rec_13 file_0 _predefined._Nil, file_1_1 = _predefined.tupsels2v1 _x_1_0 in <{System.File._c;33;3_63}> (_predefined.tupsels2v0 _x_1_0) file_1_1
+<{System.File._c;33;3_63}> !_x_0 !file_1 = select _x_0 (Data.Error.Error e_1_0 -> <{_Tuple2!3}> (Data.Error.Error e_1_0) file_1) (Data.Error.Ok lines_1_0 -> <{_Tuple2!3}> (Data.Error.Ok lines_1_0) file_1) 
+System.File.readFileLines !_vFileSystem_0 !filename_1 !env_2 = System.File.withFile _vFileSystem_0 filename_1 3 System.File.readAllLines env_2
+System.File.anon_15 contents_0 file_1 = _Tuple2 (Data.Error.Ok Data.Void.Void) (StdFile.fwrites contents_0 file_1)
+System.File.writeFile !_vFileSystem_0 !filename_1 !contents_2 !env_3 = System.File.withFile _vFileSystem_0 filename_1 4 (System.File.anon_15 contents_2) env_3
+System.File.fileExists !path_0 !world_1 = let buf_1_0 = _SystemArray.createArray_17 System._Posix.sizeOfStat '\0', _x_1_1 = System._Posix.stat (System._Pointer.packString path_0) buf_1_0 world_1 in if (<{StdInt.==_16}> (_predefined.tupsels2v0 _x_1_1) 0) (<{_Tuple2!3}> True (_predefined.tupsels2v1 _x_1_1)) (<{_Tuple2!3}> False (_predefined.tupsels2v1 _x_1_1))
+System.File.deleteFile !path_0 !world_1 = let _x_1_0 = System._Posix.unlink (System._Pointer.packString path_0) world_1 in if (StdBool.not (<{StdInt.==_16}> (_predefined.tupsels2v0 _x_1_0) 0)) (System.OSError.getLastOSError (_predefined.tupsels2v1 _x_1_0)) (<{_Tuple2!3}> (Data.Error.Ok Data.Void.Void) (_predefined.tupsels2v1 _x_1_0))
+System.File.getFileInfo !path_0 !world_1 = let buf_1_0 = _SystemArray.createArray_17 System._Posix.sizeOfStat '\0', _x_1_1 = System._Posix.stat (System._Pointer.packString path_0) buf_1_0 world_1 in if (StdBool.not (<{StdInt.==_16}> (_predefined.tupsels2v0 _x_1_1) 0)) (System.OSError.getLastOSError (_predefined.tupsels2v1 _x_1_1)) (let stat_2_0 = System._Posix.unpackStat buf_1_0, _x_2_1 = System.Time.toLocalTime (System.Time.Timestamp (System._Posix.get_st_ctimespec_10 stat_2_0)) (_predefined.tupsels2v1 _x_1_1), _x_2_2 = System.Time.toLocalTime (System.Time.Timestamp (System._Posix.get_st_mtimespec_11 stat_2_0)) (_predefined.tupsels2v1 _x_2_1), _x_2_3 = System.Time.toLocalTime (System.Time.Timestamp (System._Posix.get_st_atimespec_12 stat_2_0)) (_predefined.tupsels2v1 _x_2_2) in <{_Tuple2!3}> (Data.Error.Ok (System.File._FileInfo (<{StdInt.==_16}> (StdInt.bitand (System._Posix.get_st_mode_2 stat_2_0) 61440) 16384) (_predefined.tupsels2v0 _x_2_1) (_predefined.tupsels2v0 _x_2_2) (_predefined.tupsels2v0 _x_2_3) (<{StdInt.*_9}> (System._Posix.get_st_blocks_8 stat_2_0) (System._Posix.get_st_blksize_9 stat_2_0)) (System._Posix.get_st_size_7 stat_2_0))) (_predefined.tupsels2v1 _x_2_3))
+System.File.moveFile !oldpath_0 !newpath_1 !world_2 = let _x_1_0 = System._Posix.rename (System._Pointer.packString oldpath_0) (System._Pointer.packString newpath_1) world_2 in if (<{StdInt.==_16}> (_predefined.tupsels2v0 _x_1_0) 0) (<{_Tuple2!3}> (Data.Error.Ok Data.Void.Void) (_predefined.tupsels2v1 _x_1_0)) (System.OSError.getLastOSError (_predefined.tupsels2v1 _x_1_0))
+System.File.toString_10 !_x_0 = select _x_0 (System.File.CannotOpen -> "Cannot open") (System.File.CannotClose -> "Cannot close") (System.File.IOError -> "I/O error") 
+<{System.File.TD;FileError}> _x_0 = _predefined._Nil
+<{System.File.TD;FileInfo}> _x_0 = _predefined._Nil
+
+:: System.File.FileError = System.File.CannotOpen | System.File.CannotClose | System.File.IOError
+
+|| Converted Records
+:: System.File._FileInfo = {!System.File.directory, !System.File.creationTime, !System.File.lastModifiedTime, !System.File.lastAccessedTime, !System.File.sizeHigh, !System.File.sizeLow}
+System.File.get_directory_0 rec = select rec (System.File._FileInfo a1 a2 a3 a4 a5 a6 -> a1)
+System.File.get_creationTime_1 rec = select rec (System.File._FileInfo a1 a2 a3 a4 a5 a6 -> a2)
+System.File.get_lastModifiedTime_2 rec = select rec (System.File._FileInfo a1 a2 a3 a4 a5 a6 -> a3)
+System.File.get_lastAccessedTime_3 rec = select rec (System.File._FileInfo a1 a2 a3 a4 a5 a6 -> a4)
+System.File.get_sizeHigh_4 rec = select rec (System.File._FileInfo a1 a2 a3 a4 a5 a6 -> a5)
+System.File.get_sizeLow_5 rec = select rec (System.File._FileInfo a1 a2 a3 a4 a5 a6 -> a6)
+System.File.set_directory_0 rec !val = select rec (System.File._FileInfo  a1 a2 a3 a4 a5 a6 -> System.File._FileInfo val a2 a3 a4 a5 a6)
+System.File.set_creationTime_1 rec !val = select rec (System.File._FileInfo  a1 a2 a3 a4 a5 a6 -> System.File._FileInfo a1 val a3 a4 a5 a6)
+System.File.set_lastModifiedTime_2 rec !val = select rec (System.File._FileInfo  a1 a2 a3 a4 a5 a6 -> System.File._FileInfo a1 a2 val a4 a5 a6)
+System.File.set_lastAccessedTime_3 rec !val = select rec (System.File._FileInfo  a1 a2 a3 a4 a5 a6 -> System.File._FileInfo a1 a2 a3 val a5 a6)
+System.File.set_sizeHigh_4 rec !val = select rec (System.File._FileInfo  a1 a2 a3 a4 a5 a6 -> System.File._FileInfo a1 a2 a3 a4 val a6)
+System.File.set_sizeLow_5 rec !val = select rec (System.File._FileInfo  a1 a2 a3 a4 a5 a6 -> System.File._FileInfo a1 a2 a3 a4 a5 val)
+
+:: <{System.File.bimap_s;}> = {System.File.bimap_s}
+System.File.get_bimap_s_6 rec = select rec (<{System.File.bimap_s;}> a1 -> a1)
+System.File.set_bimap_s_6 rec val = select rec (<{System.File.bimap_s;}>  a1 -> <{System.File.bimap_s;}> val)
+
+:: <{System.File.bimap_ss;}> = {System.File.bimap_ss}
+System.File.get_bimap_ss_7 rec = select rec (<{System.File.bimap_ss;}> a1 -> a1)
+System.File.set_bimap_ss_7 rec val = select rec (<{System.File.bimap_ss;}>  a1 -> <{System.File.bimap_ss;}> val)
+
+:: <{System.File.bimap_sss;}> = {System.File.bimap_sss}
+System.File.get_bimap_sss_8 rec = select rec (<{System.File.bimap_sss;}> a1 -> a1)
+System.File.set_bimap_sss_8 rec val = select rec (<{System.File.bimap_sss;}>  a1 -> <{System.File.bimap_sss;}> val)
+
+:: <{System.File.gEq_s;}> = {System.File.gEq_s}
+System.File.get_gEq_s_9 rec = select rec (<{System.File.gEq_s;}> a1 -> a1)
+System.File.set_gEq_s_9 rec val = select rec (<{System.File.gEq_s;}>  a1 -> <{System.File.gEq_s;}> val)
+
+:: <{System.File.gEq_ss;}> = {System.File.gEq_ss}
+System.File.get_gEq_ss_10 rec = select rec (<{System.File.gEq_ss;}> a1 -> a1)
+System.File.set_gEq_ss_10 rec val = select rec (<{System.File.gEq_ss;}>  a1 -> <{System.File.gEq_ss;}> val)
+
+:: <{System.File.gEq_sss;}> = {System.File.gEq_sss}
+System.File.get_gEq_sss_11 rec = select rec (<{System.File.gEq_sss;}> a1 -> a1)
+System.File.set_gEq_sss_11 rec val = select rec (<{System.File.gEq_sss;}>  a1 -> <{System.File.gEq_sss;}> val)
+
+:: <{System.File.gEq_ssss;}> = {System.File.gEq_ssss}
+System.File.get_gEq_ssss_12 rec = select rec (<{System.File.gEq_ssss;}> a1 -> a1)
+System.File.set_gEq_ssss_12 rec val = select rec (<{System.File.gEq_ssss;}>  a1 -> <{System.File.gEq_ssss;}> val)
+
+:: <{System.File.gEq_sssss;}> = {System.File.gEq_sssss}
+System.File.get_gEq_sssss_13 rec = select rec (<{System.File.gEq_sssss;}> a1 -> a1)
+System.File.set_gEq_sssss_13 rec val = select rec (<{System.File.gEq_sssss;}>  a1 -> <{System.File.gEq_sssss;}> val)
+
+:: <{System.File.gEq_ssssss;}> = {System.File.gEq_ssssss}
+System.File.get_gEq_ssssss_14 rec = select rec (<{System.File.gEq_ssssss;}> a1 -> a1)
+System.File.set_gEq_ssssss_14 rec val = select rec (<{System.File.gEq_ssssss;}>  a1 -> <{System.File.gEq_ssssss;}> val)
+
+:: <{System.File.gEq_sssssss;}> = {System.File.gEq_sssssss}
+System.File.get_gEq_sssssss_15 rec = select rec (<{System.File.gEq_sssssss;}> a1 -> a1)
+System.File.set_gEq_sssssss_15 rec val = select rec (<{System.File.gEq_sssssss;}>  a1 -> <{System.File.gEq_sssssss;}> val)
+
+:: <{System.File.gEq_ssssssss;}> = {System.File.gEq_ssssssss}
+System.File.get_gEq_ssssssss_16 rec = select rec (<{System.File.gEq_ssssssss;}> a1 -> a1)
+System.File.set_gEq_ssssssss_16 rec val = select rec (<{System.File.gEq_ssssssss;}>  a1 -> <{System.File.gEq_ssssssss;}> val)
+
+:: <{System.File.gEq_sssssssss;}> = {System.File.gEq_sssssssss}
+System.File.get_gEq_sssssssss_17 rec = select rec (<{System.File.gEq_sssssssss;}> a1 -> a1)
+System.File.set_gEq_sssssssss_17 rec val = select rec (<{System.File.gEq_sssssssss;}>  a1 -> <{System.File.gEq_sssssssss;}> val)
+
