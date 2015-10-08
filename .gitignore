@@ -2,4 +2,5 @@ a.out
 Clean System Files
 sapl
 *-data
-*.exe.DS_STORE
+*.exe
+.DS_STORE
