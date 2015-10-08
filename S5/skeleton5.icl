@@ -22,24 +22,12 @@ derive class iTask Idea, Idea_
 ideas :: ReadWriteShared [Idea] [Idea]
 ideas = sharedStore "Ideas" []
 nextNumber :: Task Int
-nextNumber = get ideas >>= \ids -> case ids of
-	[] 		= return 1
-	[i:is]	= return ((i.number) + 1)
+nextNumber = get ideas >>= \is -> return $ if (isEmpty is) 1 (hd $ map (\i -> i.number + 1) is)
 
 removeIdea :: Idea [Idea] -> [Idea]
-removeIdea i is = reverse $ removeIdea_ i is []
-	where
-		removeIdea_ _ [] c = c
-		removeIdea_ (i=:{number=n}) [(ii=:{number=ni}):is] c = if (n==ni) (removeIdea_ i is c)
-																		  (removeIdea_ i is [ii:c])
-
+removeIdea i is = catMaybes $ map (\i_ -> if(i.number == i_.number) Nothing (Just i_)) is
 likeIdea :: Idea [Idea] -> [Idea]
-likeIdea i is = reverse $ likeIdea_ i is []
-	where
-		likeIdea_ _ [] c = c
-		likeIdea_ (i=:{number=n}) [(ii=:{number=ni}):is] c = if (n==ni) (likeIdea_ i is [newIdea:c])
-																		(likeIdea_ i is c)
-		newIdea = {i & likes=i.likes+1}
+likeIdea i is = map (\i_ -> if(i.number == i_.number) {i & likes=i.likes+1} i_) is
 
 enterIdeas :: Name -> Task [Idea]
 enterIdeas name = enterInformation (name +++ "  add an idea") [] >>* 
@@ -64,7 +52,8 @@ viewIdeas name = (enterChoiceWithShared "Ideas" [] ideas)
 						]
 					where
 						deleteAll = always (upd (const []) ideas)
-						delete = hasValue (\i -> upd (\is -> removeIdea i is) ideas)
+						delete = ifValue (\i -> i.user == name) 
+									(\i -> upd (\is -> removeIdea i is) ideas)
 						cancelSelection = always $ get ideas
 						like = ifValue (\i -> i.user <> name) (\i -> upd (likeIdea i) ideas)
 
