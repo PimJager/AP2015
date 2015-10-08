@@ -45,8 +45,10 @@ enterIdeas name = enterInformation (name +++ "  add an idea") [] >>*
 
 viewIdeas :: Task [Idea]
 viewIdeas = enterChoiceWithShared "Ideas" [] ideas 
-				>&^ (viewSharedInformation "Selection" []) >>= \i -> return [i]
-				// >>= return [i] yields a continue button, which sucks, but I can't figure out how to remove it
+				>>* [OnAction (Action "Delete all" [ActionIcon "Delete all"]) delete]
+				>&^ (viewSharedInformation "Selection" [])
+				where
+					delete _ = Just $ upd (const []) ideas
 
 mainTask :: Task [Idea]
 mainTask =   enterInformation "Enter your name" []
