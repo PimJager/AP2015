@@ -11,8 +11,6 @@ import Text
 
 ($) infixr 8; // :: (a->r) -> a -> r
 ($) f a = f a
-(>>) infixl 1 :: !(Task a) !(Task b) -> (Task b) | iTask a & iTask b
-(>>) ta tb = ta >>= \_ -> tb
 
 :: Idea	= 	{idea 		:: String
 			,details 	:: Note
@@ -44,8 +42,12 @@ enterIdeas name = enterInformation (name +++ "  add an idea") [] >>*
 									in set [idea:ids] ideas)
 					]
 
+viewIdeas :: Task Ideas
+viewIdeas = enterChoiceWithShared "Ideas" [] ideas >>= \i -> return [i]
+
 mainTask :: Task Ideas
-mainTask =   enterInformation "Enter your name" [] >>= \name-> forever $ enterIdeas name
+mainTask =   enterInformation "Enter your name" [] 
+				>>= \name-> (forever $ enterIdeas name) -||- viewIdeas
 
 Start :: *World -> *World
 Start world = startEngine mainTask world
