@@ -45,10 +45,10 @@ enterIdeas name = enterInformation (name +++ "  add an idea") [] >>*
 viewIdeas :: Name -> Task [Idea]
 viewIdeas name = (enterChoiceWithShared "Ideas" [] ideas)
 					>&^ (viewSharedInformation "Selection" [])
-					>>* [OnAction (Action "Delete all" [ActionIcon "Delete all"]) deleteAll
+					>>* [OnAction (Action "Delete all" [ActionIcon "delete"]) deleteAll
 						,OnAction ActionDelete delete
 						,OnAction ActionOk cancelSelection
-						,OnAction (Action "Like" [ActionIcon "Like"]) like
+						,OnAction (Action "Like" []) like
 						]
 					where
 						deleteAll = always (upd (const []) ideas)
