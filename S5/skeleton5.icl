@@ -25,7 +25,7 @@ nextNumber :: Task Int
 nextNumber = get ideas >>= \is -> return $ if (isEmpty is) 1 (hd $ map (\i -> i.number + 1) is)
 
 removeIdea :: Idea [Idea] -> [Idea]
-removeIdea i is = catMaybes $ map (\i_ -> if(i.number == i_.number) Nothing (Just i_)) is
+removeIdea i is = filter (\i_ -> i.number <> i_.number) is
 likeIdea :: Idea [Idea] -> [Idea]
 likeIdea i is = map (\i_ -> if(i.number == i_.number) {i & likes=i.likes+1} i_) is
 
