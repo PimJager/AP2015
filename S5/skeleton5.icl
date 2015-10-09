@@ -11,8 +11,6 @@ import Text
 
 ($) infixr 8; // :: (a->r) -> a -> r
 ($) f a = f a
-(>>) infixl 1 :: !(Task a) !(Task b) -> Task b | iTask a & iTask b
-(>>) ta tb = ta >>= \_ -> tb
 
 :: Idea		= {idea :: String, details :: Note, user :: Name, number :: Int, likes :: Int}
 :: Idea_ 	= {idea_ :: String, details_ :: Note}
