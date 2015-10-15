@@ -36,7 +36,7 @@ class iTasksLite a | print a & parse a & TC a
 :: Description  :== String
 :: StoreID a    :== String
 //:: Task a = Task (*TaskState -> *(a, *TaskState)) 
-:: TaskT m a    = Task (*TaskState -> *((m a), *TaskState)) | Monad m
+:: TaskT m a    = Task (*TaskState -> m *(a, *TaskState)) | Monad m //basicaly the StateT monad
 :: Task a       :== TaskT Identity a
 :: *TaskState   = { console :: !*File
                    , store   :: Map String Dynamic
@@ -51,8 +51,8 @@ retrieve_ sid store = case get sid store of
     Just _         = abort "type error\n"
     Nothing        = abort "empty store\n"
 
-//instance MonadTrans TaskT where
-//    liftT m = Task $ \st -> (m, st)
+instance MonadTrans TaskT where
+    liftT m = Task $ \st -> m >>= \a -> return (a, st)
 
 instance Functor (TaskT m) | Monad m where
     fmap f t = liftM f t
@@ -63,14 +63,13 @@ instance Applicative (TaskT m) | Monad m where
 
 instance Monad (TaskT m) | Monad m where
     bind t f = Task $ \st -> let (r, st1) = runTask t st in runTask (f r) st1
-    //bind t f = Task $ \st -> 
+    bind t f = Task $ \st -> 
 
 runTask :: (Task a) *TaskState -> *(a, *TaskState)
-//runTask t s = let (m, a) = runTaskT t s in (runIdentity m, a)
-runTask (Task f) s = f s
+runTask t s = runIdentity o runTaskT t s
 
-//runTaskT :: (TaskT m a) *TaskState -> *((m a), *TaskState) | Monad m
-//runTaskT (Task f) s = f s
+runTaskT :: (TaskT m a) *TaskState -> m *(a, *TaskState) | Monad m
+runTaskT (Task f) s = f s
 
 eval :: (Task a) *File -> (a, *File) | iTasksLite a
 eval t console 
