@@ -44,11 +44,11 @@ class iTasksLite a | print a & parse a & TC a
 store_ :: a (StoreID a) (Map String Dynamic) -> Map String Dynamic | TC a
 store_ v sid store = put sid (dynamic v) store
 
-retrieve_ :: (StoreID a) (Map String Dynamic) -> a | TC a
+retrieve_ :: (StoreID a) (Map String Dynamic) -> Either String a | TC a
 retrieve_ sid store = case get sid store of
-    Just (a :: a^) = a
-    Just _         = abort "type error\n"
-    Nothing        = abort "empty store\n"
+    Just (a :: a^) = Right a
+    Just _         = Left "Mismatching types"
+    Nothing        = Left "Empty store"
 
 instance Functor Task where
     fmap :: (a -> b) (Task a) -> Task b
@@ -94,10 +94,12 @@ enterInformation d = printT d >>| printT ": " >>| readlineT >>= \res -> case par
     _           = printT "Wrong format, try again:" >>| println >>| enterInformation d
 
 store :: a (StoreID a) -> Task a | iTasksLite a
-store val id = Task (\st -> let str = store_ val id st.store in (return val, {st & store = str}))
+store val id = Task $ \st -> let str = store_ val id st.store in (return val, {st & store = str})
 
 retrieve :: (StoreID a) -> Task a | iTasksLite a
-retrieve id = Task (\st=:{store} -> ((return $ retrieve_ id store), st))
+retrieve id = Task $ \st=:{store} -> case retrieve_ id store of
+    (Left ex) = runTask (throw ex) st
+    (Right a) = (return a, st)
 
 throw :: Exception -> Task a
 throw ex = Task $ \st -> (Left ex, st)
@@ -132,6 +134,14 @@ where
     intStore :: StoreID Int
     intStore = "intStore"
 
+task3FailEx :: Task Int
+task3FailEx = store "fout" stringStore >>| retrieve intStore
+where
+    intStore :: StoreID Int
+    intStore = "intStore"
+    stringStore :: StoreID String
+    stringStore = "intStore"
+
 task4 :: Task [String]
 task4 =
         store [] ideaStore
@@ -154,13 +164,13 @@ taskEx = throw "Test exception" >>| return 5
 
 taskRecover :: Task Int
 taskRecover = printT "Throwing exception" >>| println 
-    >>| (tryCatch (throw "Exception!") (\e -> printT "Recovered from Exception: " >>| printT e >>| println)) 
+    >>| tryCatch (throw "Exception!") (\e -> printT "Recovered from Exception: " >>| printT e >>| println))
     >>| return 42
 
 Start world
  #	(console, world) = stdio world
 	console			 = console <<< "Welcome to iTasksLite" <<< "\n\n"
-    (r, console)     = eval taskRecover console
+    (r, console)     = eval task3FailEx console
     console          = case r of 
         (Left ex) = console <<< "\n" <<< "Task threw exception: " <<< ex <<< "\n"
         (Right a) = console <<< "\n" <<< "The result of the task is " <<< print a <<< ".\n"
