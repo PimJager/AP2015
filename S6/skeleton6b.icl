@@ -34,7 +34,7 @@ class iTasksLite a | print a & parse a & TC a
 
 :: Description   :== String
 :: StoreID a     :== String
-:: Task a        = // define type here
+:: Task a        = Task (*TaskState -> *(a, *TaskState))
 :: *TaskState    = { console :: !*File
                    , store   :: Map String Dynamic
                    }
@@ -50,28 +50,52 @@ retrieve_ sid store = case get sid store of
 
 instance Functor Task where
     fmap :: (a -> b) (Task a) -> Task b
-    fmap _ _ = undef
+    fmap f t = liftM f t
 
 instance Applicative Task where
     pure :: a -> Task a
-    pure _ = undef
-
+    pure a = Task (\st -> (a, st))
     (<*>) infixl 4  :: (Task (a -> b)) (Task a) -> Task b
-    (<*>) _ _ = undef
+    (<*>) tf t = ap tf t
+    //(<*>) tf t = Task (\st -> let (f, st1) = runTask tf st in let (r, st2) = runTask t st1 in (f r, st2))
 
 instance Monad Task where
     bind :: (Task a) (a -> Task b) -> Task b
-    bind _ _ = undef
+    bind t f = Task (\st -> let (r, st1) = runTask t st in runTask (f r) st1)
+
+runTask :: (Task a) *TaskState -> *(a, *TaskState)
+runTask (Task f) s = f s
 
 eval :: (Task a) *File -> (a, *File) | iTasksLite a
-eval (Task taskFunc) console
-    # (r, {console}) = taskFunc {store = newMap, console = console}
+eval t console 
+    # (r, {console}) = runTask t {store = newMap, console = console}
     = (r, console)
+
+printT :: a -> Task a | print a
+printT a = Task (\st -> let c = st.console <<< print a in (a, {st & console=c}))
+println = printT "\n"
+
+readlineT :: Task String
+readlineT = Task (\st -> let (r, c) = freadline st.console in (r, {st & console=c}))
+
+viewInformation :: Description a -> Task a | iTasksLite a
+viewInformation d a = printT d >>| printT ": " >>| printT a >>= \res -> println >>| return res
+
+enterInformation :: Description -> Task a | iTasksLite a
+enterInformation d = printT d >>| printT ": " >>| readlineT >>= \res -> case parse res of
+    (Just r)    = return r
+    _           = printT "Wrong format, try again:" >>| println >>| enterInformation d
+
+store :: a (StoreID a) -> Task a | iTasksLite a
+store val id = Task (\st -> let str = store_ val id st.store in (val, {st & store = str}))
+
+retrieve :: (StoreID a) -> Task a | iTasksLite a
+retrieve id = Task (\st=:{store} -> ((retrieve_ id store), st))
 
 task0 :: Task Int
 task0 = return 42
 
-/*task1 :: Task Int
+task1 :: Task Int
 task1 = viewInformation "The answer is" 42
 
 task2 :: Task Int
@@ -93,7 +117,7 @@ where
     intStore :: StoreID Int
     intStore = "intStore"
 
-task4 :: Task Void
+task4 :: Task [String]
 task4 =
         store [] ideaStore
     >>| addIdea
@@ -103,15 +127,17 @@ where
         >>= \ideas -> viewInformation "All ideas" ideas
         >>|           enterInformation "Enter new idea"
         >>= \idea  -> store (ideas ++ [toString (length ideas+1) +++ ". " +++ idea]) ideaStore
+        >>|             retrieve ideaStore
+        >>= \ideas1 -> viewInformation "All ideas" ideas1
         >>|           addIdea
 
     ideaStore :: StoreID [String]
-    ideaStore = "ideas"*/
+    ideaStore = "ideas"
 
 Start world
  #	(console, world) = stdio world
 	console			 = console <<< "Welcome to iTasksLite" <<< "\n\n"
-    (r, console)     = eval task0 console
+    (r, console)     = eval task4 console
     console          = console <<< "\n" <<< "The result of the task is " <<< print r <<< ".\n"
 	(_, world)	     = fclose console world
  = world
