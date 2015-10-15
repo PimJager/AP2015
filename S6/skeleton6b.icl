@@ -1,8 +1,9 @@
 module skeleton6b
 
-import StdList, StdInt, StdChar, StdMisc, StdClass, StdString, StdFile, StdArray, Data.Maybe, Data.Map, Control.Monad, Data.Tuple, Data.Void
+import StdList, StdInt, StdChar, StdMisc, StdClass, StdString, StdFile, StdArray, Data.Maybe, Data.Map, Control.Monad, Data.Tuple, Data.Void, Data.Functor.Identity, Control.Monad.Trans, Data.Func
 import qualified Text
 from Text import class Text, instance Text String
+from Data.Func import $
 
 class print a :: a -> String
 
@@ -32,10 +33,12 @@ instance parse [a] | parse a where parse s = foldr (\xs list -> maybe Nothing (\
 
 class iTasksLite a | print a & parse a & TC a
 
-:: Description   :== String
-:: StoreID a     :== String
-:: Task a        = Task (*TaskState -> *(a, *TaskState))
-:: *TaskState    = { console :: !*File
+:: Description  :== String
+:: StoreID a    :== String
+//:: Task a = Task (*TaskState -> *(a, *TaskState)) 
+:: TaskT m a    = Task (*TaskState -> *((m a), *TaskState)) | Monad m
+:: Task a       :== TaskT Identity a
+:: *TaskState   = { console :: !*File
                    , store   :: Map String Dynamic
                    }
 
@@ -48,23 +51,26 @@ retrieve_ sid store = case get sid store of
     Just _         = abort "type error\n"
     Nothing        = abort "empty store\n"
 
-instance Functor Task where
-    fmap :: (a -> b) (Task a) -> Task b
+//instance MonadTrans TaskT where
+//    liftT m = Task $ \st -> (m, st)
+
+instance Functor (TaskT m) | Monad m where
     fmap f t = liftM f t
 
-instance Applicative Task where
-    pure :: a -> Task a
+instance Applicative (TaskT m) | Monad m where
     pure a = Task (\st -> (a, st))
-    (<*>) infixl 4  :: (Task (a -> b)) (Task a) -> Task b
     (<*>) tf t = ap tf t
-    //(<*>) tf t = Task (\st -> let (f, st1) = runTask tf st in let (r, st2) = runTask t st1 in (f r, st2))
 
-instance Monad Task where
-    bind :: (Task a) (a -> Task b) -> Task b
-    bind t f = Task (\st -> let (r, st1) = runTask t st in runTask (f r) st1)
+instance Monad (TaskT m) | Monad m where
+    bind t f = Task $ \st -> let (r, st1) = runTask t st in runTask (f r) st1
+    //bind t f = Task $ \st -> 
 
 runTask :: (Task a) *TaskState -> *(a, *TaskState)
+//runTask t s = let (m, a) = runTaskT t s in (runIdentity m, a)
 runTask (Task f) s = f s
+
+//runTaskT :: (TaskT m a) *TaskState -> *((m a), *TaskState) | Monad m
+//runTaskT (Task f) s = f s
 
 eval :: (Task a) *File -> (a, *File) | iTasksLite a
 eval t console 
@@ -72,11 +78,11 @@ eval t console
     = (r, console)
 
 printT :: a -> Task a | print a
-printT a = Task (\st -> let c = st.console <<< print a in (a, {st & console=c}))
+printT a = Task $ \st -> let c = st.console <<< print a in (a, {st & console=c})
 println = printT "\n"
 
 readlineT :: Task String
-readlineT = Task (\st -> let (r, c) = freadline st.console in (r, {st & console=c}))
+readlineT = Task $ \st -> let (r, c) = freadline st.console in (r, {st & console=c})
 
 viewInformation :: Description a -> Task a | iTasksLite a
 viewInformation d a = printT d >>| printT ": " >>| printT a >>= \res -> println >>| return res
@@ -87,10 +93,10 @@ enterInformation d = printT d >>| printT ": " >>| readlineT >>= \res -> case par
     _           = printT "Wrong format, try again:" >>| println >>| enterInformation d
 
 store :: a (StoreID a) -> Task a | iTasksLite a
-store val id = Task (\st -> let str = store_ val id st.store in (val, {st & store = str}))
+store val id = Task $ \st -> let str = store_ val id st.store in (val, {st & store = str})
 
 retrieve :: (StoreID a) -> Task a | iTasksLite a
-retrieve id = Task (\st=:{store} -> ((retrieve_ id store), st))
+retrieve id = Task $ \st=:{store} -> ((retrieve_ id store), st)
 
 task0 :: Task Int
 task0 = return 42
@@ -137,7 +143,7 @@ where
 Start world
  #	(console, world) = stdio world
 	console			 = console <<< "Welcome to iTasksLite" <<< "\n\n"
-    (r, console)     = eval task4 console
+    (r, console)     = eval task3 console
     console          = console <<< "\n" <<< "The result of the task is " <<< print r <<< ".\n"
 	(_, world)	     = fclose console world
  = world
