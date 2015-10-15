@@ -1,9 +1,10 @@
 module skeleton6b
 
-import StdList, StdInt, StdChar, StdMisc, StdClass, StdString, StdFile, StdArray, Data.Maybe, Data.Map, Control.Monad, Data.Tuple, Data.Void, Data.Functor.Identity, Control.Monad.Trans, Data.Func
+import StdList, StdInt, StdChar, StdMisc, StdClass, StdString, StdFile, StdArray, Data.Maybe, Data.Map, Control.Monad, Data.Tuple, Data.Void, Data.Functor.Identity, Control.Monad.Trans, Data.Func, Data.Functor
 import qualified Text
 from Text import class Text, instance Text String
 from Data.Func import $
+from StdFunc import o
 
 class print a :: a -> String
 
@@ -36,7 +37,7 @@ class iTasksLite a | print a & parse a & TC a
 :: Description  :== String
 :: StoreID a    :== String
 //:: Task a = Task (*TaskState -> *(a, *TaskState)) 
-:: TaskT m a    = Task (*TaskState -> m *(a, *TaskState)) | Monad m //basicaly the StateT monad
+:: TaskT m a    = Task (*TaskState -> ((m a), *TaskState)) //basicaly the StateT monad
 :: Task a       :== TaskT Identity a
 :: *TaskState   = { console :: !*File
                    , store   :: Map String Dynamic
@@ -52,18 +53,19 @@ retrieve_ sid store = case get sid store of
     Nothing        = abort "empty store\n"
 
 instance MonadTrans TaskT where
-    liftT m = Task $ \st -> m >>= \a -> return (a, st)
+    liftT m = Task $ \st -> (m >>= \a -> (a, st))
+/*
 
 instance Functor (TaskT m) | Monad m where
-    fmap f t = liftM f t
+    fmap f t = Task $ \st -> (fmap (\(a,st_) -> (f a, st_)) $ runTaskT t st)
 
 instance Applicative (TaskT m) | Monad m where
-    pure a = Task (\st -> (a, st))
+    pure a = Task (\st -> return (a, st))
     (<*>) tf t = ap tf t
 
 instance Monad (TaskT m) | Monad m where
-    bind t f = Task $ \st -> let (r, st1) = runTask t st in runTask (f r) st1
-    bind t f = Task $ \st -> 
+    bind t f = Task $ \st -> (runTaskT t st >>= \(r, st1) -> runTaskT (f r) st1)
+
 
 runTask :: (Task a) *TaskState -> *(a, *TaskState)
 runTask t s = runIdentity o runTaskT t s
@@ -146,4 +148,6 @@ Start world
     console          = console <<< "\n" <<< "The result of the task is " <<< print r <<< ".\n"
 	(_, world)	     = fclose console world
  = world
+*/
 
+Start = 5
