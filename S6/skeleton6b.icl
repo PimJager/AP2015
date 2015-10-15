@@ -1,10 +1,9 @@
 module skeleton6b
 
-import StdList, StdInt, StdChar, StdMisc, StdClass, StdString, StdFile, StdArray, Data.Maybe, Data.Map, Control.Monad, Data.Tuple, Data.Void, Data.Functor.Identity, Control.Monad.Trans, Data.Func, Data.Functor
+import StdList, StdInt, StdChar, StdMisc, StdClass, StdString, StdFile, StdArray, Data.Maybe, Data.Map, Control.Monad, Data.Tuple, Data.Void, Data.Either, Data.Functor
 import qualified Text
 from Text import class Text, instance Text String
 from Data.Func import $
-from StdFunc import o
 
 class print a :: a -> String
 
@@ -34,56 +33,53 @@ instance parse [a] | parse a where parse s = foldr (\xs list -> maybe Nothing (\
 
 class iTasksLite a | print a & parse a & TC a
 
-:: Description  :== String
-:: StoreID a    :== String
-//:: Task a = Task (*TaskState -> *(a, *TaskState)) 
-:: TaskT m a    = Task (*TaskState -> ((m a), *TaskState)) //basicaly the StateT monad
-:: Task a       :== TaskT Identity a
-:: *TaskState   = { console :: !*File
+:: Description   :== String
+:: StoreID a     :== String
+:: Task a        = Task (*TaskState -> *(Either String a, *TaskState))
+:: *TaskState    = { console :: !*File
                    , store   :: Map String Dynamic
                    }
+:: Exception     :== String
 
 store_ :: a (StoreID a) (Map String Dynamic) -> Map String Dynamic | TC a
 store_ v sid store = put sid (dynamic v) store
 
-retrieve_ :: (StoreID a) (Map String Dynamic) -> a | TC a
+retrieve_ :: (StoreID a) (Map String Dynamic) -> Either String a | TC a
 retrieve_ sid store = case get sid store of
-    Just (a :: a^) = a
-    Just _         = abort "type error\n"
-    Nothing        = abort "empty store\n"
+    Just (a :: a^) = Right a
+    Just _         = Left "Mismatching types"
+    Nothing        = Left "Empty store"
 
-instance MonadTrans TaskT where
-    liftT m = Task $ \st -> (m >>= \a -> (a, st))
-/*
+instance Functor Task where
+    fmap :: (a -> b) (Task a) -> Task b
+    fmap f t = Task $ \st -> let (e, st`) = runTask t st in (f <$> e, st`)
 
-instance Functor (TaskT m) | Monad m where
-    fmap f t = Task $ \st -> (fmap (\(a,st_) -> (f a, st_)) $ runTaskT t st)
-
-instance Applicative (TaskT m) | Monad m where
-    pure a = Task (\st -> return (a, st))
+instance Applicative Task where
+    pure :: a -> Task a
+    pure a = Task $ \st -> (return a, st)
+    (<*>) infixl 4  :: (Task (a -> b)) (Task a) -> Task b
     (<*>) tf t = ap tf t
 
-instance Monad (TaskT m) | Monad m where
-    bind t f = Task $ \st -> (runTaskT t st >>= \(r, st1) -> runTaskT (f r) st1)
+instance Monad Task where
+    bind :: (Task a) (a -> Task b) -> Task b
+    bind t f = Task $ \st -> let (e, st`) = runTask t st in case e of
+        Left s  = (Left s, st`)
+        Right a = runTask (f a) st`
 
+runTask :: (Task a) *TaskState -> *(Either String a, *TaskState)
+runTask (Task f) s = f s
 
-runTask :: (Task a) *TaskState -> *(a, *TaskState)
-runTask t s = runIdentity o runTaskT t s
-
-runTaskT :: (TaskT m a) *TaskState -> m *(a, *TaskState) | Monad m
-runTaskT (Task f) s = f s
-
-eval :: (Task a) *File -> (a, *File) | iTasksLite a
+eval :: (Task a) *File -> (Either String a, *File) | iTasksLite a
 eval t console 
     # (r, {console}) = runTask t {store = newMap, console = console}
     = (r, console)
 
 printT :: a -> Task a | print a
-printT a = Task $ \st -> let c = st.console <<< print a in (a, {st & console=c})
-println = printT "\n"
+printT a    = Task $ \st -> let c = st.console <<< print a in (return a, {st & console=c})
+println     = printT "\n"
 
 readlineT :: Task String
-readlineT = Task $ \st -> let (r, c) = freadline st.console in (r, {st & console=c})
+readlineT = Task $ \st -> let (r, c) = freadline st.console in (return r, {st & console=c})
 
 viewInformation :: Description a -> Task a | iTasksLite a
 viewInformation d a = printT d >>| printT ": " >>| printT a >>= \res -> println >>| return res
@@ -94,10 +90,20 @@ enterInformation d = printT d >>| printT ": " >>| readlineT >>= \res -> case par
     _           = printT "Wrong format, try again:" >>| println >>| enterInformation d
 
 store :: a (StoreID a) -> Task a | iTasksLite a
-store val id = Task $ \st -> let str = store_ val id st.store in (val, {st & store = str})
+store val id = Task $ \st -> let str = store_ val id st.store in (return val, {st & store = str})
 
 retrieve :: (StoreID a) -> Task a | iTasksLite a
-retrieve id = Task $ \st=:{store} -> ((retrieve_ id store), st)
+retrieve id = Task $ \st=:{store} -> case retrieve_ id store of
+    (Left ex) = runTask (throw ex) st
+    (Right a) = (return a, st)
+
+throw :: Exception -> Task a
+throw ex = Task $ \st -> (Left ex, st)
+
+tryCatch :: (Task a) (Exception -> Task a) -> Task a
+tryCatch t f = Task $ \st -> case runTask t st of
+    (Left ex, st`)  = runTask (f ex) st`
+    res             = res
 
 task0 :: Task Int
 task0 = return 42
@@ -124,6 +130,14 @@ where
     intStore :: StoreID Int
     intStore = "intStore"
 
+task3FailEx :: Task Int
+task3FailEx = store "fout" stringStore >>| retrieve intStore
+where
+    intStore :: StoreID Int
+    intStore = "intStore"
+    stringStore :: StoreID String
+    stringStore = "intStore"
+
 task4 :: Task [String]
 task4 =
         store [] ideaStore
@@ -141,13 +155,20 @@ where
     ideaStore :: StoreID [String]
     ideaStore = "ideas"
 
+taskEx :: Task Int
+taskEx = throw "Test exception" >>| return 5
+
+taskRecover :: Task Int
+taskRecover = printT "Throwing exception" >>| println 
+    >>| tryCatch (throw "Exception!") (\e -> printT "Recovered from Exception: " >>| printT e >>| println)
+    >>| return 42
+
 Start world
  #	(console, world) = stdio world
 	console			 = console <<< "Welcome to iTasksLite" <<< "\n\n"
-    (r, console)     = eval task3 console
-    console          = console <<< "\n" <<< "The result of the task is " <<< print r <<< ".\n"
+    (r, console)     = eval task3FailEx console
+    console          = case r of 
+        (Left ex) = console <<< "\n" <<< "Task threw exception: " <<< ex <<< "\n"
+        (Right a) = console <<< "\n" <<< "The result of the task is " <<< print a <<< ".\n"
 	(_, world)	     = fclose console world
  = world
-*/
-
-Start = 5
