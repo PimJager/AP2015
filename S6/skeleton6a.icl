@@ -48,11 +48,24 @@ retrieve_ sid store = case get sid store of
     Just _         = abort "type error\n"
     Nothing        = abort "empty store\n"
 
-//viewInformation :: Description a TaskState -> TaskResult a | iTasksLite a
+viewInformation :: Description a TaskState -> TaskResult a | iTasksLite a
+viewInformation d a s 
+    # c = s.console
+      c = c <<< print d <<< " "
+      c = c <<< print a <<< "\n"
+    = (a, ({s & console=c}))
 
-//enterInformation :: Description TaskState -> TaskResult a | iTasksLite a
+enterInformation :: Description TaskState -> TaskResult a | iTasksLite a
+enterInformation d s
+  # c       = s.console
+    c       = c <<< print d <<< ": "
+    (r, c)  = freadline c
+    rm      = parse r
+  = if (isJust rm)  (fromJust rm, {s & console=c}) 
+                    (let c_ = c <<< "Wrong format, try again\n" in enterInformation d {s & console=c_})
 
 //store :: a (StoreID a) TaskState -> TaskResult a | iTasksLite a
+//store val id s = (a, )
 
 //retrieve :: (StoreID a) TaskState -> TaskResult a | iTasksLite a
 
@@ -62,16 +75,16 @@ eval taskFunc console
     = (r, st.console)
 
 task0 :: TaskState -> TaskResult Int
-task0 st = (42, st)
+task0 st = (40, st)
 
-/*task1 :: (TaskState -> TaskResult Int)
+task1 :: (TaskState -> TaskResult Int)
 task1 = viewInformation "The answer is" 42
 
 task2 :: TaskState -> TaskResult Int
 task2 st
     # (x, st) = enterInformation "Enter the answer" st
     =           viewInformation "The answer is" x st
-
+/*
 task3 :: TaskState -> TaskResult Int
 task3 st
     # (_, st) = store 1 intStore st
@@ -104,7 +117,7 @@ where
 Start world
  #	(console, world) = stdio world
 	console			 = console <<< "Welcome to iTasksLite\n\n"
-    (r, console)     = eval task0 console
+    (r, console)     = eval task2 console
     console          = console <<< "\nThe result of the task is " <<< print r <<< ".\n"
 	(_, world)	     = fclose console world
  = world
