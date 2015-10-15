@@ -1,8 +1,9 @@
 module skeleton6b
 
-import StdList, StdInt, StdChar, StdMisc, StdClass, StdString, StdFile, StdArray, Data.Maybe, Data.Map, Control.Monad, Data.Tuple, Data.Void
+import StdList, StdInt, StdChar, StdMisc, StdClass, StdString, StdFile, StdArray, Data.Maybe, Data.Map, Control.Monad, Data.Tuple, Data.Void, Data.Either, Data.Functor
 import qualified Text
 from Text import class Text, instance Text String
+from Data.Func import $
 
 class print a :: a -> String
 
@@ -34,10 +35,11 @@ class iTasksLite a | print a & parse a & TC a
 
 :: Description   :== String
 :: StoreID a     :== String
-:: Task a        = Task (*TaskState -> *(a, *TaskState))
+:: Task a        = Task (*TaskState -> *(Either String a, *TaskState))
 :: *TaskState    = { console :: !*File
                    , store   :: Map String Dynamic
                    }
+:: Exception     :== String
 
 store_ :: a (StoreID a) (Map String Dynamic) -> Map String Dynamic | TC a
 store_ v sid store = put sid (dynamic v) store
@@ -50,33 +52,38 @@ retrieve_ sid store = case get sid store of
 
 instance Functor Task where
     fmap :: (a -> b) (Task a) -> Task b
-    fmap f t = liftM f t
+    fmap f t = Task $ \st -> let (e, st`) = runTask t st in (f <$> e, st`)
 
 instance Applicative Task where
     pure :: a -> Task a
-    pure a = Task (\st -> (a, st))
+    pure a = Task $ \st -> (return a, st)
     (<*>) infixl 4  :: (Task (a -> b)) (Task a) -> Task b
     (<*>) tf t = ap tf t
-    //(<*>) tf t = Task (\st -> let (f, st1) = runTask tf st in let (r, st2) = runTask t st1 in (f r, st2))
 
 instance Monad Task where
     bind :: (Task a) (a -> Task b) -> Task b
-    bind t f = Task (\st -> let (r, st1) = runTask t st in runTask (f r) st1)
+    bind t f = Task $ \st -> let (e, st`) = runTask t st in case e of
+        Left s  = (Left s, st`)
+        Right a = runTask (f a) st`
 
-runTask :: (Task a) *TaskState -> *(a, *TaskState)
+runTask :: (Task a) *TaskState -> *(Either String a, *TaskState)
 runTask (Task f) s = f s
 
-eval :: (Task a) *File -> (a, *File) | iTasksLite a
+eval :: (Task a) *File -> (Either String a, *File) | iTasksLite a
 eval t console 
     # (r, {console}) = runTask t {store = newMap, console = console}
     = (r, console)
+/*evalStr :: (Task a) *File -> (String, *File) | iTasksLite a
+evalStr t c = let (r, c) = eval t c in case r of
+    (Left ex) = (ex, c)
+    (Right a) = (a, c)*/
 
 printT :: a -> Task a | print a
-printT a = Task (\st -> let c = st.console <<< print a in (a, {st & console=c}))
-println = printT "\n"
+printT a    = Task $ \st -> let c = st.console <<< print a in (return a, {st & console=c})
+println     = printT "\n"
 
 readlineT :: Task String
-readlineT = Task (\st -> let (r, c) = freadline st.console in (r, {st & console=c}))
+readlineT = Task $ \st -> let (r, c) = freadline st.console in (return r, {st & console=c})
 
 viewInformation :: Description a -> Task a | iTasksLite a
 viewInformation d a = printT d >>| printT ": " >>| printT a >>= \res -> println >>| return res
@@ -87,10 +94,18 @@ enterInformation d = printT d >>| printT ": " >>| readlineT >>= \res -> case par
     _           = printT "Wrong format, try again:" >>| println >>| enterInformation d
 
 store :: a (StoreID a) -> Task a | iTasksLite a
-store val id = Task (\st -> let str = store_ val id st.store in (val, {st & store = str}))
+store val id = Task (\st -> let str = store_ val id st.store in (return val, {st & store = str}))
 
 retrieve :: (StoreID a) -> Task a | iTasksLite a
-retrieve id = Task (\st=:{store} -> ((retrieve_ id store), st))
+retrieve id = Task (\st=:{store} -> ((return $ retrieve_ id store), st))
+
+throw :: Exception -> Task a
+throw ex = Task $ \st -> (Left ex, st)
+
+tryCatch :: (Task a) (Exception -> Task a) -> Task a
+tryCatch t f = Task $ \st -> case runTask t st of
+    (Left ex, st`)  = runTask (f ex) st`
+    res             = res
 
 task0 :: Task Int
 task0 = return 42
@@ -134,11 +149,21 @@ where
     ideaStore :: StoreID [String]
     ideaStore = "ideas"
 
+taskEx :: Task Int
+taskEx = throw "Test exception" >>| return 5
+
+taskRecover :: Task Int
+taskRecover = printT "Throwing exception" >>| println 
+    >>| (tryCatch (throw "Exception!") (\e -> printT "Recovered from Exception: " >>| printT e >>| println)) 
+    >>| return 42
+
 Start world
  #	(console, world) = stdio world
 	console			 = console <<< "Welcome to iTasksLite" <<< "\n\n"
-    (r, console)     = eval task4 console
-    console          = console <<< "\n" <<< "The result of the task is " <<< print r <<< ".\n"
+    (r, console)     = eval taskRecover console
+    console          = case r of 
+        (Left ex) = console <<< "\n" <<< "Task threw exception: " <<< ex <<< "\n"
+        (Right a) = console <<< "\n" <<< "The result of the task is " <<< print a <<< ".\n"
 	(_, world)	     = fclose console world
  = world
 
