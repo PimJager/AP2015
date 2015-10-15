@@ -64,10 +64,12 @@ enterInformation d s
   = if (isJust rm)  (fromJust rm, {s & console=c}) 
                     (let c_ = c <<< "Wrong format, try again\n" in enterInformation d {s & console=c_})
 
-//store :: a (StoreID a) TaskState -> TaskResult a | iTasksLite a
-//store val id s = (a, )
+store :: a (StoreID a) TaskState -> TaskResult a | iTasksLite a
+store val id s = (val, {s & store = store_ val id s.store})
 
-//retrieve :: (StoreID a) TaskState -> TaskResult a | iTasksLite a
+retrieve :: (StoreID a) TaskState -> TaskResult a | iTasksLite a
+retrieve id s=:{store} = (retrieve_ id store, s)
+//Why does: retrieve id s = (retrieve_ id s.store, s) yield a uniqueness error on s?
 
 eval :: (TaskState -> TaskResult a) *File -> (a, *File) | iTasksLite a
 eval taskFunc console
@@ -84,7 +86,7 @@ task2 :: TaskState -> TaskResult Int
 task2 st
     # (x, st) = enterInformation "Enter the answer" st
     =           viewInformation "The answer is" x st
-/*
+
 task3 :: TaskState -> TaskResult Int
 task3 st
     # (_, st) = store 1 intStore st
@@ -98,6 +100,16 @@ task3Fail = retrieve intStore
 where
     intStore :: StoreID Int
     intStore = "intStore"
+
+task3TypeFail :: TaskState -> TaskResult Int
+task3TypeFail st
+  # (_, st) = store "hoi" stringStore st
+  =           retrieve intStore st
+  where
+    stringStore :: StoreID String
+    stringStore = "id"
+    intStore :: StoreID Int
+    intStore = "id"
 
 task4 :: TaskState -> TaskResult Void
 task4 st
@@ -113,11 +125,11 @@ where
 
     ideaStore :: StoreID [String]
     ideaStore = "ideas"
-*/
+
 Start world
  #	(console, world) = stdio world
 	console			 = console <<< "Welcome to iTasksLite\n\n"
-    (r, console)     = eval task2 console
+    (r, console)     = eval task4 console
     console          = console <<< "\nThe result of the task is " <<< print r <<< ".\n"
 	(_, world)	     = fclose console world
  = world
