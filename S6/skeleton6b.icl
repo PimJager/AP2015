@@ -166,7 +166,7 @@ taskRecover = printT "Throwing exception" >>| println
 Start world
  #	(console, world) = stdio world
 	console			 = console <<< "Welcome to iTasksLite" <<< "\n\n"
-    (r, console)     = eval task3FailEx console
+    (r, console)     = eval task2 console
     console          = case r of 
         (Left ex) = console <<< "\n" <<< "Task threw exception: " <<< ex <<< "\n"
         (Right a) = console <<< "\n" <<< "The result of the task is " <<< print a <<< ".\n"
