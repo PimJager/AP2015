@@ -156,7 +156,7 @@ mainTask = ('I'.forever (
 			-|| views
 			>>* ['I'.OnAction 'I'.ActionFinish ('I'.always $ 'I'.get taskState)]
 			where
-				lens 	= 'I'.UpdateWith (\(e,s,v) -> e) (\(_,s,v) e -> (e,s,v))
+				lens 	= 'I'.UpdateWithShared (\(e,s,v) -> e) (\(_,s,v) e -> (e,s,v))
 				delete 	= 'I'.always ('I'.upd (\_-> emptyISstate) taskState)
 				evaluate= 'I'.always ('I'.upd (\(e,s,_) -> 
 								let (res, s`) = runExpression e s in
