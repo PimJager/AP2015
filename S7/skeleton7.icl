@@ -148,7 +148,7 @@ views = 	'I'.viewSharedInformation "Expression:" [ViewWith (\(e,_,_) -> print e)
 
 mainTask :: (Task IState)
 mainTask = ('I'.forever (
-				'I'.updateSharedInformation "Expression" [] taskState
+				'I'.updateSharedInformation "Expression" [lens] taskState
 				>>* ['I'.OnAction 'I'.ActionDelete delete
 					,'I'.OnAction ('I'.Action "Eval" []) evaluate
 					]
@@ -156,6 +156,7 @@ mainTask = ('I'.forever (
 			-|| views
 			>>* ['I'.OnAction 'I'.ActionFinish ('I'.always $ 'I'.get taskState)]
 			where
+				lens 	= 'I'.UpdateWith (\(e,s,v) -> e) (\(_,s,v) e -> (e,s,v))
 				delete 	= 'I'.always ('I'.upd (\_-> emptyISstate) taskState)
 				evaluate= 'I'.always ('I'.upd (\(e,s,_) -> 
 								let (res, s`) = runExpression e s in
