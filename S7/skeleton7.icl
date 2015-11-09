@@ -2,7 +2,8 @@ module skeleton7
 
 from iTasks import always, hasValue, :: TaskValue(..), :: Task, :: Stability, :: TaskCont(..), :: Action, updateInformation, viewInformation, class descr, instance descr String, :: UpdateOption, :: ViewOption(..), -||-, -||, ||-, startEngine, class Publishable, >>*, class TFunctor, instance TFunctor Task, class TApplicative, instance TApplicative Task, instance Publishable Task, Void
 import Data.Tuple, StdClass, StdList, iTasks._Framework.Generic, Text.JSON, Data.Functor, Control.Applicative, Control.Monad, Data.Map, Data.Either, Data.Functor
-import qualified iTasks
+import qualified iTasks as I
+from iTasks import -||
 import qualified Text as T
 import qualified Data.List as List
 from Data.Func import $
@@ -29,6 +30,7 @@ e = Insert New (Oper New +. (Union (Integer 7) (Size (Integer 9))))
 :: Element	:== Expression
 :: Ident	:== String
 :: Val 		= 	I Int | S [Int]
+derive class iTask Expression, Op, Val
 
 // === State
 :: State 	:== Map Ident Val
@@ -93,8 +95,14 @@ op (+.) = +
 op (-.) = -
 op (*.) = *
 
-evalExpression :: Expression -> Either String Val
-evalExpression expr = let (r, _) = runSem (eval expr) newMap in r
+evalExpression :: Expression State -> Either String Val
+evalExpression expr state = let (r, _) = runExpression expr state in r
+
+evalExpression` :: Expression -> Either String Val
+evalExpression` e = evalExpression e newMap
+
+runExpression :: Expression State -> (Either String Val, State)
+runExpression expr state = runSem (eval expr) state
 
 // === Printing
 print e = 'T'.concat $ print` e []
@@ -121,15 +129,38 @@ printOp (-.) = "-"
 printOp (*.) = "*"
 
 // === simulation
-(>>>=)     :== 'iTasks'.tbind
-(>>>|) a b :== 'iTasks'.tbind a (\_ -> b)
-treturn    :== 'iTasks'.return
-ActionOk   :== 'iTasks'.ActionOk
-ActionQuit :== 'iTasks'.ActionQuit
-ActionNew  :== 'iTasks'.ActionNew
+(>>>=)     :== 'I'.tbind
+(>>>|) a b :== 'I'.tbind a (\_ -> b)
+treturn    :== 'I'.return
+ActionOk   :== 'I'.ActionOk
+ActionQuit :== 'I'.ActionQuit
+ActionNew  :== 'I'.ActionNew
+
+:: IState :== (Expression, State, Either String Val)
+emptyISstate = (New, newMap, Left "no result yet")
+
+taskState :: 'I'.ReadWriteShared IState IState
+taskState = 'I'.sharedStore "state" emptyISstate
+
+views = 	'I'.viewSharedInformation "Expression:" [ViewWith (\(e,_,_) -> print e)] taskState
+		-||	'I'.viewSharedInformation "Last result:" [ViewWith (\(_,_,r) -> r)] taskState  
+		-||	'I'.viewSharedInformation "State:" [ViewWith (\(_,s,_) -> s)] taskState
+
+mainTask :: (Task IState)
+mainTask = ('I'.forever (
+				'I'.updateSharedInformation "Expression" [] taskState
+				>>* ['I'.OnAction 'I'.ActionDelete delete
+					,'I'.OnAction ('I'.Action "Eval" []) evaluate
+					]
+			))
+			-|| views
+			>>* ['I'.OnAction 'I'.ActionFinish ('I'.always $ 'I'.get taskState)]
+			where
+				delete 	= 'I'.always ('I'.upd (\_-> emptyISstate) taskState)
+				evaluate= 'I'.always ('I'.upd (\(e,s,_) -> 
+								let (res, s`) = runExpression e s in
+								(e,s`,res)
+									  ) taskState )
 
 
-Start = print expr //evalExpression expr
-	where
-		expr = Union s1 (Variable "x")
-		s1 	 = Delete (Integer 5) $ ("x" =. (Insert (Integer 6) $ Insert (Integer 5) New))
+Start world = startEngine mainTask world
