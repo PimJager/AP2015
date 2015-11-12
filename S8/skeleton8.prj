@@ -42,7 +42,7 @@ Global
 	Precompile:	
 	Postlink:	
 MainModule
-	Name:	skeleton8
+	Name:	skeleton8_writer
 	Dir:	{Project}
 	Compiler
 		NeverMemoryProfile:	False
@@ -563,6 +563,20 @@ OtherModules
 			ReuseUniqueNodes:	True
 			Fusion:	False
 	Module
+		Name:	Control.Monad.Trans
+		Dir:	{Application}/lib/iTasks-SDK/Dependencies/clean-platform/src/libraries/OS-Independent
+		Compiler
+			NeverMemoryProfile:	False
+			NeverTimeProfile:	False
+			StrictnessAnalysis:	True
+			ListTypes:	StrictExportTypes
+			ListAttributes:	True
+			Warnings:	True
+			Verbose:	True
+			ReadableABC:	False
+			ReuseUniqueNodes:	True
+			Fusion:	False
+	Module
 		Name:	Crypto.Hash.SHA1
 		Dir:	{Application}/lib/iTasks-SDK/Dependencies/clean-platform/src/libraries/OS-Independent
 		Compiler
@@ -662,6 +676,20 @@ OtherModules
 			Fusion:	False
 	Module
 		Name:	Data.Functor
+		Dir:	{Application}/lib/iTasks-SDK/Dependencies/clean-platform/src/libraries/OS-Independent
+		Compiler
+			NeverMemoryProfile:	False
+			NeverTimeProfile:	False
+			StrictnessAnalysis:	True
+			ListTypes:	StrictExportTypes
+			ListAttributes:	True
+			Warnings:	True
+			Verbose:	True
+			ReadableABC:	False
+			ReuseUniqueNodes:	True
+			Fusion:	False
+	Module
+		Name:	Data.Functor.Identity
 		Dir:	{Application}/lib/iTasks-SDK/Dependencies/clean-platform/src/libraries/OS-Independent
 		Compiler
 			NeverMemoryProfile:	False
