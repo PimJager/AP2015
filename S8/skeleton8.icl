@@ -91,7 +91,7 @@ new :: Set
 new     = return []
 
 size :: Set -> Elem
-size s = s >>= \s` -> return $ length s`
+size s = liftM length s
 
 // ==== Operators =====
 //On Integers
