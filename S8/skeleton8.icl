@@ -91,7 +91,7 @@ new :: Set
 new     = return []
 
 size :: Set -> Elem
-size s = Sem $ \st -> let (Right s`, st`) = runSem s st in (return $ length s`, st`)
+size s = s >>= \s` -> return $ length s`
 
 // ==== Operators =====
 //On Integers
