@@ -148,28 +148,20 @@ views = 	'I'.viewSharedInformation "Expression:" [ViewWith (\(e,_,_) -> print e)
 
 mainTask :: (Task IState)
 mainTask = ('I'.forever (
-				currentState
-				>>>= \(e,_,_) -> 'I'.updateInformation "Expression" [] e
-				>>>| 'I'.upd (\(_,s,v) -> (e,s,v)) taskState
-				>>* ['I'.OnAction 'I'.ActionSave save
-					,'I'.OnAction 'I'.ActionDelete delete
+				'I'.updateSharedInformation "Expression" [lens] taskState
+				>>* ['I'.OnAction 'I'.ActionDelete delete
 					,'I'.OnAction ('I'.Action "Eval" []) evaluate
 					]
 			))
 			-|| views
 			>>* ['I'.OnAction 'I'.ActionFinish ('I'.always $ 'I'.get taskState)]
 			where
-				save 		= 'I'.always $ 'I'.upd (\(_,s,v) -> (e,s,v)) taskState
-				delete 		= 'I'.always ('I'.upd (\_-> emptyISstate) taskState)
-				evaluate	= 'I'.always ('I'.upd (\(e,s,_) -> 
-											let (res, s`) = runExpression e s in
-											(e,s`,res)
-												  ) 
-												  taskState 
-										  )
-
-currentState :: (Task IState)
-currentState = 'I'.get taskState
+				lens 	= 'I'.UpdateWithShared (\(e,s,v) -> e) (\(_,s,v) e -> (e,s,v))
+				delete 	= 'I'.always ('I'.upd (\_-> emptyISstate) taskState)
+				evaluate= 'I'.always ('I'.upd (\(e,s,_) -> 
+								let (res, s`) = runExpression e s in
+								(e,s`,res)
+									  ) taskState )
 
 
 Start world = startEngine mainTask world
