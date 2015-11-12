@@ -84,6 +84,8 @@ set is  = return is
 
 bool :: Bool -> Sem Bool
 bool b = return b
+true = bool True
+false = bool False
 
 new :: Set
 new     = return []
@@ -164,22 +166,6 @@ x = "x"
 y = "y"
 z = "z"
 
-//to make sure that state changes in the if-condition
-//are bound in the then/else expressions
-exprT = 
-    x =. int 7 :.
-    IF ( x =. int 6 :. bool True ) THEN
-        (var x)
-    ELSE 
-        (int 5)
-
-// test unvalling of wrong type
-//caught by clean typesystem
-/*exprU = 
-    x =. bool False :.
-    y =. var x + int 5 :.
-    var y*/
-
 expr5 :: Set
 expr5 =
     x =. expr4 :.
@@ -221,8 +207,29 @@ expr10 =
 		(x =. insert (size (var x)) (var x)) :.
 	z =. difference (var x) (intersection (var x) (insert (var z) new))
 
+//to make sure that state changes in the if-condition
+//are bound in the then/else expressions
+exprT = 
+    x =. int 7 :.
+    IF ( x =. int 6 :. true ) THEN
+        (var x)
+    ELSE 
+        (int 5)
+
+//test reading not stored vars
+exprF :: Elem
+exprF = 
+    var x
+
+// test unvalling of wrong type
+//caught by clean typesystem
+/*exprU = 
+    x =. bool False :.
+    y =. var x + int 5 :.
+    var y*/
+
 Start = (map eval exprs, map eval expre)
     where
         exprs = [expr4, expr5, expr7, expr8, expr9, expr10]
-        expre = [expr1, expr2, expr3, exprT, expr6]
+        expre = [expr1, expr2, expr3, exprT, expr6, exprT, exprF]
 
