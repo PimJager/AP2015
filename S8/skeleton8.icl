@@ -228,7 +228,15 @@ exprF =
     y =. var x + int 5 :.
     var y*/
 
-Start = (map eval exprs, map eval expre)
+//simple DO loop
+exprD :: Elem
+exprD = 
+    x =. int 0 :.
+    WHILE (var x <. int 4) DO
+        (x =. var x + int 1 :. x =. var x + int 2) :.
+    var x
+
+Start = eval exprD //(map eval exprs, map eval expre)
     where
         exprs = [expr4, expr5, expr7, expr8, expr9, expr10]
         expre = [expr1, expr2, expr3, exprT, expr6, exprT, exprF]

@@ -73,6 +73,7 @@ read k = liftT (read` k)
             Just v  = (pure v, st)
             Nothing = runSem (fail $ 'T'.concat ["Unknown identifier: ", k]) st
 
+//copies te current state
 copy :: SemW Store
 copy  = liftT (Sem $ \st -> (pure st, st))
 
@@ -93,11 +94,11 @@ print` e st = let r = eval` e st in case r of
     (Left m) = 'T'.concat ["Error in expression: ", m]
     (Right (_, rep)) = 'T'.concat $ 'List'.intersperse " " rep
 
-result :: (SemW a) -> a
+result :: (SemW a) -> Either String a
 result e = result` e newMap
 result` e st = let r = eval` e st in case r of
-    (Left m) = abort "No result"
-    (Right (r,_)) = r
+    (Left m) = Left m
+    (Right (r,_)) = Right r
 
 // ================== 
 
@@ -176,7 +177,7 @@ IF c _ th _ e = t "if" >>| c >>= \c` ->
 
 
 ::DO = DO
-//For printing here we use quite a horrible hack. We execute c (which prints it) and depending
+//For printing here we use quite a hack. We execute c (which prints it) and depending
 //on the value print or execute b. Afterwards we silence all executions of b and c
 WHILE :: (SemW Bool) DO (SemW a) -> SemW Int
 WHILE c _ b = t "while" >>| c >>= \c` -> if c` 
@@ -269,12 +270,23 @@ exprF =
     y =. var x + int 5 :.
     var y*/
 
-//simpel DO loop
+//simple DO loop
 exprD :: Elem
 exprD = 
     x =. int 0 :.
-    WHILE (var x <. int 3) DO
-        (x =. var x + int 1) :.
+    WHILE (var x <. int 4) DO
+        (x =. var x + int 1 :. x =. var x + int 2) :.
+    var x
+
+//Reading an unknown var. Note that this also destroys the print view of the expression
+exprW :: Elem
+exprW =
+    x =. int 5 :.
+    var y
+
+exprC :: BL
+exprC = 
+    x =. (int 1 + int 5 + int 7 - int 2) <. (int 7 * int 5) :.
     var x
 
 /*
@@ -284,7 +296,7 @@ Start = (map eval exprs, map eval expre)
         expre = [expr1, expr2, expr3, exprT, expr6, exprT, exprF]
 */
 
-Start = (print expr9, result expr9)
+Start = (print exprC, result exprC)
 
 /** Helper functions for dealing with printing **/
 printSet :: [Int] -> String
@@ -292,12 +304,9 @@ printSet is = 'T'.concat $ 'List'.intersperse "," $ map toString is
 
 t s = tell [s]
 
-//supress :: (SemW a) -> SemW a
-
-
 /* ***
-Control.Monad.Writer is actually wrong.... (monad implementation is incorrect)
-therefore we redo it here
+Control.Monad.Writer in the clean-platform is outdated and does not compile
+Therefore we redefine it here. 
 *** */
 
 
