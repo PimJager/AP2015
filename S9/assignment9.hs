@@ -31,6 +31,14 @@ data Expression a where
 
 deriving instance Show (Expression a)
 
+-- TODO: instances for the operators +, -, *
+instance Num (Element) where
+    e1 + e2         = Oper e1 (:+) e2
+    e1 - e2         = Oper e1 (:-) e2
+    e1 * e2         = Oper e1 (:*) e2
+    abs e1          = error "abs not defined for Expression"
+    signum e1       = error "signum not defined for Expression"
+    fromInteger i   = Integer $ fromInteger i
 
 -- === State
 type State = Map Ident Val 
@@ -69,6 +77,8 @@ instance Unpack [Int] where
 
 instance Unpack Int where
     unpack e = eval e >>= \rs -> case rs of I rs' -> return rs'
+
+-- TODO: Val in Sem niet meer nodig? Gewon Val a returnen? Dan ook unpack niet meer nodig
 
 eval :: Expression a -> Sem Val
 eval New                    = return $ S []
