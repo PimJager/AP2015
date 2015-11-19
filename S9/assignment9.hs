@@ -28,6 +28,7 @@ data Expression a where
     Size            :: Set -> Element
     Oper            :: Element -> Op -> Element -> Element
     (:=)            :: Ident -> Expression a -> Expression a 
+    (:.)            :: Expression a -> Expression b -> Expression b
 
 deriving instance Show (Expression a)
 
@@ -93,6 +94,7 @@ eval (Integer i)            = return $ I i
 eval (Size s)               = unpack s >>= \s' -> return $ I $ length s'
 eval (Oper e1 o e2)         = unpack e1 >>= \e1' -> unpack e2 >>= \e2' -> return $ I $ (op o) e1' e2'
 eval ((:=) k e)             = eval e >>= \e' -> store k e'
+eval ((:.) e1 e2)           = eval e1 >> eval e2
 
 opS :: Set -> Set -> ([Int] -> [Int] -> [Int]) -> Sem Val      
 opS s1 s2 f = unpack s1 >>= \s1' -> unpack s2 >>= \s2' -> return $ S $ f s1' s2'
@@ -125,7 +127,8 @@ print' (Intersection s1 s2) c   = printOpS s1 s2 "∩" c
 print' (Integer i)          c   = (show i : c)
 print' (Size s)             c   = ("|" : print' s ("|" : c))
 print' (Oper e1 op e2)      c   = ("(" : print' e1 ((printOp op) : print' e2 (")" : c)))
-print' ((:=) k e)             c   = (k : ("=" : print' e c))
+print' ((:=) k e)           c   = (k : ("=" : print' e c))
+print' ((:.) e1 e2)         c   = (print' e1 (";\n" : print' e2 c))
 
 printOpS :: Expression a -> Expression a -> String -> [String] -> [String]
 printOpS e1 e2 f c = ("(" : print' e1 (")" : (f : ("(" : print' e2 (")" : c)))))
@@ -137,3 +140,6 @@ printOp (:*) = "*"
 
 -- Example programs
 
+e1 = Insert (4+5) $ Insert 18 $ Delete 4 $ Insert 4 New
+e2 =    "x" := Insert 5 New :. 
+        Size (Variable "x")
