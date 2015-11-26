@@ -10,12 +10,6 @@ import Control.Monad
 import Data.Map as M
 import qualified Data.List as L
 
-data Op       = (:+) | (:-) | (:*)  deriving (Show)
-type Set      = Expression [Int]
-type Element  = Expression Int
-type Ident    = String
-data Val      = I Int | S [Int]  deriving (Show)
-
 data Expression a where 
     New             :: Set
     Insert          :: Element -> Set -> Set
@@ -28,9 +22,15 @@ data Expression a where
     Size            :: Set -> Element
     Oper            :: Element -> Op -> Element -> Element
     (:=)            :: Ident -> Expression a -> Expression a 
-    (:.)            :: Expression a -> Expression b -> Expression b
+    (:.)            :: (HasVal a, HasVal b) => Expression a -> Expression b -> Expression b
 
 deriving instance Show (Expression a)
+
+data Op       = (:+) | (:-) | (:*)  deriving (Show)
+type Set      = Expression [Int]
+type Element  = Expression Int
+type Ident    = String
+data Val      = I Int | S [Int]  deriving (Show)
 
 -- TODO: instances for the operators +, -, *
 instance Num (Element) where
@@ -69,47 +69,49 @@ read k      = Sem $ \st -> case M.lookup k st of
     Just v  -> (pure v, st)
     Nothing -> runSem (fail $ concat ["Unknown identifier: ", k]) st
 
--- Evaluation ====
-class Unpack a where
-    unpack :: (Expression a) -> Sem a
+-- We need to be able to pack and eval vals for the store
+class HasVal a where
+    unVal :: Val -> Sem a
+    mkVal :: a -> Val
+instance HasVal Int where
+    unVal (I i) = return i
+    unVal _     = fail "Expected Element but found something else" --for users of DSL Int=Element
+    mkVal i     = I i
+instance HasVal [Int] where
+    unVal (S s) = return s
+    unVal _     = fail "Expected Set but found something else" -- for users of DSL [Int]=Set
+    mkVal s     = S s    
 
-instance Unpack [Int] where
-    unpack s = eval s >>= \rs -> case rs of S rs' -> return rs'
+-- ====Evaluation
 
-instance Unpack Int where
-    unpack e = eval e >>= \rs -> case rs of I rs' -> return rs'
-
--- TODO: Val in Sem niet meer nodig? Gewon Val a returnen? Dan ook unpack niet meer nodig
-
-eval :: Expression a -> Sem Val
-eval New                    = return $ S []
-eval (Insert e s)           = unpack e >>= \e' -> unpack s >>= \s' -> return $ S (e':s')
-eval (Delete e s)           = unpack e >>= \e' -> unpack s >>= \s' -> 
-                                    return $ S $ L.filter ((/=)e') s'
-eval (Variable k)           = read k
+eval :: HasVal a => Expression a -> Sem a
+eval New                    = return []
+eval (Insert e s)           = eval e >>= \e' -> eval s >>= return . (e':)
+eval (Delete e s)           = eval e >>= \e' -> eval s >>= return . L.filter ((/=)e') 
+eval (Variable k)           = read k >>= unVal
 eval (Union s1 s2)          = opS s1 s2 L.union
 eval (Difference s1 s2)     = opS s1 s2 (L.\\)
 eval (Intersection s1 s2)   = opS s1 s2 L.intersect
-eval (Integer i)            = return $ I i
-eval (Size s)               = unpack s >>= \s' -> return $ I $ length s'
-eval (Oper e1 o e2)         = unpack e1 >>= \e1' -> unpack e2 >>= \e2' -> return $ I $ (op o) e1' e2'
-eval ((:=) k e)             = eval e >>= \e' -> store k e'
+eval (Integer i)            = return i
+eval (Size s)               = eval s >>= return . length
+eval (Oper e1 o e2)         = eval e1 >>= \e1' -> eval e2 >>= \e2' -> return $ (op o) e1' e2'
+eval ((:=) k e)             = eval e >>= store k . mkVal >>= unVal
 eval ((:.) e1 e2)           = eval e1 >> eval e2
 
-opS :: Set -> Set -> ([Int] -> [Int] -> [Int]) -> Sem Val      
-opS s1 s2 f = unpack s1 >>= \s1' -> unpack s2 >>= \s2' -> return $ S $ f s1' s2'
+opS :: Set -> Set -> ([Int] -> [Int] -> [Int]) -> Sem [Int]
+opS s1 s2 f = f <$> eval s1 <*> eval s2       
 op :: Op -> (Int -> Int -> Int)
 op (:+) = (+)
 op (:-) = (-)
 op (:*) = (*)
 
-evalExpression :: Expression a -> State -> Either String Val
-evalExpression expr state = let (r, _) = runExpression expr state in r
+evalExpression :: HasVal a => Expression a -> State -> Either String a
+evalExpression expr state = fst $ runExpression expr state
 
-evalExpression' :: Expression a -> Either String Val
+evalExpression' :: HasVal a => Expression a -> Either String a
 evalExpression' e = evalExpression e M.empty
 
-runExpression :: Expression a -> State -> (Either String Val, State)
+runExpression :: HasVal a => Expression a -> State -> (Either String a, State)
 runExpression expr state = runSem (eval expr) state
 
 -- === Printing
@@ -143,3 +145,7 @@ printOp (:*) = "*"
 e1 = Insert (4+5) $ Insert 18 $ Delete 4 $ Insert 4 New
 e2 =    "x" := Insert 5 New :. 
         Size (Variable "x")
+-- no typechecking on variables :(
+e3 =    ("x" := New) :.
+        ("y" := Integer 5) :.
+        Oper (Variable "x") (:+) (Variable "y") -- use Oper to explicitly force Element
