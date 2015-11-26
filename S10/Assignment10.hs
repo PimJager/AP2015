@@ -1,6 +1,7 @@
 {-#LANGUAGE StandaloneDeriving #-}
 {-#LANGUAGE DeriveAnyClass #-}
 {-#LANGUAGE ExistentialQuantification #-}
+{-#LANGUAGE GADTs #-}
 
 module Assignment10 where
 
@@ -11,12 +12,13 @@ import Data.Monoid
 import Data.List.Split
 
 data Matcher a where
-      Is          (Matcher a)
-    | EqualTo     a
-    | LessThan    a
-    | Not         (Matcher a)
-    | Either      (Matcher a) (Matcher a)
-    deriving (Show)
+    Is          :: (Matchable a) => (Matcher a) -> Matcher a
+    EqualTo     :: (Matchable a) => a -> Matcher a
+    LessThan    :: (Matchable a) => a -> Matcher a
+    Not         :: (Matchable a) => (Matcher a) -> Matcher a
+    Either      :: (Matchable a) => (Matcher a) -> (Matcher a) -> Matcher a
+
+deriving instance Show (Matcher a)
 
 class (Show a, Ord a, Eq a) => Matchable a
 
@@ -96,11 +98,16 @@ mix     = correc1 .* correI1 .* fail1 .* correc2 .* fail2
 -- Note: If this would be a library and we wouldn't want our users to be
 -- able to user the deep constructors directly, it would simply be possible to
 -- only export the shallow functions
-
+is          :: (Matchable a) => (Matcher a) -> Matcher a
 is          = Is
+equalTo     :: (Matchable a) => a -> Matcher a
 equalTo     = EqualTo
+lessThan    :: (Matchable a) => a -> Matcher a
 lessThan    = LessThan
-not'        = Not      --not and either are primed to not clash with Prelude
+--not and either are primed to not clash with Prelude
+not'         :: (Matchable a) => (Matcher a) -> Matcher a
+not'        = Not      
+either'      :: (Matchable a) => (Matcher a) -> (Matcher a) -> Matcher a
 either'     = Either
 
 assertThat :: forall a. (Matchable a) => String -> a -> (Matcher a) -> AssertThat
