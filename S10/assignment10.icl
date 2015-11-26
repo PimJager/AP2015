@@ -14,7 +14,7 @@ import StdList, StdInt, StdMisc, Data.Tuple, StdClass, iTasks._Framework.Generic
 instance * (TestCase a) where
     (*) t1 t2 = t1 Chain t2
 
-testTC :: TestCase a -> Bool
+testTC :: TestCase a -> Bool 
 
 
 
