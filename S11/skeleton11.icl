@@ -10,7 +10,6 @@ from Data.Func import $
 from StdFunc import o, id
 import Data.List
 
-
 :: Prog :== [Instr]
 
 :: Instr = Write Expr
