@@ -12,27 +12,18 @@ import qualified Control.Monad.State as S
 
 
 -- Haskell has + and * in the Num typeclass, and defining a num instance for Bool seems rather
--- dirty. Since + and * are operations of a Ring we instead we define our own ring class. (The 
--- Ring instance from Data.Algebra for Bool is no good since it treats + as /=)
-class Ring a where
-    zero :: a
+-- dirty. + and * are operations of a Ring, but +=Or and *=And does not form a ring for Bool, so
+-- we call this class NotARing 
+class NotARing a where
     (^+^) :: a -> a -> a
-    neg :: a -> a
-    one :: a
     (^*^) :: a -> a -> a
 
-instance Ring Int where
-    zero    = 0
+instance NotARing Int where
     (^+^)   = (+)
-    neg     = negate
-    one     = 1
     (^*^)   = (*)
 
-instance Ring Bool where
-    zero    = False
+instance NotARing Bool where
     (^+^)   = (||)
-    neg     = id 
-    one     = True
     (^*^)   = (&&)
 
 infixl 6 +. , :+
@@ -42,8 +33,8 @@ infix  4 =.= , :==
 
 class Arith x where
     lit :: Show a => a -> x a 
-    (+.) :: Ring a => x a -> x a -> x a
-    (*.) :: Ring a => x a -> x a -> x a
+    (+.) :: NotARing a => x a -> x a -> x a
+    (*.) :: NotARing a => x a -> x a -> x a
 class Store x where
     read :: x Int
     write :: x Int -> x Int
@@ -163,8 +154,8 @@ typeFail = (lit True) =.= (lit (1::Int))
 -- GADTs 
 data Expression a where
     Lit     :: a -> Expression a
-    (:+)    :: Ring a => Expression a -> Expression a -> Expression a
-    (:*)    :: Ring a => Expression a -> Expression a -> Expression a
+    (:+)    :: NotARing a => Expression a -> Expression a -> Expression a
+    (:*)    :: NotARing a => Expression a -> Expression a -> Expression a
     Read    :: Expression State
     Write   :: Expression State -> Expression State
     XOR     :: Expression Bool -> Expression Bool -> Expression Bool
