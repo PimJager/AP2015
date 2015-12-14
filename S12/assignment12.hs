@@ -72,7 +72,7 @@ binOp op (Print x) (Print y) = Print $ \c -> x (op : y c)
 instance Arith Print where
     lit a   = Print $ \c -> (show a : c)
     (+.)    = binOp "+."
-    (*.)    = binOp "+."
+    (*.)    = binOp "*."
 instance Store Print where
     read             = Print $ \c -> ("read" : c)
     write (Print x)  = Print $ \c -> ("write" : x c)
@@ -156,6 +156,10 @@ typeFail :: Expr e => e Bool
 typeFail = (lit True) =.= (lit (1::Int))
 -}
 
+--to run the examples:
+-- runStep loge 0
+-- print loge []
+
 -- GADTs 
 data Expression a where
     Lit     :: a -> Expression a
@@ -201,8 +205,30 @@ eval' ((:*) x y)    = binOp'' (^*^) x y
 eval' Read          = S.get >>= \st -> return $ return st
 eval' (Write x)     = eval' x >>= \a -> maybe (return ()) (\a' -> S.put a') a >> return a
 eval' (XOR x y)     = binOp'' (\a b -> (a || b) && (not (a && b))) x y
+eval' (Not x)       = (liftA not) <$> (eval' x)
 eval' ((:==) x y)   = binOp'' (==) x y
 eval' Throw         = return $ empty
 eval' (Try x y)     = S.state $ \s -> case eval x s of
                         (Nothing, s')   -> eval y s'
                         (Just a, s')    -> (Just a, s')
+
+seven' :: Expression Int
+seven' = Lit 4 :+ Lit 3
+
+throw1' :: Expression Int
+throw1' = Lit 3 :+ Throw
+
+six' :: Expression Int
+six' = Write (Lit 3) :+ Read
+
+try1' :: Expression Int
+try1' = Try throw1' (Lit 42)
+
+loge' :: Expression Bool
+loge' = Lit True :* Not (Lit True)
+
+comp' :: Expression Bool
+comp' = (Lit 1 :== Lit 2) `XOR` Not (Not $ Lit True)
+
+-- usage
+-- eval loge 0
