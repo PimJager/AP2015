@@ -1,4 +1,5 @@
 {-# LANGUAGE GADTs #-}
+{-# LANGUAGE FlexibleContexts #-}
 
 module Assignment12 where
 
@@ -7,6 +8,7 @@ import Data.Maybe
 import Control.Monad
 import Data.Functor
 import Control.Applicative
+import qualified Control.Monad.State as S
 
 
 -- Haskell has + and * in the Num typeclass, and defining a num instance for Bool seems rather
@@ -163,12 +165,44 @@ data Expression a where
     Write   :: Expression State -> Expression State
     XOR     :: Expression Bool -> Expression Bool -> Expression Bool
     Not     :: Expression Bool -> Expression Bool
-    (:==)   :: Eq a => Expression a -> Expression a -> Expression a
+    (:==)   :: (Eq a, Show a) => Expression a -> Expression a -> Expression Bool
     Throw   :: Expression a
     Try     :: Expression a -> Expression a -> Expression a
 
 class Print' a where
     print' :: a -> [String] -> [String]
 
-instance Print' (Expr a) where
-    print' _ _ = []
+binOp' :: (Print' a, Print' b) => String -> a -> b -> [String] -> [String]
+binOp' op x y c = (print' x (op  : print' y  c))
+instance Show a => Print' (Expression a) where
+    print' (Lit a)      = (show a :)
+    print' ((:+) x y)   = binOp' ":+" x y
+    print' ((:*) x y)   = binOp' ":*" x y
+    print' Read         = ("read" :)
+    print' (Write x)    = ("Write" :) . (print' x) 
+    print' (XOR x y)    = binOp' "XOR" x y 
+    print' (Not x)      = ("Not" :) . (print' x)
+    print' ((:==) x y)  = binOp' ":==" x y 
+    print' Throw        = ("Throw" :)
+    print' (Try x y)    = binOp' "<|>" x y 
+
+type EState a = S.State State (Maybe a)
+
+eval :: Expression a -> State -> (Maybe a, State)
+eval e s = S.runState (eval' e) s
+
+binOp'' :: (a -> b -> c) -> Expression a -> Expression b -> EState c
+binOp'' op x y = (liftA2 op) <$> (eval' x) <*> (eval' y)
+
+eval' :: Expression a -> EState a
+eval' (Lit a)       = return $ return a
+eval' ((:+) x y)    = binOp'' (^+^) x y
+eval' ((:*) x y)    = binOp'' (^*^) x y
+eval' Read          = S.get >>= \st -> return $ return st
+eval' (Write x)     = eval' x >>= \a -> maybe (return ()) (\a' -> S.put a') a >> return a
+eval' (XOR x y)     = binOp'' (\a b -> (a || b) && (not (a && b))) x y
+eval' ((:==) x y)   = binOp'' (==) x y
+eval' Throw         = return $ empty
+eval' (Try x y)     = S.state $ \s -> case eval x s of
+                        (Nothing, s')   -> eval y s'
+                        (Just a, s')    -> (Just a, s')
